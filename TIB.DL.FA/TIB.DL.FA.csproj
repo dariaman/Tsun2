@@ -1,0 +1,295 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{9DCBA152-958A-43C3-8CF1-28D8A078D4CD}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>TIB.DL.FA</RootNamespace>
+    <AssemblyName>TIB.DL.FA</AssemblyName>
+    <TargetFrameworkVersion>v4.6</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <Deterministic>true</Deterministic>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Journal\DSBalance.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DSBalance.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Journal\DSJournal.cs">
+      <DependentUpon>DSJournal.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Journal\DSJournal.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DSJournal.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Journal\DSJournalReport.cs">
+      <DependentUpon>DSJournalReport.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Journal\DSJournalReport1.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DSJournalReport.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Master\DSBank.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DSBank.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Master\DSCOA.cs">
+      <DependentUpon>DSCOA.xsd</DependentUpon>
+      <SubType>code</SubType>
+    </Compile>
+    <Compile Include="Master\DSCOA1.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DSCOA.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Master\DSType.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DSType.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+      <DependentUpon>Settings.settings</DependentUpon>
+    </Compile>
+    <Compile Include="Report\DSAging.cs">
+      <DependentUpon>DSAging.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Report\DSAging.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DSAging.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Report\DSPosted.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DSPosted.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Report\DSReceipt.cs">
+      <DependentUpon>DSReceipt.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Report\DSReceipt.Designer.cs">
+      <DependentUpon>DSReceipt.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Voucher\DSAddInfo.Designer.cs" />
+    <Compile Include="Voucher\DSFAFlow.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DSFAFlow.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Voucher\DSPayment.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DSPayment.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Voucher\DSSL.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DSSL.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Voucher\DSVoucher.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DSVoucher.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Voucher\DSVoucher2.Designer.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="app.config" />
+    <None Include="Journal\DSBalance.xsc">
+      <DependentUpon>DSBalance.xsd</DependentUpon>
+    </None>
+    <None Include="Journal\DSBalance.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>DSBalance.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="Journal\DSBalance.xss">
+      <DependentUpon>DSBalance.xsd</DependentUpon>
+    </None>
+    <None Include="Journal\DSJournal.xsc">
+      <DependentUpon>DSJournal.xsd</DependentUpon>
+    </None>
+    <None Include="Journal\DSJournal.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>DSJournal.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="Journal\DSJournal.xss">
+      <DependentUpon>DSJournal.xsd</DependentUpon>
+    </None>
+    <None Include="Journal\DSJournalReport.xsc">
+      <DependentUpon>DSJournalReport.xsd</DependentUpon>
+    </None>
+    <None Include="Journal\DSJournalReport.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>DSJournalReport1.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Journal\DSJournalReport.xss">
+      <DependentUpon>DSJournalReport.xsd</DependentUpon>
+    </None>
+    <None Include="Master\DSBank.xsc">
+      <DependentUpon>DSBank.xsd</DependentUpon>
+    </None>
+    <None Include="Master\DSBank.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>DSBank.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="Master\DSBank.xss">
+      <DependentUpon>DSBank.xsd</DependentUpon>
+    </None>
+    <None Include="Master\DSCOA.xsc">
+      <DependentUpon>DSCOA.xsd</DependentUpon>
+    </None>
+    <None Include="Master\DSCOA.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>DSCOA1.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="Master\DSCOA.xss">
+      <DependentUpon>DSCOA.xsd</DependentUpon>
+    </None>
+    <None Include="Master\DSType.xsc">
+      <DependentUpon>DSType.xsd</DependentUpon>
+    </None>
+    <None Include="Master\DSType.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>DSType.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="Master\DSType.xss">
+      <DependentUpon>DSType.xsd</DependentUpon>
+    </None>
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="Report\DSAging.xsc">
+      <DependentUpon>DSAging.xsd</DependentUpon>
+    </None>
+    <None Include="Report\DSAging.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>DSAging.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="Report\DSAging.xss">
+      <DependentUpon>DSAging.xsd</DependentUpon>
+    </None>
+    <None Include="Report\DSPosted.xsc">
+      <DependentUpon>DSPosted.xsd</DependentUpon>
+    </None>
+    <None Include="Report\DSPosted.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>DSPosted.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="Report\DSPosted.xss">
+      <DependentUpon>DSPosted.xsd</DependentUpon>
+    </None>
+    <None Include="Report\DSReceipt.xsc">
+      <DependentUpon>DSReceipt.xsd</DependentUpon>
+    </None>
+    <None Include="Report\DSReceipt.xsd" />
+    <None Include="Report\DSReceipt.xss">
+      <DependentUpon>DSReceipt.xsd</DependentUpon>
+    </None>
+    <None Include="Voucher\DSAddInfo.xsc">
+      <DependentUpon>DSAddInfo.xsd</DependentUpon>
+    </None>
+    <None Include="Voucher\DSAddInfo.xsd" />
+    <None Include="Voucher\DSAddInfo.xss">
+      <DependentUpon>DSAddInfo.xsd</DependentUpon>
+    </None>
+    <None Include="Voucher\DSFAFlow.xsc">
+      <DependentUpon>DSFAFlow.xsd</DependentUpon>
+    </None>
+    <None Include="Voucher\DSFAFlow.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>DSFAFlow.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Voucher\DSFAFlow.xss">
+      <DependentUpon>DSFAFlow.xsd</DependentUpon>
+    </None>
+    <None Include="Voucher\DSPayment.xsc">
+      <DependentUpon>DSPayment.xsd</DependentUpon>
+    </None>
+    <None Include="Voucher\DSPayment.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>DSPayment.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="Voucher\DSPayment.xss">
+      <DependentUpon>DSPayment.xsd</DependentUpon>
+    </None>
+    <None Include="Voucher\DSSL.xsc">
+      <DependentUpon>DSSL.xsd</DependentUpon>
+    </None>
+    <None Include="Voucher\DSSL.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>DSSL.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="Voucher\DSSL.xss">
+      <DependentUpon>DSSL.xsd</DependentUpon>
+    </None>
+    <None Include="Voucher\DSVoucher.xsc">
+      <DependentUpon>DSVoucher.xsd</DependentUpon>
+    </None>
+    <None Include="Voucher\DSVoucher.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>DSVoucher.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="Voucher\DSVoucher.xss">
+      <DependentUpon>DSVoucher.xsd</DependentUpon>
+    </None>
+    <None Include="Voucher\DSVoucher2.xsc">
+      <DependentUpon>DSVoucher2.xsd</DependentUpon>
+    </None>
+    <None Include="Voucher\DSVoucher2.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Voucher\DSVoucher2.xss">
+      <DependentUpon>DSVoucher2.xsd</DependentUpon>
+    </None>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>

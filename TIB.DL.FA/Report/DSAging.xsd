@@ -1,0 +1,850 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="DSAging" targetNamespace="http://tempuri.org/DSAging.xsd" xmlns:mstns="http://tempuri.org/DSAging.xsd" xmlns="http://tempuri.org/DSAging.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
+  <xs:annotation>
+    <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
+      <DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+        <Connections>
+          <Connection AppSettingsObjectName="Settings" AppSettingsPropertyName="FAConnectionString" ConnectionStringObject="" IsAppSettingsProperty="true" Modifier="Assembly" Name="FAConnectionString (Settings)" ParameterPrefix="@" PropertyReference="ApplicationSettings.TIB.DL.FA.Properties.Settings.GlobalReference.Default.FAConnectionString" Provider="System.Data.SqlClient" />
+        </Connections>
+        <Tables>
+          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="CUSTOMERTableAdapter" GeneratorDataComponentClassName="CUSTOMERTableAdapter" Name="CUSTOMER" UserDataComponentName="CUSTOMERTableAdapter">
+            <MainSource>
+              <DbSource ConnectionRef="FAConnectionString (Settings)" DbObjectType="Unknown" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="false" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="false" UserGetMethodName="GetData" UserSourceName="Fill">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="true">
+                    <CommandText>SELECT P.VOUCHER, P.DUEDATE, NT.ADATE, NT.PROFILEID, NT.NAMA, PLC.PLCTTG AS TTG, INS.NAMA AS LEADER, ADD1.VAL AS POLICYNO,
+  P.MTU, P.DUEAMOUNT, DATEDIFF(DAY, P.DUEDATE, GETDATE()) AS DAYS, DATEDIFF(DAY, NT.ADATE, GETDATE()) AS DAYSNT, ADD2.VAL AS PICMKT, CO.KODECO, P.ISPAID, P.PAYMENT_OC, NT.KODETOC,
+  CASE WHEN P.DUEDATE &gt; GETDATE() THEN P.DUEAMOUNT- P.PAYMENT_OC ELSE 0 END AS NOTDUE,
+  CASE WHEN NT.ADATE &gt; GETDATE() THEN P.DUEAMOUNT - P.PAYMENT_OC ELSE 0 END AS NOTDUE_NT,
+  CASE WHEN DATEDIFF(DAY, P.DUEDATE, GETDATE()) BETWEEN 0 AND 30 THEN P.DUEAMOUNT- P.PAYMENT_OC ELSE 0 END AS DAYS30,
+  CASE WHEN DATEDIFF(DAY, P.DUEDATE, GETDATE()) BETWEEN 31 AND 60 THEN P.DUEAMOUNT- P.PAYMENT_OC ELSE 0 END AS DAYS60,
+  CASE WHEN DATEDIFF(DAY, P.DUEDATE, GETDATE()) BETWEEN 61 AND 90 THEN P.DUEAMOUNT- P.PAYMENT_OC ELSE 0 END AS DAYS90,
+  CASE WHEN DATEDIFF(DAY, P.DUEDATE, GETDATE()) &gt; 90 THEN P.DUEAMOUNT- P.PAYMENT_OC ELSE 0 END AS DAYS91,
+  CASE WHEN DATEDIFF(DAY, NT.ADATE, GETDATE()) BETWEEN 0 AND 30 THEN P.DUEAMOUNT- P.PAYMENT_OC ELSE 0 END AS NT_DAYS30,
+  CASE WHEN DATEDIFF(DAY, NT.ADATE, GETDATE()) BETWEEN 31 AND 60 THEN P.DUEAMOUNT- P.PAYMENT_OC ELSE 0 END AS NT_DAYS60,
+  CASE WHEN DATEDIFF(DAY, NT.ADATE, GETDATE()) BETWEEN 61 AND 90 THEN P.DUEAMOUNT- P.PAYMENT_OC ELSE 0 END AS NT_DAYS90,
+  CASE WHEN DATEDIFF(DAY, NT.ADATE, GETDATE()) &gt; 90 THEN P.DUEAMOUNT- P.PAYMENT_OC ELSE 0 END AS NT_DAYS91, ADD1_DNV.VAL AS DN_PLCSYS1, ADD2_DNV.VAL AS DN_PLCSYS2, PLC.PLCID, NT.NOTANO
+FROM FAPAYMENT P
+INNER JOIN FAVOUCHER VO ON VO.VOUCHER = P.VOUCHER
+INNER JOIN PLCNOTA NT ON VO.NOTANO = NT.NOTANO
+INNER JOIN PLACING PLC ON PLC.PLCID = NT.PLCID
+LEFT OUTER JOIN PLCINSURANCE INS ON NT.PLCID = INS.PLCID AND INS.TYPEF = 'L'
+LEFT OUTER JOIN PLCADDINFO ADD1 ON NT.PLCID = ADD1.PLCID AND ADD1.CONFIGID = 'POLICY_NO'
+LEFT OUTER JOIN PLCADDINFO ADD2 ON NT.PLCID = ADD2.PLCID AND ADD2.CONFIGID = 'PS_PIC_MKT'
+LEFT OUTER JOIN CO ON CO.USRID = ADD2.VAL
+LEFT OUTER JOIN PLCADDINFO ADD1_DNV ON NT.PLCID = ADD1_DNV.PLCID AND ADD1_DNV.CONFIGID = 'DN_VISION'
+LEFT OUTER JOIN PLCADDINFO ADD2_DNV ON NT.PLCID = ADD2_DNV.PLCID AND ADD2_DNV.CONFIGID = 'DN_VISION2'
+WHERE NT.DCTYPE = 'BB'</CommandText>
+                    <Parameters />
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+            </MainSource>
+            <Mappings>
+              <Mapping SourceColumn="VOUCHER" DataSetColumn="VOUCHER" />
+              <Mapping SourceColumn="DUEDATE" DataSetColumn="DUEDATE" />
+              <Mapping SourceColumn="PROFILEID" DataSetColumn="PROFILEID" />
+              <Mapping SourceColumn="NAMA" DataSetColumn="NAMA" />
+              <Mapping SourceColumn="LEADER" DataSetColumn="LEADER" />
+              <Mapping SourceColumn="POLICYNO" DataSetColumn="POLICYNO" />
+              <Mapping SourceColumn="DUEAMOUNT" DataSetColumn="DUEAMOUNT" />
+              <Mapping SourceColumn="DAYS" DataSetColumn="DAYS" />
+              <Mapping SourceColumn="DAYS30" DataSetColumn="DAYS30" />
+              <Mapping SourceColumn="DAYS60" DataSetColumn="DAYS60" />
+              <Mapping SourceColumn="DAYS90" DataSetColumn="DAYS90" />
+              <Mapping SourceColumn="DAYS91" DataSetColumn="DAYS91" />
+              <Mapping SourceColumn="MTU" DataSetColumn="MTU" />
+              <Mapping SourceColumn="PICMKT" DataSetColumn="PICMKT" />
+              <Mapping SourceColumn="ADATE" DataSetColumn="ADATE" />
+              <Mapping SourceColumn="PLCID" DataSetColumn="PLCID" />
+              <Mapping SourceColumn="TTG" DataSetColumn="TTG" />
+              <Mapping SourceColumn="KODECO" DataSetColumn="KODECO" />
+              <Mapping SourceColumn="ISPAID" DataSetColumn="ISPAID" />
+              <Mapping SourceColumn="PAYMENT_OC" DataSetColumn="PAYMENT_OC" />
+              <Mapping SourceColumn="NOTDUE" DataSetColumn="NOTDUE" />
+              <Mapping SourceColumn="KODETOC" DataSetColumn="KODETOC" />
+              <Mapping SourceColumn="DN_PLCSYS1" DataSetColumn="DN_PLCSYS1" />
+              <Mapping SourceColumn="NOTANO" DataSetColumn="NOTANO" />
+            </Mappings>
+            <Sources>
+              <DbSource ConnectionRef="FAConnectionString (Settings)" DbObjectType="Unknown" GenerateMethods="Get" GenerateShortCommands="true" GeneratorGetMethodName="GetDataByDate" GetMethodModifier="Public" GetMethodName="GetDataByDate" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetDataByDate" UserSourceName="GetDataByDate">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="true">
+                    <CommandText>SELECT P.VOUCHER, P.DUEDATE, NT.PROFILEID, NT.NAMA, INS.NAMA AS LEADER, ADD1.VAL AS POLICYNO,
+  P.MTU, P.DUEAMOUNT-P.PAYMENT_OC AS DUEAMOUNT, DATEDIFF(DAY, P.DUEDATE, @ADATE) AS DAYS,
+  CASE WHEN DATEDIFF(DAY, P.DUEDATE, @ADATE) BETWEEN 0 AND 30 THEN P.DUEAMOUNT-P.PAYMENT_OC ELSE 0 END AS DAYS30,
+  CASE WHEN DATEDIFF(DAY, P.DUEDATE, @ADATE) BETWEEN 31 AND 60 THEN P.DUEAMOUNT-P.PAYMENT_OC ELSE 0 END AS DAYS60,
+  CASE WHEN DATEDIFF(DAY, P.DUEDATE, @ADATE) BETWEEN 61 AND 90 THEN P.DUEAMOUNT-P.PAYMENT_OC ELSE 0 END AS DAYS90,
+  CASE WHEN DATEDIFF(DAY, P.DUEDATE, @ADATE) &gt; 90 THEN P.DUEAMOUNT-P.PAYMENT_OC ELSE 0 END AS DAYS91
+FROM FAPAYMENT P
+INNER JOIN FAVOUCHER VO ON VO.VOUCHER = P.VOUCHER
+INNER JOIN PLCNOTA NT ON VO.NOTANO = NT.NOTANO
+INNER JOIN PLCINSURANCE INS ON NT.PLCID = INS.PLCID AND INS.TYPEF = 'L'
+LEFT OUTER JOIN PLCADDINFO ADD1 ON NT.PLCID = ADD1.PLCID AND ADD1.CONFIGID = 'POLICY_NO'
+WHERE NT.DCTYPE = 'BB' AND P.DUEDATE BETWEEN @SDATE AND @EDATE</CommandText>
+                    <Parameters>
+                      <Parameter AllowDbNull="false" AutogeneratedName="ADATE" ColumnName="" DataSourceName="" DataTypeServer="unknown" DbType="DateTime" Direction="Input" ParameterName="@ADATE" Precision="0" Scale="0" Size="0" SourceColumn="" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="SDATE" ColumnName="DUEDATE" DataSourceName="TALYS.dbo.FAPAYMENT" DataTypeServer="datetime" DbType="DateTime" Direction="Input" ParameterName="@SDATE" Precision="0" ProviderType="DateTime" Scale="0" Size="8" SourceColumn="DUEDATE" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="EDATE" ColumnName="DUEDATE" DataSourceName="TALYS.dbo.FAPAYMENT" DataTypeServer="datetime" DbType="DateTime" Direction="Input" ParameterName="@EDATE" Precision="0" ProviderType="DateTime" Scale="0" Size="8" SourceColumn="DUEDATE" SourceColumnNullMapping="false" SourceVersion="Current" />
+                    </Parameters>
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+              <DbSource ConnectionRef="FAConnectionString (Settings)" DbObjectType="Unknown" GenerateMethods="Get" GenerateShortCommands="true" GeneratorGetMethodName="GetDataByFilterAgingNote" GetMethodModifier="Public" GetMethodName="GetDataByFilterAgingNote" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetDataByFilterAgingNote" UserSourceName="GetDataByFilterAgingNote">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="true">
+                    <CommandText>
+SELECT P.VOUCHER, P.DUEDATE, NT.ADATE, NT.PROFILEID, NT.NAMA, ISNULL(INS.NAMA, MINS.NAMA) AS LEADER, ADD1.VAL AS POLICYNO,
+CASE WHEN CHARINDEX('and/or', PLC.PLCTTG) &gt; 0 THEN SUBSTRING(PLC.PLCTTG, 0, CHARINDEX('and/or', PLC.PLCTTG)) ELSE PLC.PLCTTG END AS TTG, 
+  P.MTU, P.DUEAMOUNT-P.PAYMENT_OC AS DUEAMOUNT, DATEDIFF(DAY, NT.ADATE, GETDATE()) AS DAYS, ADD2.VAL AS PICMKT, CO.KODECO, P.ISPAID, P.PAYMENT_OC, NT.KODETOC,
+  CASE WHEN NT.ADATE &gt; GETDATE() THEN P.DUEAMOUNT - P.PAYMENT_OC ELSE 0 END AS NOTDUE,
+  CASE WHEN DATEDIFF(DAY, NT.ADATE, GETDATE()) BETWEEN 0 AND 30 THEN P.DUEAMOUNT-P.PAYMENT_OC ELSE 0 END AS DAYS30,
+  CASE WHEN DATEDIFF(DAY, NT.ADATE, GETDATE()) BETWEEN 31 AND 60 THEN P.DUEAMOUNT-P.PAYMENT_OC ELSE 0 END AS DAYS60,
+  CASE WHEN DATEDIFF(DAY, NT.ADATE, GETDATE()) BETWEEN 61 AND 90 THEN P.DUEAMOUNT-P.PAYMENT_OC ELSE 0 END AS DAYS90,
+  CASE WHEN DATEDIFF(DAY, NT.ADATE, GETDATE()) &gt; 90 THEN P.DUEAMOUNT-P.PAYMENT_OC ELSE 0 END AS DAYS91,
+  ISNULL(ADD1_DNV.VAL, ADD2_DNV.VAL) AS DN_PLCSYS1, PLC.PLCID, NT.NOTANO
+FROM FAPAYMENT P
+INNER JOIN FAVOUCHER VO ON VO.VOUCHER = P.VOUCHER
+INNER JOIN PLCNOTA NT ON VO.NOTANO = NT.NOTANO
+INNER JOIN PLACING PLC ON PLC.PLCID = NT.PLCID
+INNER JOIN PLACINGTOC PT ON PT.PLCID = PLC.PLCID AND NT.KODETOC = PT.KODETOC
+LEFT OUTER JOIN PLCINSURANCE INS ON NT.PLCID = INS.PLCID AND INS.TYPEF = 'L'
+LEFT OUTER JOIN PLCINSURANCE MINS ON PLC.MPLCID = MINS.PLCID AND MINS.TYPEF = 'L'
+LEFT OUTER JOIN PLCADDINFO ADD1 ON NT.PLCID = ADD1.PLCID AND ADD1.CONFIGID = 'POLICY_NO'
+LEFT OUTER JOIN PLCADDINFO ADD2 ON NT.PLCID = ADD2.PLCID AND ADD2.CONFIGID = 'PS_PIC_MKT'
+LEFT OUTER JOIN CO ON CO.USRID = ADD2.VAL
+LEFT OUTER JOIN PLCADDINFO ADD1_DNV ON NT.PLCID = ADD1_DNV.PLCID AND ADD1_DNV.CONFIGID = 'DN_VISION' AND PT.URUT = 1
+LEFT OUTER JOIN PLCADDINFO ADD2_DNV ON NT.PLCID = ADD2_DNV.PLCID AND ADD2_DNV.CONFIGID = 'DN_VISION2'  AND PT.URUT = 2
+WHERE NT.DCTYPE IN ('BB', 'BF')
+AND (NT.NAMA LIKE @TTG) AND (NT.ADATE BETWEEN @SDATE AND @EDATE)
+AND (PLC.KODECAB LIKE @KODECAB) AND (P.ISPAID = 0) 
+AND (ISNULL(ADD1_DNV.VAL, ADD2_DNV.VAL) LIKE @DNVISION1 OR '1' = @ISDNVISION1)
+AND (NT.NOTANO LIKE @NOTANO OR '1' = @ISNOTANO)
+AND (CO.KODECO LIKE @KODECO)
+ORDER BY P.VOUCHER</CommandText>
+                    <Parameters>
+                      <Parameter AllowDbNull="true" AutogeneratedName="TTG" ColumnName="NAMA" DataSourceName="TALYS.dbo.PLCNOTA" DataTypeServer="varchar(500)" DbType="AnsiString" Direction="Input" ParameterName="@TTG" Precision="0" ProviderType="VarChar" Scale="0" Size="500" SourceColumn="NAMA" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="SDATE" ColumnName="ADATE" DataSourceName="TALYS.dbo.PLCNOTA" DataTypeServer="date" DbType="AnsiString" Direction="Input" ParameterName="@SDATE" Precision="0" ProviderType="Date" Scale="0" Size="3" SourceColumn="ADATE" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="EDATE" ColumnName="ADATE" DataSourceName="TALYS.dbo.PLCNOTA" DataTypeServer="date" DbType="AnsiString" Direction="Input" ParameterName="@EDATE" Precision="0" ProviderType="Date" Scale="0" Size="3" SourceColumn="ADATE" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="KODECAB" ColumnName="KODECAB" DataSourceName="TALYS.dbo.PLACING" DataTypeServer="varchar(20)" DbType="AnsiString" Direction="Input" ParameterName="@KODECAB" Precision="0" ProviderType="VarChar" Scale="0" Size="20" SourceColumn="KODECAB" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="false" AutogeneratedName="DNVISION1" ColumnName="" DataSourceName="" DataTypeServer="unknown" DbType="AnsiString" Direction="Input" ParameterName="@DNVISION1" Precision="0" Scale="0" Size="1024" SourceColumn="" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="false" AutogeneratedName="ISDNVISION1" ColumnName="" DataSourceName="" DataTypeServer="unknown" DbType="AnsiString" Direction="Input" ParameterName="@ISDNVISION1" Precision="0" Scale="0" Size="1024" SourceColumn="" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="NOTANO" ColumnName="NOTANO" DataSourceName="TALYS.dbo.PLCNOTA" DataTypeServer="varchar(100)" DbType="AnsiString" Direction="Input" ParameterName="@NOTANO" Precision="0" ProviderType="VarChar" Scale="0" Size="100" SourceColumn="NOTANO" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="false" AutogeneratedName="ISNOTANO" ColumnName="" DataSourceName="" DataTypeServer="unknown" DbType="AnsiString" Direction="Input" ParameterName="@ISNOTANO" Precision="0" Scale="0" Size="1024" SourceColumn="" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="KODECO" ColumnName="KODECO" DataSourceName="TALYS.dbo.CO" DataTypeServer="varchar(10)" DbType="AnsiString" Direction="Input" ParameterName="@KODECO" Precision="0" ProviderType="VarChar" Scale="0" Size="10" SourceColumn="KODECO" SourceColumnNullMapping="false" SourceVersion="Current" />
+                    </Parameters>
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+              <DbSource ConnectionRef="FAConnectionString (Settings)" DbObjectType="Unknown" GenerateMethods="Get" GenerateShortCommands="true" GeneratorGetMethodName="GetDataByFilterAgingPPW" GetMethodModifier="Public" GetMethodName="GetDataByFilterAgingPPW" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetDataByFilterAgingPPW" UserSourceName="GetDataByFilterAgingPPW">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="true">
+                    <CommandText>SELECT P.VOUCHER, P.DUEDATE, NT.ADATE, NT.PROFILEID, NT.NAMA, ISNULL(INS.NAMA, MINS.NAMA) AS LEADER, ADD1.VAL AS POLICYNO,
+CASE WHEN CHARINDEX('and/or', PLC.PLCTTG) &gt; 0 THEN SUBSTRING(PLC.PLCTTG, 0, CHARINDEX('and/or', PLC.PLCTTG)) ELSE PLC.PLCTTG END AS TTG, 
+  P.MTU, P.DUEAMOUNT-P.PAYMENT_OC AS DUEAMOUNT, DATEDIFF(DAY, P.DUEDATE, GETDATE()) AS DAYS, ADD2.VAL AS PICMKT, CO.KODECO, P.ISPAID, P.PAYMENT_OC, NT.KODETOC,
+  CASE WHEN P.DUEDATE &gt; GETDATE() THEN P.DUEAMOUNT- P.PAYMENT_OC ELSE 0 END AS NOTDUE,
+  CASE WHEN NT.ADATE &gt; GETDATE() THEN P.DUEAMOUNT - P.PAYMENT_OC ELSE 0 END AS NOTDUE_NT,
+  CASE WHEN DATEDIFF(DAY, P.DUEDATE, GETDATE()) BETWEEN 0 AND 30 THEN P.DUEAMOUNT-P.PAYMENT_OC ELSE 0 END AS DAYS30,
+  CASE WHEN DATEDIFF(DAY, P.DUEDATE, GETDATE()) BETWEEN 31 AND 60 THEN P.DUEAMOUNT-P.PAYMENT_OC ELSE 0 END AS DAYS60,
+  CASE WHEN DATEDIFF(DAY, P.DUEDATE, GETDATE()) BETWEEN 61 AND 90 THEN P.DUEAMOUNT-P.PAYMENT_OC ELSE 0 END AS DAYS90,
+  CASE WHEN DATEDIFF(DAY, P.DUEDATE, GETDATE()) &gt; 90 THEN P.DUEAMOUNT-P.PAYMENT_OC  ELSE 0 END AS DAYS91,
+  ISNULL(ADD1_DNV.VAL, ADD2_DNV.VAL) AS DN_PLCSYS1, PLC.PLCID, NT.NOTANO,
+PLC.POLICYTYPE AS JENIS_ASURANSI
+FROM FAPAYMENT P
+INNER JOIN FAVOUCHER VO ON VO.VOUCHER = P.VOUCHER
+INNER JOIN PLCNOTA NT ON VO.NOTANO = NT.NOTANO
+INNER JOIN PLACING PLC ON PLC.PLCID = NT.PLCID
+INNER JOIN PLACINGTOC PT ON PT.PLCID = PLC.PLCID AND NT.KODETOC = PT.KODETOC
+LEFT OUTER JOIN PLCINSURANCE INS ON NT.PLCID = INS.PLCID AND INS.TYPEF = 'L'
+LEFT OUTER JOIN PLCINSURANCE MINS ON PLC.MPLCID = MINS.PLCID AND MINS.TYPEF = 'L'
+LEFT OUTER JOIN PLCADDINFO ADD1 ON NT.PLCID = ADD1.PLCID AND ADD1.CONFIGID = 'POLICY_NO'
+LEFT OUTER JOIN PLCADDINFO ADD2 ON NT.PLCID = ADD2.PLCID AND ADD2.CONFIGID = 'PS_PIC_MKT'
+LEFT OUTER JOIN CO ON CO.USRID = ADD2.VAL
+LEFT OUTER JOIN PLCADDINFO ADD1_DNV ON NT.PLCID = ADD1_DNV.PLCID AND ADD1_DNV.CONFIGID = 'DN_VISION' AND PT.URUT = 1
+LEFT OUTER JOIN PLCADDINFO ADD2_DNV ON NT.PLCID = ADD2_DNV.PLCID AND ADD2_DNV.CONFIGID = 'DN_VISION2'  AND PT.URUT = 2
+WHERE NT.DCTYPE IN ('BB', 'BF')
+AND (NT.NAMA LIKE @TTG) AND (P.DUEDATE BETWEEN @SDATE AND @EDATE) AND (PLC.KODECAB LIKE @KODECAB) AND (P.ISPAID = 0) 
+AND (ISNULL(ADD1_DNV.VAL, ADD2_DNV.VAL) LIKE @DNVISION1 OR '1' = @ISDNVISION1)
+AND (NT.NOTANO LIKE @NOTANO OR '1' = @ISNOTANO)
+AND (CO.KODECO LIKE @KODECO)
+ORDER BY P.VOUCHER</CommandText>
+                    <Parameters>
+                      <Parameter AllowDbNull="true" AutogeneratedName="TTG" ColumnName="NAMA" DataSourceName="TALYS.dbo.PLCNOTA" DataTypeServer="varchar(600)" DbType="AnsiString" Direction="Input" ParameterName="@TTG" Precision="0" ProviderType="VarChar" Scale="0" Size="600" SourceColumn="NAMA" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="SDATE" ColumnName="DUEDATE" DataSourceName="TALYS.dbo.FAPAYMENT" DataTypeServer="datetime" DbType="DateTime" Direction="Input" ParameterName="@SDATE" Precision="0" ProviderType="DateTime" Scale="0" Size="8" SourceColumn="DUEDATE" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="EDATE" ColumnName="DUEDATE" DataSourceName="TALYS.dbo.FAPAYMENT" DataTypeServer="datetime" DbType="DateTime" Direction="Input" ParameterName="@EDATE" Precision="0" ProviderType="DateTime" Scale="0" Size="8" SourceColumn="DUEDATE" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="KODECAB" ColumnName="KODECAB" DataSourceName="TALYS.dbo.PLACING" DataTypeServer="varchar(20)" DbType="AnsiString" Direction="Input" ParameterName="@KODECAB" Precision="0" ProviderType="VarChar" Scale="0" Size="20" SourceColumn="KODECAB" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="false" AutogeneratedName="DNVISION1" ColumnName="" DataSourceName="" DataTypeServer="unknown" DbType="AnsiString" Direction="Input" ParameterName="@DNVISION1" Precision="0" Scale="0" Size="1024" SourceColumn="" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="false" AutogeneratedName="ISDNVISION1" ColumnName="" DataSourceName="" DataTypeServer="unknown" DbType="AnsiString" Direction="Input" ParameterName="@ISDNVISION1" Precision="0" Scale="0" Size="1024" SourceColumn="" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="NOTANO" ColumnName="NOTANO" DataSourceName="TALYS.dbo.PLCNOTA" DataTypeServer="varchar(100)" DbType="AnsiString" Direction="Input" ParameterName="@NOTANO" Precision="0" ProviderType="VarChar" Scale="0" Size="100" SourceColumn="NOTANO" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="false" AutogeneratedName="ISNOTANO" ColumnName="" DataSourceName="" DataTypeServer="unknown" DbType="AnsiString" Direction="Input" ParameterName="@ISNOTANO" Precision="0" Scale="0" Size="1024" SourceColumn="" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="KODECO" ColumnName="KODECO" DataSourceName="TALYS.dbo.CO" DataTypeServer="varchar(10)" DbType="AnsiString" Direction="Input" ParameterName="@KODECO" Precision="0" ProviderType="VarChar" Scale="0" Size="10" SourceColumn="KODECO" SourceColumnNullMapping="false" SourceVersion="Current" />
+                    </Parameters>
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+            </Sources>
+          </TableAdapter>
+          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="INSURANCETableAdapter" GeneratorDataComponentClassName="INSURANCETableAdapter" Name="INSURANCE" UserDataComponentName="INSURANCETableAdapter">
+            <MainSource>
+              <DbSource ConnectionRef="FAConnectionString (Settings)" DbObjectType="Unknown" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="false" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="false" UserGetMethodName="GetData" UserSourceName="Fill">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="true">
+                    <CommandText>
+SELECT P.VOUCHER, PLC.PLCID, P.DUEDATE, NT.PROFILEID, NT.NAMA, LEFT(PLC.PLCTTG,50) AS TTG, ADD1.VAL AS POLICYNO,
+  P.MTU, P.DUEAMOUNT, DATEDIFF(DAY, P.DUEDATE, GETDATE()) AS DAYS, ADD2.VAL AS PICMKT, CO.KODECO,
+  CASE WHEN DATEDIFF(DAY, P.DUEDATE, GETDATE()) BETWEEN 0 AND 30 THEN P.DUEAMOUNT ELSE 0 END AS DAYS30,
+  CASE WHEN DATEDIFF(DAY, P.DUEDATE, GETDATE()) BETWEEN 31 AND 60 THEN P.DUEAMOUNT ELSE 0 END AS DAYS60,
+  CASE WHEN DATEDIFF(DAY, P.DUEDATE, GETDATE()) BETWEEN 61 AND 90 THEN P.DUEAMOUNT ELSE 0 END AS DAYS90,
+  CASE WHEN DATEDIFF(DAY, P.DUEDATE, GETDATE()) &gt; 90 THEN P.DUEAMOUNT ELSE 0 END AS DAYS91,
+PRY.NAMA AS CUSTOMER,  ADD1_DNV.VAL AS DN_PLCSYS1, ADD2_DNV.VAL AS DN_PLCSYS2
+FROM FAPAYMENT P
+INNER JOIN FAVOUCHER VO ON P.VOUCHER = VO.VOUCHER
+INNER JOIN PLCNOTA NT ON VO.NOTANO = NT.NOTANO
+INNER JOIN PLACING PLC ON PLC.PLCID = NT.PLCID
+INNER JOIN PLCPAYOR PY ON PY.PLCID = PLC.PLCID
+INNER JOIN PROFILE PRY ON PRY.PROFILEID = PY.PROFILEID
+LEFT OUTER JOIN PLCADDINFO ADD1 ON NT.PLCID = ADD1.PLCID AND ADD1.CONFIGID = 'POLICY_NO'
+LEFT OUTER JOIN PLCADDINFO ADD2 ON NT.PLCID = ADD2.PLCID AND ADD2.CONFIGID = 'PS_PIC_MKT'
+LEFT OUTER JOIN PLCADDINFO ADD1_DNV ON NT.PLCID = ADD1_DNV.PLCID AND ADD1_DNV.CONFIGID = 'DN_VISION'
+LEFT OUTER JOIN PLCADDINFO ADD2_DNV ON NT.PLCID = ADD2_DNV.PLCID AND ADD2_DNV.CONFIGID = 'DN_VISION2'
+LEFT OUTER JOIN CO ON CO.USRID = ADD2.VAL
+WHERE NT.DCTYPE = 'DI'
+</CommandText>
+                    <Parameters />
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+            </MainSource>
+            <Mappings>
+              <Mapping SourceColumn="VOUCHER" DataSetColumn="VOUCHER" />
+              <Mapping SourceColumn="DUEDATE" DataSetColumn="DUEDATE" />
+              <Mapping SourceColumn="PROFILEID" DataSetColumn="PROFILEID" />
+              <Mapping SourceColumn="NAMA" DataSetColumn="NAMA" />
+              <Mapping SourceColumn="TTG" DataSetColumn="TTG" />
+              <Mapping SourceColumn="POLICYNO" DataSetColumn="POLICYNO" />
+              <Mapping SourceColumn="DUEAMOUNT" DataSetColumn="DUEAMOUNT" />
+              <Mapping SourceColumn="DAYS" DataSetColumn="DAYS" />
+              <Mapping SourceColumn="DAYS30" DataSetColumn="DAYS30" />
+              <Mapping SourceColumn="DAYS60" DataSetColumn="DAYS60" />
+              <Mapping SourceColumn="DAYS90" DataSetColumn="DAYS90" />
+              <Mapping SourceColumn="DAYS91" DataSetColumn="DAYS91" />
+              <Mapping SourceColumn="MTU" DataSetColumn="MTU" />
+              <Mapping SourceColumn="PICMKT" DataSetColumn="PICMKT" />
+              <Mapping SourceColumn="PLCID" DataSetColumn="PLCID" />
+              <Mapping SourceColumn="CUSTOMER" DataSetColumn="CUSTOMER" />
+              <Mapping SourceColumn="KODECO" DataSetColumn="KODECO" />
+              <Mapping SourceColumn="DN_PLCSYS1" DataSetColumn="DN_PLCSYS1" />
+              <Mapping SourceColumn="DN_PLCSYS2" DataSetColumn="DN_PLCSYS2" />
+            </Mappings>
+            <Sources>
+              <DbSource ConnectionRef="FAConnectionString (Settings)" DbObjectType="Unknown" GenerateMethods="Get" GenerateShortCommands="true" GeneratorGetMethodName="GetDataByADate" GetMethodModifier="Public" GetMethodName="GetDataByADate" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetDataByADate" UserSourceName="GetDataByADate">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="true">
+                    <CommandText>
+SELECT P.VOUCHER, PLC.PLCID, P.DUEDATE, NT.PROFILEID, NT.NAMA, 
+CASE WHEN CHARINDEX('and/or', PLC.PLCTTG) &gt; 0 THEN SUBSTRING(PLC.PLCTTG, 0, CHARINDEX('and/or', PLC.PLCTTG)) ELSE PLC.PLCTTG END AS TTG, 
+ADD1.VAL AS POLICYNO, ADD2.VAL AS PICMKT, CO.KODECO,
+  P.MTU, P.DUEAMOUNT-P.PAYMENT_OC AS DUEAMOUNT, DATEDIFF(DAY, P.DUEDATE, @ADATE) AS DAYS,
+  CASE WHEN DATEDIFF(DAY, P.DUEDATE, @ADATE) BETWEEN 0 AND 30 THEN P.DUEAMOUNT-P.PAYMENT_OC ELSE 0 END AS DAYS30,
+  CASE WHEN DATEDIFF(DAY, P.DUEDATE, @ADATE) BETWEEN 31 AND 60 THEN P.DUEAMOUNT-P.PAYMENT_OC ELSE 0 END AS DAYS60,
+  CASE WHEN DATEDIFF(DAY, P.DUEDATE, @ADATE) BETWEEN 61 AND 90 THEN P.DUEAMOUNT-P.PAYMENT_OC ELSE 0 END AS DAYS90,
+  CASE WHEN DATEDIFF(DAY, P.DUEDATE, @ADATE) &gt; 90 THEN P.DUEAMOUNT-P.PAYMENT_OC ELSE 0 END AS DAYS91,
+PRY.NAMA AS CUSTOMER, ISNULL(ADD1_DNV.VAL,ADD2_DNV.VAL) AS DN_PLCSYS1, 
+ADD3.VAL AS CERTIFICATE_NO,PLC.POLICYTYPE AS JENIS_ASURANSI,NT.ADATE AS INVOICE_DATE
+FROM FAPAYMENT P
+INNER JOIN FAVOUCHER VO ON P.VOUCHER = VO.VOUCHER
+INNER JOIN PLCNOTA NT ON VO.NOTANO = NT.NOTANO
+INNER JOIN PLACING PLC ON PLC.PLCID = NT.PLCID
+INNER JOIN PLCPAYOR PY ON PY.PLCID = PLC.PLCID
+INNER JOIN PROFILE PRY ON PRY.PROFILEID = PY.PROFILEID
+LEFT OUTER JOIN PLCADDINFO ADD1 ON NT.PLCID = ADD1.PLCID AND ADD1.CONFIGID = 'POLICY_NO'
+LEFT OUTER JOIN PLCADDINFO ADD2 ON NT.PLCID = ADD2.PLCID AND ADD2.CONFIGID = 'PS_PIC_MKT'
+LEFT OUTER JOIN PLCADDINFO ADD3 ON NT.PLCID = ADD3.PLCID AND ADD3.CONFIGID = 'CERTIFICATE_NO'
+LEFT OUTER JOIN CO ON CO.USRID = ADD2.VAL
+LEFT OUTER JOIN PLACINGTOC PT ON PT.PLCID = NT.PLCID AND NT.KODETOC = PT.KODETOC
+LEFT OUTER JOIN PLCADDINFO ADD1_DNV ON NT.PLCID = ADD1_DNV.PLCID AND ADD1_DNV.CONFIGID = 'DN_VISION' AND PT.URUT = 1
+LEFT OUTER JOIN PLCADDINFO ADD2_DNV ON NT.PLCID = ADD2_DNV.PLCID AND ADD2_DNV.CONFIGID = 'DN_VISION2' AND PT.URUT = 2
+WHERE (NT.DCTYPE IN ('DI', 'CF') OR (NT.DCTYPE = 'OP' AND NT.DC = 'C'))
+AND (P.DUEDATE BETWEEN @SDATE AND @EDATE) AND (PLC.PLCTTG LIKE @PLCTTG) AND (NT.NAMA LIKE @INSURANCE) AND (PLC.KODECAB LIKE @KODECAB) AND (ISPAID = 0)
+AND (ISNULL(ADD1_DNV.VAL,ADD2_DNV.VAL) LIKE @DNVISION1 OR '1' = @ISDNVISION1)
+AND (NT.NOTANO LIKE @NOTANO OR '1' = @ISNOTANO)
+AND (NT.ADATE &gt;= '2020-12-31')
+ORDER BY P.VOUCHER
+</CommandText>
+                    <Parameters>
+                      <Parameter AllowDbNull="false" AutogeneratedName="ADATE" ColumnName="" DataSourceName="" DataTypeServer="unknown" DbType="AnsiString" Direction="Input" ParameterName="@ADATE" Precision="0" ProviderType="VarChar" Scale="0" Size="10" SourceColumn="" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="SDATE" ColumnName="DUEDATE" DataSourceName="TALYS.dbo.FAPAYMENT" DataTypeServer="datetime" DbType="DateTime" Direction="Input" ParameterName="@SDATE" Precision="0" ProviderType="DateTime" Scale="0" Size="8" SourceColumn="DUEDATE" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="EDATE" ColumnName="DUEDATE" DataSourceName="TALYS.dbo.FAPAYMENT" DataTypeServer="datetime" DbType="DateTime" Direction="Input" ParameterName="@EDATE" Precision="0" ProviderType="DateTime" Scale="0" Size="8" SourceColumn="DUEDATE" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="PLCTTG" ColumnName="PLCTTG" DataSourceName="TALYS.dbo.PLACING" DataTypeServer="varchar(600)" DbType="AnsiString" Direction="Input" ParameterName="@PLCTTG" Precision="0" ProviderType="VarChar" Scale="0" Size="600" SourceColumn="PLCTTG" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="INSURANCE" ColumnName="NAMA" DataSourceName="TALYS.dbo.PLCNOTA" DataTypeServer="varchar(600)" DbType="AnsiString" Direction="Input" ParameterName="@INSURANCE" Precision="0" ProviderType="VarChar" Scale="0" Size="600" SourceColumn="NAMA" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="KODECAB" ColumnName="KODECAB" DataSourceName="TALYS.dbo.PLACING" DataTypeServer="varchar(20)" DbType="AnsiString" Direction="Input" ParameterName="@KODECAB" Precision="0" ProviderType="VarChar" Scale="0" Size="20" SourceColumn="KODECAB" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="false" AutogeneratedName="DNVISION1" ColumnName="" DataSourceName="" DataTypeServer="unknown" DbType="AnsiString" Direction="Input" ParameterName="@DNVISION1" Precision="0" Scale="0" Size="1024" SourceColumn="" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="false" AutogeneratedName="ISDNVISION1" ColumnName="" DataSourceName="" DataTypeServer="unknown" DbType="AnsiString" Direction="Input" ParameterName="@ISDNVISION1" Precision="0" Scale="0" Size="1024" SourceColumn="" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="NOTANO" ColumnName="NOTANO" DataSourceName="TALYS.dbo.PLCNOTA" DataTypeServer="varchar(100)" DbType="AnsiString" Direction="Input" ParameterName="@NOTANO" Precision="0" ProviderType="VarChar" Scale="0" Size="100" SourceColumn="NOTANO" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="false" AutogeneratedName="ISNOTANO" ColumnName="" DataSourceName="" DataTypeServer="unknown" DbType="AnsiString" Direction="Input" ParameterName="@ISNOTANO" Precision="0" Scale="0" Size="1024" SourceColumn="" SourceColumnNullMapping="false" SourceVersion="Current" />
+                    </Parameters>
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+              <DbSource ConnectionRef="FAConnectionString (Settings)" DbObjectType="Unknown" GenerateMethods="Get" GenerateShortCommands="true" GeneratorGetMethodName="GetDataByDNDate" GetMethodModifier="Public" GetMethodName="GetDataByDNDate" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetDataByDNDate" UserSourceName="GetDataByDNDate">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="true">
+                    <CommandText>SELECT P.VOUCHER, PLC.PLCID, P.DUEDATE, NT.PROFILEID, NT.NAMA, 
+CASE WHEN CHARINDEX('and/or', PLC.PLCTTG) &gt; 0 THEN SUBSTRING(PLC.PLCTTG, 0, CHARINDEX('and/or', PLC.PLCTTG)) ELSE PLC.PLCTTG END AS TTG, 
+ADD1.VAL AS POLICYNO, ADD2.VAL AS PICMKT, CO.KODECO,
+  P.MTU, P.DUEAMOUNT-P.PAYMENT_OC AS DUEAMOUNT, DATEDIFF(DAY, NT.ADATE, @ADATE) AS DAYS,
+  CASE WHEN DATEDIFF(DAY, NT.ADATE, @ADATE) BETWEEN 0 AND 30 THEN P.DUEAMOUNT-P.PAYMENT_OC ELSE 0 END AS DAYS30,
+  CASE WHEN DATEDIFF(DAY, NT.ADATE, @ADATE) BETWEEN 31 AND 60 THEN P.DUEAMOUNT-P.PAYMENT_OC ELSE 0 END AS DAYS60,
+  CASE WHEN DATEDIFF(DAY, NT.ADATE, @ADATE) BETWEEN 61 AND 90 THEN P.DUEAMOUNT-P.PAYMENT_OC ELSE 0 END AS DAYS90,
+  CASE WHEN DATEDIFF(DAY, NT.ADATE, @ADATE) &gt; 90 THEN P.DUEAMOUNT-P.PAYMENT_OC ELSE 0 END AS DAYS91,
+PRY.NAMA AS CUSTOMER, ISNULL(ADD1_DNV.VAL,ADD2_DNV.VAL) AS DN_PLCSYS1, 
+ADD3.VAL AS CERTIFICATE_NO,PLC.POLICYTYPE AS JENIS_ASURANSI,NT.ADATE AS INVOICE_DATE
+FROM FAPAYMENT P
+INNER JOIN FAVOUCHER VO ON P.VOUCHER = VO.VOUCHER
+INNER JOIN PLCNOTA NT ON VO.NOTANO = NT.NOTANO
+INNER JOIN PLACING PLC ON PLC.PLCID = NT.PLCID
+INNER JOIN PLCPAYOR PY ON PY.PLCID = PLC.PLCID
+INNER JOIN PROFILE PRY ON PRY.PROFILEID = PY.PROFILEID
+LEFT OUTER JOIN PLCADDINFO ADD1 ON NT.PLCID = ADD1.PLCID AND ADD1.CONFIGID = 'POLICY_NO'
+LEFT OUTER JOIN PLCADDINFO ADD2 ON NT.PLCID = ADD2.PLCID AND ADD2.CONFIGID = 'PS_PIC_MKT'
+LEFT OUTER JOIN PLCADDINFO ADD3 ON NT.PLCID = ADD3.PLCID AND ADD3.CONFIGID = 'CERTIFICATE_NO'
+LEFT OUTER JOIN CO ON CO.USRID = ADD2.VAL
+LEFT OUTER JOIN PLACINGTOC PT ON PT.PLCID = NT.PLCID AND NT.KODETOC = PT.KODETOC
+LEFT OUTER JOIN PLCADDINFO ADD1_DNV ON NT.PLCID = ADD1_DNV.PLCID AND ADD1_DNV.CONFIGID = 'DN_VISION' AND PT.URUT = 1
+LEFT OUTER JOIN PLCADDINFO ADD2_DNV ON NT.PLCID = ADD2_DNV.PLCID AND ADD2_DNV.CONFIGID = 'DN_VISION2' AND PT.URUT = 2
+WHERE (NT.DCTYPE IN ('DI', 'CF') OR (NT.DCTYPE = 'OP' AND NT.DC = 'C'))
+AND (NT.ADATE BETWEEN @SDATE AND @EDATE) AND (PLC.PLCTTG LIKE @PLCTTG) 
+AND (NT.NAMA LIKE @INSURANCE) AND (PLC.KODECAB LIKE @KODECAB) AND (ISPAID = 0)
+AND (ISNULL(ADD1_DNV.VAL,ADD2_DNV.VAL) LIKE @DNVISION1 OR '1' = @ISDNVISION1)
+AND (NT.NOTANO LIKE @NOTANO OR '1' = @ISNOTANO)
+ORDER BY P.VOUCHER</CommandText>
+                    <Parameters>
+                      <Parameter AllowDbNull="false" AutogeneratedName="ADATE" ColumnName="" DataSourceName="" DataTypeServer="unknown" DbType="DateTime" Direction="Input" ParameterName="@ADATE" Precision="0" Scale="0" Size="0" SourceColumn="" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="SDATE" ColumnName="ADATE" DataSourceName="TALYS.dbo.PLCNOTA" DataTypeServer="date" DbType="AnsiString" Direction="Input" ParameterName="@SDATE" Precision="0" ProviderType="Date" Scale="0" Size="3" SourceColumn="INVOICE_DATE" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="EDATE" ColumnName="ADATE" DataSourceName="TALYS.dbo.PLCNOTA" DataTypeServer="date" DbType="AnsiString" Direction="Input" ParameterName="@EDATE" Precision="0" ProviderType="Date" Scale="0" Size="3" SourceColumn="INVOICE_DATE" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="PLCTTG" ColumnName="PLCTTG" DataSourceName="TALYS.dbo.PLACING" DataTypeServer="varchar(600)" DbType="AnsiString" Direction="Input" ParameterName="@PLCTTG" Precision="0" ProviderType="VarChar" Scale="0" Size="600" SourceColumn="PLCTTG" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="INSURANCE" ColumnName="NAMA" DataSourceName="TALYS.dbo.PLCNOTA" DataTypeServer="varchar(600)" DbType="AnsiString" Direction="Input" ParameterName="@INSURANCE" Precision="0" ProviderType="VarChar" Scale="0" Size="600" SourceColumn="NAMA" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="KODECAB" ColumnName="KODECAB" DataSourceName="TALYS.dbo.PLACING" DataTypeServer="varchar(20)" DbType="AnsiString" Direction="Input" ParameterName="@KODECAB" Precision="0" ProviderType="VarChar" Scale="0" Size="20" SourceColumn="KODECAB" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="false" AutogeneratedName="DNVISION1" ColumnName="" DataSourceName="" DataTypeServer="unknown" DbType="AnsiString" Direction="Input" ParameterName="@DNVISION1" Precision="0" Scale="0" Size="1024" SourceColumn="" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="false" AutogeneratedName="ISDNVISION1" ColumnName="" DataSourceName="" DataTypeServer="unknown" DbType="AnsiString" Direction="Input" ParameterName="@ISDNVISION1" Precision="0" Scale="0" Size="1024" SourceColumn="" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="NOTANO" ColumnName="NOTANO" DataSourceName="TALYS.dbo.PLCNOTA" DataTypeServer="varchar(100)" DbType="AnsiString" Direction="Input" ParameterName="@NOTANO" Precision="0" ProviderType="VarChar" Scale="0" Size="100" SourceColumn="NOTANO" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="false" AutogeneratedName="ISNOTANO" ColumnName="" DataSourceName="" DataTypeServer="unknown" DbType="AnsiString" Direction="Input" ParameterName="@ISNOTANO" Precision="0" Scale="0" Size="1024" SourceColumn="" SourceColumnNullMapping="false" SourceVersion="Current" />
+                    </Parameters>
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+              <DbSource ConnectionRef="FAConnectionString (Settings)" DbObjectType="Unknown" GenerateMethods="Get" GenerateShortCommands="true" GeneratorGetMethodName="GetDataByFilterAging" GetMethodModifier="Public" GetMethodName="GetDataByFilterAging" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetDataByFilterAging" UserSourceName="GetDataByFilterAging">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="true">
+                    <CommandText>
+SELECT P.VOUCHER, P.DUEDATE, NT.PROFILEID, NT.NAMA, LEFT(PLC.PLCTTG,50) AS TTG, ADD1.VAL AS POLICYNO,
+  P.MTU, P.DUEAMOUNT-P.PAYMENT_OC AS DUEAMOUNT, DATEDIFF(DAY, P.DUEDATE, @ADATE) AS DAYS, ADD2.VAL AS PICMKT, CO.KODECO,
+  CASE WHEN DATEDIFF(DAY, P.DUEDATE, @ADATE) BETWEEN 0 AND 30 THEN P.DUEAMOUNT-P.PAYMENT_OC ELSE 0 END AS DAYS30,
+  CASE WHEN DATEDIFF(DAY, P.DUEDATE, @ADATE) BETWEEN 31 AND 60 THEN P.DUEAMOUNT-P.PAYMENT_OC ELSE 0 END AS DAYS60,
+  CASE WHEN DATEDIFF(DAY, P.DUEDATE, @ADATE) BETWEEN 61 AND 90 THEN P.DUEAMOUNT-P.PAYMENT_OC ELSE 0 END AS DAYS90,
+  CASE WHEN DATEDIFF(DAY, P.DUEDATE, @ADATE) &gt; 90 THEN P.DUEAMOUNT-P.PAYMENT_OC ELSE 0 END AS DAYS91
+FROM FAPAYMENT P
+INNER JOIN FAVOUCHER VO ON VO.VOUCHER = P.VOUCHER
+INNER JOIN PLCNOTA NT ON VO.NOTANO = NT.NOTANO
+INNER JOIN PLACING PLC ON PLC.PLCID = NT.PLCID
+LEFT OUTER JOIN PLCADDINFO ADD1 ON NT.PLCID = ADD1.PLCID AND ADD1.CONFIGID = 'POLICY_NO'
+LEFT OUTER JOIN PLCADDINFO ADD2 ON NT.PLCID = ADD2.PLCID AND ADD2.CONFIGID = 'PS_PIC_MKT'
+LEFT OUTER JOIN CO ON CO.USRID = ADD2.VAL
+WHERE NT.DCTYPE = 'DI' 
+AND P.DUEDATE = @ADATE AND NT.NAMA LIKE @INSURANCENAME
+ORDER BY P.VOUCHER</CommandText>
+                    <Parameters>
+                      <Parameter AllowDbNull="true" AutogeneratedName="ADATE" ColumnName="DUEDATE" DataSourceName="TALYS.dbo.FAPAYMENT" DataTypeServer="datetime" DbType="DateTime" Direction="Input" ParameterName="@ADATE" Precision="0" ProviderType="DateTime" Scale="0" Size="8" SourceColumn="DUEDATE" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="INSURANCENAME" ColumnName="NAMA" DataSourceName="TALYS.dbo.PLCNOTA" DataTypeServer="varchar(600)" DbType="AnsiString" Direction="Input" ParameterName="@INSURANCENAME" Precision="0" ProviderType="VarChar" Scale="0" Size="600" SourceColumn="NAMA" SourceColumnNullMapping="false" SourceVersion="Current" />
+                    </Parameters>
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+            </Sources>
+          </TableAdapter>
+          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="CUSTOMER_UNDUETableAdapter" GeneratorDataComponentClassName="CUSTOMER_UNDUETableAdapter" Name="CUSTOMER_UNDUE" UserDataComponentName="CUSTOMER_UNDUETableAdapter">
+            <MainSource>
+              <DbSource ConnectionRef="FAConnectionString (Settings)" DbObjectType="Unknown" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="false" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="false" UserGetMethodName="GetData" UserSourceName="Fill">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="true">
+                    <CommandText>SELECT P.VOUCHER, P.DUEDATE, PLC.SDATE, NT.PROFILEID, NT.NAMA, INS.NAMA AS LEADER, ADD1.VAL AS POLICYNO,
+  P.MTU, P.DUEAMOUNT, ADD2.VAL AS PICMKT, CO.KODECO AS KODECO,
+  CASE WHEN DATEDIFF(DAY, PLC.SDATE, GETDATE()) BETWEEN 0 AND 30 THEN P.DUEAMOUNT ELSE 0 END AS DAYS30,
+  CASE WHEN DATEDIFF(DAY, PLC.SDATE, GETDATE()) BETWEEN 31 AND 60 THEN P.DUEAMOUNT ELSE 0 END AS DAYS60,
+  CASE WHEN DATEDIFF(DAY, PLC.SDATE, GETDATE()) BETWEEN 61 AND 90 THEN P.DUEAMOUNT ELSE 0 END AS DAYS90,
+  CASE WHEN DATEDIFF(DAY, PLC.SDATE, GETDATE()) &gt; 90 THEN P.DUEAMOUNT ELSE 0 END AS DAYS91
+FROM FAPAYMENT P
+INNER JOIN FAVOUCHER VO ON VO.VOUCHER = P.VOUCHER
+INNER JOIN PLCNOTA NT ON VO.NOTANO = NT.NOTANO
+INNER JOIN PLCINSURANCE INS ON NT.PLCID = INS.PLCID AND INS.TYPEF = 'L'
+INNER JOIN PLACING PLC ON PLC.PLCID = NT.PLCID
+LEFT OUTER JOIN PLCADDINFO ADD1 ON NT.PLCID = ADD1.PLCID AND ADD1.CONFIGID = 'POLICY_NO'
+LEFT OUTER JOIN PLCADDINFO ADD2 ON NT.PLCID = ADD2.PLCID AND ADD2.CONFIGID = 'PS_PIC_MKT'
+LEFT OUTER JOIN CO ON CO.USRID = ADD2.VAL
+WHERE NT.DCTYPE = 'BB'</CommandText>
+                    <Parameters />
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+            </MainSource>
+            <Mappings>
+              <Mapping SourceColumn="VOUCHER" DataSetColumn="VOUCHER" />
+              <Mapping SourceColumn="DUEDATE" DataSetColumn="DUEDATE" />
+              <Mapping SourceColumn="SDATE" DataSetColumn="SDATE" />
+              <Mapping SourceColumn="PROFILEID" DataSetColumn="PROFILEID" />
+              <Mapping SourceColumn="NAMA" DataSetColumn="NAMA" />
+              <Mapping SourceColumn="LEADER" DataSetColumn="LEADER" />
+              <Mapping SourceColumn="POLICYNO" DataSetColumn="POLICYNO" />
+              <Mapping SourceColumn="MTU" DataSetColumn="MTU" />
+              <Mapping SourceColumn="DUEAMOUNT" DataSetColumn="DUEAMOUNT" />
+              <Mapping SourceColumn="PICMKT" DataSetColumn="PICMKT" />
+              <Mapping SourceColumn="DAYS30" DataSetColumn="DAYS30" />
+              <Mapping SourceColumn="DAYS60" DataSetColumn="DAYS60" />
+              <Mapping SourceColumn="DAYS90" DataSetColumn="DAYS90" />
+              <Mapping SourceColumn="DAYS91" DataSetColumn="DAYS91" />
+              <Mapping SourceColumn="KODECO" DataSetColumn="KODECO" />
+            </Mappings>
+            <Sources>
+              <DbSource ConnectionRef="FAConnectionString (Settings)" DbObjectType="Unknown" GenerateMethods="Get" GenerateShortCommands="true" GeneratorGetMethodName="GetDataByFilterUndue" GetMethodModifier="Public" GetMethodName="GetDataByFilterUndue" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetDataByFilterUndue" UserSourceName="GetDataByFilterUndue">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="true">
+                    <CommandText>SELECT P.VOUCHER, P.DUEDATE, PLC.SDATE, NT.PROFILEID, NT.NAMA, INS.NAMA AS LEADER, ADD1.VAL AS POLICYNO,
+  P.MTU, P.DUEAMOUNT, DATEDIFF(DAY, P.DUEDATE, GETDATE()) AS DAYS, ADD2.VAL AS PICMKT, CO.KODECO AS KODECO,
+  CASE WHEN DATEDIFF(DAY, PLC.SDATE, GETDATE()) BETWEEN 0 AND 30 THEN P.DUEAMOUNT ELSE 0 END AS NT_DAYS30,
+  CASE WHEN DATEDIFF(DAY, PLC.SDATE, GETDATE()) BETWEEN 31 AND 60 THEN P.DUEAMOUNT ELSE 0 END AS NT_DAYS60,
+  CASE WHEN DATEDIFF(DAY, PLC.SDATE, GETDATE()) BETWEEN 61 AND 90 THEN P.DUEAMOUNT ELSE 0 END AS NT_DAYS90,
+  CASE WHEN DATEDIFF(DAY, PLC.SDATE, GETDATE()) &gt; 90 THEN P.DUEAMOUNT ELSE 0 END AS NT_DAYS91
+FROM FAPAYMENT P
+INNER JOIN FAVOUCHER VO ON VO.VOUCHER = P.VOUCHER
+INNER JOIN PLCNOTA NT ON VO.NOTANO = NT.NOTANO
+INNER JOIN PLCINSURANCE INS ON NT.PLCID = INS.PLCID AND INS.TYPEF = 'L'
+INNER JOIN PLACING PLC ON PLC.PLCID = NT.PLCID
+LEFT OUTER JOIN PLCADDINFO ADD1 ON NT.PLCID = ADD1.PLCID AND ADD1.CONFIGID = 'POLICY_NO'
+LEFT OUTER JOIN PLCADDINFO ADD2 ON NT.PLCID = ADD2.PLCID AND ADD2.CONFIGID = 'PS_PIC_MKT'
+LEFT OUTER JOIN CO ON CO.USRID = ADD2.VAL
+WHERE NT.DCTYPE = 'BB'
+AND (NT.NAMA LIKE @TTG) AND (PLC.SDATE BETWEEN @SDATE AND @EDATE) AND (INS.NAMA LIKE @INSURANCENAME)</CommandText>
+                    <Parameters>
+                      <Parameter AllowDbNull="true" AutogeneratedName="TTG" ColumnName="NAMA" DataSourceName="TALYS.dbo.PLCNOTA" DataTypeServer="varchar(500)" DbType="AnsiString" Direction="Input" ParameterName="@TTG" Precision="0" ProviderType="VarChar" Scale="0" Size="500" SourceColumn="NAMA" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="SDATE" ColumnName="SDATE" DataSourceName="TALYS.dbo.PLACING" DataTypeServer="datetime" DbType="DateTime" Direction="Input" ParameterName="@SDATE" Precision="0" ProviderType="DateTime" Scale="0" Size="8" SourceColumn="SDATE" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="EDATE" ColumnName="SDATE" DataSourceName="TALYS.dbo.PLACING" DataTypeServer="datetime" DbType="DateTime" Direction="Input" ParameterName="@EDATE" Precision="0" ProviderType="DateTime" Scale="0" Size="8" SourceColumn="SDATE" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="INSURANCENAME" ColumnName="NAMA" DataSourceName="TALYS.dbo.PLCINSURANCE" DataTypeServer="varchar(500)" DbType="AnsiString" Direction="Input" ParameterName="@INSURANCENAME" Precision="0" ProviderType="VarChar" Scale="0" Size="500" SourceColumn="LEADER" SourceColumnNullMapping="false" SourceVersion="Current" />
+                    </Parameters>
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+            </Sources>
+          </TableAdapter>
+          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="CUSTOMERSUMTableAdapter" GeneratorDataComponentClassName="CUSTOMERSUMTableAdapter" Name="CUSTOMERSUM" UserDataComponentName="CUSTOMERSUMTableAdapter">
+            <MainSource>
+              <DbSource ConnectionRef="FAConnectionString (Settings)" DbObjectName="TALYS.dbo.FAPAYMENT" DbObjectType="Table" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="false" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="false" UserGetMethodName="GetData" UserSourceName="Fill">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="true">
+                    <CommandText>SELECT P.MTU, P.DUEAMOUNT, 0 AS NOTDUE, 0 AS DAYS30, 0 AS DAYS60, 0 AS DAYS90, 0 AS DAYS91
+FROM FAPAYMENT P</CommandText>
+                    <Parameters />
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+            </MainSource>
+            <Mappings>
+              <Mapping SourceColumn="MTU" DataSetColumn="MTU" />
+              <Mapping SourceColumn="DUEAMOUNT" DataSetColumn="DUEAMOUNT" />
+              <Mapping SourceColumn="DAYS30" DataSetColumn="DAYS30" />
+              <Mapping SourceColumn="DAYS60" DataSetColumn="DAYS60" />
+              <Mapping SourceColumn="DAYS90" DataSetColumn="DAYS90" />
+              <Mapping SourceColumn="DAYS91" DataSetColumn="DAYS91" />
+              <Mapping SourceColumn="NOTDUE" DataSetColumn="NOTDUE" />
+            </Mappings>
+            <Sources>
+              <DbSource ConnectionRef="FAConnectionString (Settings)" DbObjectName="TALYS.dbo.FAPAYMENT" DbObjectType="Table" GenerateMethods="Get" GenerateShortCommands="true" GeneratorGetMethodName="GetDataByFilterAgingNote" GetMethodModifier="Public" GetMethodName="GetDataByFilterAgingNote" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetDataByFilterAgingNote" UserSourceName="GetDataByFilterAgingNote">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="true">
+                    <CommandText>SELECT P.MTU, 
+  SUM(P.DUEAMOUNT) AS DUEAMOUNT, 
+  SUM(CASE WHEN NT.ADATE &gt; GETDATE() THEN P.DUEAMOUNT- P.PAYMENT_OC ELSE 0 END) AS NOTDUE,
+  SUM(CASE WHEN DATEDIFF(DAY, NT.ADATE, GETDATE()) BETWEEN 0 AND 30 THEN P.DUEAMOUNT-P.PAYMENT_OC ELSE 0 END) AS DAYS30,
+  SUM(CASE WHEN DATEDIFF(DAY, NT.ADATE, GETDATE()) BETWEEN 31 AND 60 THEN P.DUEAMOUNT-P.PAYMENT_OC ELSE 0 END) AS DAYS60,
+  SUM(CASE WHEN DATEDIFF(DAY, NT.ADATE, GETDATE()) BETWEEN 61 AND 90 THEN P.DUEAMOUNT-P.PAYMENT_OC ELSE 0 END) AS DAYS90,
+  SUM(CASE WHEN DATEDIFF(DAY, NT.ADATE, GETDATE()) &gt; 90 THEN P.DUEAMOUNT-P.PAYMENT_OC  ELSE 0 END) AS DAYS91
+FROM FAPAYMENT P
+INNER JOIN FAVOUCHER VO ON VO.VOUCHER = P.VOUCHER
+INNER JOIN PLCNOTA NT ON VO.NOTANO = NT.NOTANO
+INNER JOIN PLACING PLC ON PLC.PLCID = NT.PLCID
+INNER JOIN PLACINGTOC PT ON PT.PLCID = PLC.PLCID AND NT.KODETOC = PT.KODETOC
+LEFT OUTER JOIN PLCADDINFO ADD1_DNV ON NT.PLCID = ADD1_DNV.PLCID AND ADD1_DNV.CONFIGID = 'DN_VISION' AND PT.URUT = 1
+LEFT OUTER JOIN PLCADDINFO ADD2_DNV ON NT.PLCID = ADD2_DNV.PLCID AND ADD2_DNV.CONFIGID = 'DN_VISION2'  AND PT.URUT = 2
+LEFT OUTER JOIN PLCADDINFO ADD2 ON NT.PLCID = ADD2.PLCID AND ADD2.CONFIGID = 'PS_PIC_MKT'
+LEFT OUTER JOIN CO ON CO.USRID = ADD2.VAL
+WHERE (NT.DCTYPE IN ('BB', 'BF') OR (NT.DCTYPE = 'OP' AND NT.DC = 'D')) 
+AND (P.ISPAID = 0) 
+AND (NT.NAMA LIKE @TTG) AND (NT.ADATE BETWEEN @SDATE AND @EDATE) AND (PLC.KODECAB LIKE @KODECAB) 
+AND (ISNULL(ADD1_DNV.VAL, ADD2_DNV.VAL) LIKE @DNVISION1 OR '1' = @ISDNVISION1)
+AND (NT.NOTANO LIKE @NOTANO OR '1' = @ISNOTANO)
+AND (CO.KODECO LIKE @KODECO)
+GROUP BY P.MTU</CommandText>
+                    <Parameters>
+                      <Parameter AllowDbNull="true" AutogeneratedName="TTG" ColumnName="NAMA" DataSourceName="TALYS.dbo.PLCNOTA" DataTypeServer="varchar(500)" DbType="AnsiString" Direction="Input" ParameterName="@TTG" Precision="0" ProviderType="VarChar" Scale="0" Size="500" SourceColumn="NAMA" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="SDATE" ColumnName="ADATE" DataSourceName="TALYS.dbo.PLCNOTA" DataTypeServer="date" DbType="AnsiString" Direction="Input" ParameterName="@SDATE" Precision="0" ProviderType="Date" Scale="0" Size="3" SourceColumn="ADATE" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="EDATE" ColumnName="ADATE" DataSourceName="TALYS.dbo.PLCNOTA" DataTypeServer="date" DbType="AnsiString" Direction="Input" ParameterName="@EDATE" Precision="0" ProviderType="Date" Scale="0" Size="3" SourceColumn="ADATE" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="KODECAB" ColumnName="KODECAB" DataSourceName="TALYS.dbo.PLACING" DataTypeServer="varchar(20)" DbType="AnsiString" Direction="Input" ParameterName="@KODECAB" Precision="0" ProviderType="VarChar" Scale="0" Size="20" SourceColumn="KODECAB" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="false" AutogeneratedName="DNVISION1" ColumnName="" DataSourceName="" DataTypeServer="unknown" DbType="AnsiString" Direction="Input" ParameterName="@DNVISION1" Precision="0" Scale="0" Size="1024" SourceColumn="" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="false" AutogeneratedName="ISDNVISION1" ColumnName="" DataSourceName="" DataTypeServer="unknown" DbType="AnsiString" Direction="Input" ParameterName="@ISDNVISION1" Precision="0" Scale="0" Size="1024" SourceColumn="" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="NOTANO" ColumnName="NOTANO" DataSourceName="TALYS.dbo.PLCNOTA" DataTypeServer="varchar(100)" DbType="AnsiString" Direction="Input" ParameterName="@NOTANO" Precision="0" ProviderType="VarChar" Scale="0" Size="100" SourceColumn="NOTANO" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="false" AutogeneratedName="ISNOTANO" ColumnName="" DataSourceName="" DataTypeServer="unknown" DbType="AnsiString" Direction="Input" ParameterName="@ISNOTANO" Precision="0" Scale="0" Size="1024" SourceColumn="" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="KODECO" ColumnName="KODECO" DataSourceName="TALYS.dbo.CO" DataTypeServer="varchar(10)" DbType="AnsiString" Direction="Input" ParameterName="@KODECO" Precision="0" ProviderType="VarChar" Scale="0" Size="10" SourceColumn="KODECO" SourceColumnNullMapping="false" SourceVersion="Current" />
+                    </Parameters>
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+              <DbSource ConnectionRef="FAConnectionString (Settings)" DbObjectName="TALYS.dbo.FAPAYMENT" DbObjectType="Table" GenerateMethods="Get" GenerateShortCommands="true" GeneratorGetMethodName="GetDataByFilterAgingPPW" GetMethodModifier="Public" GetMethodName="GetDataByFilterAgingPPW" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetDataByFilterAgingPPW" UserSourceName="GetDataByFilterAgingPPW">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="true">
+                    <CommandText>SELECT P.MTU, 
+  SUM(P.DUEAMOUNT) AS DUEAMOUNT, 
+  SUM(CASE WHEN P.DUEDATE &gt; GETDATE() THEN P.DUEAMOUNT- P.PAYMENT_OC ELSE 0 END) AS NOTDUE,
+  SUM(CASE WHEN DATEDIFF(DAY, P.DUEDATE, GETDATE()) BETWEEN 0 AND 30 THEN P.DUEAMOUNT-P.PAYMENT_OC ELSE 0 END) AS DAYS30,
+  SUM(CASE WHEN DATEDIFF(DAY, P.DUEDATE, GETDATE()) BETWEEN 31 AND 60 THEN P.DUEAMOUNT-P.PAYMENT_OC ELSE 0 END) AS DAYS60,
+  SUM(CASE WHEN DATEDIFF(DAY, P.DUEDATE, GETDATE()) BETWEEN 61 AND 90 THEN P.DUEAMOUNT-P.PAYMENT_OC ELSE 0 END) AS DAYS90,
+  SUM(CASE WHEN DATEDIFF(DAY, P.DUEDATE, GETDATE()) &gt; 90 THEN P.DUEAMOUNT-P.PAYMENT_OC  ELSE 0 END) AS DAYS91
+FROM FAPAYMENT P
+INNER JOIN FAVOUCHER VO ON VO.VOUCHER = P.VOUCHER
+INNER JOIN PLCNOTA NT ON VO.NOTANO = NT.NOTANO
+INNER JOIN PLACING PLC ON PLC.PLCID = NT.PLCID
+INNER JOIN PLACINGTOC PT ON PT.PLCID = PLC.PLCID AND NT.KODETOC = PT.KODETOC
+LEFT OUTER JOIN PLCADDINFO ADD1_DNV ON NT.PLCID = ADD1_DNV.PLCID AND ADD1_DNV.CONFIGID = 'DN_VISION' AND PT.URUT = 1
+LEFT OUTER JOIN PLCADDINFO ADD2_DNV ON NT.PLCID = ADD2_DNV.PLCID AND ADD2_DNV.CONFIGID = 'DN_VISION2'  AND PT.URUT = 2
+LEFT OUTER JOIN PLCADDINFO ADD2 ON NT.PLCID = ADD2.PLCID AND ADD2.CONFIGID = 'PS_PIC_MKT'
+LEFT OUTER JOIN CO ON CO.USRID = ADD2.VAL
+WHERE (NT.DCTYPE IN ('BB', 'BF') OR (NT.DCTYPE = 'OP' AND NT.DC = 'D')) 
+AND (P.ISPAID = 0) 
+AND (NT.NAMA LIKE @TTG) AND (P.DUEDATE BETWEEN @SDATE AND @EDATE) AND (PLC.KODECAB LIKE @KODECAB) 
+AND (ISNULL(ADD1_DNV.VAL, ADD2_DNV.VAL) LIKE @DNVISION1 OR '1' = @ISDNVISION1)
+AND (NT.NOTANO LIKE @NOTANO OR '1' = @ISNOTANO)
+AND (CO.KODECO LIKE @KODECO)
+GROUP BY P.MTU</CommandText>
+                    <Parameters>
+                      <Parameter AllowDbNull="true" AutogeneratedName="TTG" ColumnName="NAMA" DataSourceName="TALYS.dbo.PLCNOTA" DataTypeServer="varchar(500)" DbType="AnsiString" Direction="Input" ParameterName="@TTG" Precision="0" ProviderType="VarChar" Scale="0" Size="500" SourceColumn="NAMA" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="SDATE" ColumnName="DUEDATE" DataSourceName="TALYS.dbo.FAPAYMENT" DataTypeServer="datetime" DbType="DateTime" Direction="Input" ParameterName="@SDATE" Precision="0" ProviderType="DateTime" Scale="0" Size="8" SourceColumn="DUEDATE" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="EDATE" ColumnName="DUEDATE" DataSourceName="TALYS.dbo.FAPAYMENT" DataTypeServer="datetime" DbType="DateTime" Direction="Input" ParameterName="@EDATE" Precision="0" ProviderType="DateTime" Scale="0" Size="8" SourceColumn="DUEDATE" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="KODECAB" ColumnName="KODECAB" DataSourceName="TALYS.dbo.PLACING" DataTypeServer="varchar(20)" DbType="AnsiString" Direction="Input" ParameterName="@KODECAB" Precision="0" ProviderType="VarChar" Scale="0" Size="20" SourceColumn="KODECAB" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="false" AutogeneratedName="DNVISION1" ColumnName="" DataSourceName="" DataTypeServer="unknown" DbType="AnsiString" Direction="Input" ParameterName="@DNVISION1" Precision="0" Scale="0" Size="1024" SourceColumn="" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="false" AutogeneratedName="ISDNVISION1" ColumnName="" DataSourceName="" DataTypeServer="unknown" DbType="AnsiString" Direction="Input" ParameterName="@ISDNVISION1" Precision="0" Scale="0" Size="1024" SourceColumn="" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="NOTANO" ColumnName="NOTANO" DataSourceName="TALYS.dbo.PLCNOTA" DataTypeServer="varchar(100)" DbType="AnsiString" Direction="Input" ParameterName="@NOTANO" Precision="0" ProviderType="VarChar" Scale="0" Size="100" SourceColumn="NOTANO" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="false" AutogeneratedName="ISNOTANO" ColumnName="" DataSourceName="" DataTypeServer="unknown" DbType="AnsiString" Direction="Input" ParameterName="@ISNOTANO" Precision="0" Scale="0" Size="1024" SourceColumn="" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="KODECO" ColumnName="KODECO" DataSourceName="TALYS.dbo.CO" DataTypeServer="varchar(10)" DbType="AnsiString" Direction="Input" ParameterName="@KODECO" Precision="0" ProviderType="VarChar" Scale="0" Size="10" SourceColumn="KODECO" SourceColumnNullMapping="false" SourceVersion="Current" />
+                    </Parameters>
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+            </Sources>
+          </TableAdapter>
+        </Tables>
+        <Sources />
+      </DataSource>
+    </xs:appinfo>
+  </xs:annotation>
+  <xs:element name="DSAging" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:EnableTableAdapterManager="true" msprop:Generator_DataSetName="DSAging" msprop:Generator_UserDSName="DSAging">
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="CUSTOMER" msprop:Generator_TableClassName="CUSTOMERDataTable" msprop:Generator_TableVarName="tableCUSTOMER" msprop:Generator_RowChangedName="CUSTOMERRowChanged" msprop:Generator_TablePropName="CUSTOMER" msprop:Generator_RowDeletingName="CUSTOMERRowDeleting" msprop:Generator_RowChangingName="CUSTOMERRowChanging" msprop:Generator_RowEvHandlerName="CUSTOMERRowChangeEventHandler" msprop:Generator_RowDeletedName="CUSTOMERRowDeleted" msprop:Generator_RowClassName="CUSTOMERRow" msprop:Generator_UserTableName="CUSTOMER" msprop:Generator_RowEvArgName="CUSTOMERRowChangeEvent">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="VOUCHER" msprop:Generator_ColumnVarNameInTable="columnVOUCHER" msprop:Generator_ColumnPropNameInRow="VOUCHER" msprop:Generator_ColumnPropNameInTable="VOUCHERColumn" msprop:Generator_UserColumnName="VOUCHER">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="100" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="DUEDATE" msprop:Generator_ColumnVarNameInTable="columnDUEDATE" msprop:Generator_ColumnPropNameInRow="DUEDATE" msprop:Generator_ColumnPropNameInTable="DUEDATEColumn" msprop:Generator_UserColumnName="DUEDATE" type="xs:dateTime" minOccurs="0" />
+              <xs:element name="PROFILEID" msprop:Generator_ColumnVarNameInTable="columnPROFILEID" msprop:Generator_ColumnPropNameInRow="PROFILEID" msprop:Generator_ColumnPropNameInTable="PROFILEIDColumn" msprop:Generator_UserColumnName="PROFILEID" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="20" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="NAMA" msprop:Generator_ColumnVarNameInTable="columnNAMA" msprop:Generator_ColumnPropNameInRow="NAMA" msprop:Generator_ColumnPropNameInTable="NAMAColumn" msprop:Generator_UserColumnName="NAMA" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="500" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="LEADER" msprop:Generator_ColumnVarNameInTable="columnLEADER" msprop:Generator_ColumnPropNameInRow="LEADER" msprop:Generator_ColumnPropNameInTable="LEADERColumn" msprop:Generator_UserColumnName="LEADER" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="500" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="POLICYNO" msprop:Generator_ColumnVarNameInTable="columnPOLICYNO" msprop:Generator_ColumnPropNameInRow="POLICYNO" msprop:Generator_ColumnPropNameInTable="POLICYNOColumn" msprop:Generator_UserColumnName="POLICYNO" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="5000" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="DUEAMOUNT" msprop:Generator_ColumnVarNameInTable="columnDUEAMOUNT" msprop:Generator_ColumnPropNameInRow="DUEAMOUNT" msprop:Generator_ColumnPropNameInTable="DUEAMOUNTColumn" msprop:Generator_UserColumnName="DUEAMOUNT" type="xs:decimal" minOccurs="0" />
+              <xs:element name="DAYS" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columnDAYS" msprop:Generator_ColumnPropNameInRow="DAYS" msprop:Generator_ColumnPropNameInTable="DAYSColumn" msprop:Generator_UserColumnName="DAYS" type="xs:int" minOccurs="0" />
+              <xs:element name="DAYS30" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columnDAYS30" msprop:Generator_ColumnPropNameInRow="DAYS30" msprop:Generator_ColumnPropNameInTable="DAYS30Column" msprop:Generator_UserColumnName="DAYS30" type="xs:decimal" minOccurs="0" />
+              <xs:element name="DAYS60" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columnDAYS60" msprop:Generator_ColumnPropNameInRow="DAYS60" msprop:Generator_ColumnPropNameInTable="DAYS60Column" msprop:Generator_UserColumnName="DAYS60" type="xs:decimal" minOccurs="0" />
+              <xs:element name="DAYS90" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columnDAYS90" msprop:Generator_ColumnPropNameInRow="DAYS90" msprop:Generator_ColumnPropNameInTable="DAYS90Column" msprop:Generator_UserColumnName="DAYS90" type="xs:decimal" minOccurs="0" />
+              <xs:element name="DAYS91" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columnDAYS91" msprop:Generator_ColumnPropNameInRow="DAYS91" msprop:Generator_ColumnPropNameInTable="DAYS91Column" msprop:Generator_UserColumnName="DAYS91" type="xs:decimal" minOccurs="0" />
+              <xs:element name="MTU" msprop:Generator_ColumnVarNameInTable="columnMTU" msprop:Generator_ColumnPropNameInRow="MTU" msprop:Generator_ColumnPropNameInTable="MTUColumn" msprop:Generator_UserColumnName="MTU" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="3" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="PICMKT" msprop:Generator_ColumnVarNameInTable="columnPICMKT" msprop:Generator_ColumnPropNameInRow="PICMKT" msprop:Generator_ColumnPropNameInTable="PICMKTColumn" msprop:Generator_UserColumnName="PICMKT" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="5000" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="ADATE" msprop:Generator_ColumnVarNameInTable="columnADATE" msprop:Generator_ColumnPropNameInRow="ADATE" msprop:Generator_ColumnPropNameInTable="ADATEColumn" msprop:Generator_UserColumnName="ADATE" type="xs:dateTime" minOccurs="0" />
+              <xs:element name="PLCID" msprop:Generator_ColumnVarNameInTable="columnPLCID" msprop:Generator_ColumnPropNameInRow="PLCID" msprop:Generator_ColumnPropNameInTable="PLCIDColumn" msprop:Generator_UserColumnName="PLCID">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="20" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="TTG" msprop:Generator_ColumnVarNameInTable="columnTTG" msprop:Generator_ColumnPropNameInRow="TTG" msprop:Generator_ColumnPropNameInTable="TTGColumn" msprop:Generator_UserColumnName="TTG" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="500" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="KODECO" msprop:Generator_ColumnVarNameInTable="columnKODECO" msprop:Generator_ColumnPropNameInRow="KODECO" msprop:Generator_ColumnPropNameInTable="KODECOColumn" msprop:Generator_UserColumnName="KODECO" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="10" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="ISPAID" msprop:Generator_ColumnVarNameInTable="columnISPAID" msprop:Generator_ColumnPropNameInRow="ISPAID" msprop:Generator_ColumnPropNameInTable="ISPAIDColumn" msprop:Generator_UserColumnName="ISPAID" type="xs:boolean" minOccurs="0" />
+              <xs:element name="PAYMENT_OC" msprop:Generator_ColumnVarNameInTable="columnPAYMENT_OC" msprop:Generator_ColumnPropNameInRow="PAYMENT_OC" msprop:Generator_ColumnPropNameInTable="PAYMENT_OCColumn" msprop:Generator_UserColumnName="PAYMENT_OC" type="xs:decimal" minOccurs="0" />
+              <xs:element name="NOTDUE" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columnNOTDUE" msprop:Generator_ColumnPropNameInRow="NOTDUE" msprop:Generator_ColumnPropNameInTable="NOTDUEColumn" msprop:Generator_UserColumnName="NOTDUE" type="xs:decimal" minOccurs="0" />
+              <xs:element name="KODETOC" msprop:Generator_ColumnVarNameInTable="columnKODETOC" msprop:Generator_ColumnPropNameInRow="KODETOC" msprop:Generator_ColumnPropNameInTable="KODETOCColumn" msprop:Generator_UserColumnName="KODETOC" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="5" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="DN_PLCSYS1" msprop:Generator_ColumnVarNameInTable="columnDN_PLCSYS1" msprop:Generator_ColumnPropNameInRow="DN_PLCSYS1" msprop:Generator_ColumnPropNameInTable="DN_PLCSYS1Column" msprop:Generator_UserColumnName="DN_PLCSYS1" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="5000" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="NOTANO" msprop:Generator_ColumnVarNameInTable="columnNOTANO" msprop:Generator_ColumnPropNameInRow="NOTANO" msprop:Generator_ColumnPropNameInTable="NOTANOColumn" msprop:Generator_UserColumnName="NOTANO" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="100" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="INSURANCE" msprop:Generator_TableClassName="INSURANCEDataTable" msprop:Generator_TableVarName="tableINSURANCE" msprop:Generator_RowChangedName="INSURANCERowChanged" msprop:Generator_TablePropName="INSURANCE" msprop:Generator_RowDeletingName="INSURANCERowDeleting" msprop:Generator_RowChangingName="INSURANCERowChanging" msprop:Generator_RowEvHandlerName="INSURANCERowChangeEventHandler" msprop:Generator_RowDeletedName="INSURANCERowDeleted" msprop:Generator_RowClassName="INSURANCERow" msprop:Generator_UserTableName="INSURANCE" msprop:Generator_RowEvArgName="INSURANCERowChangeEvent">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="VOUCHER" msprop:Generator_ColumnVarNameInTable="columnVOUCHER" msprop:Generator_ColumnPropNameInRow="VOUCHER" msprop:Generator_ColumnPropNameInTable="VOUCHERColumn" msprop:Generator_UserColumnName="VOUCHER">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="100" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="DUEDATE" msprop:Generator_ColumnVarNameInTable="columnDUEDATE" msprop:Generator_ColumnPropNameInRow="DUEDATE" msprop:Generator_ColumnPropNameInTable="DUEDATEColumn" msprop:Generator_UserColumnName="DUEDATE" type="xs:dateTime" minOccurs="0" />
+              <xs:element name="PROFILEID" msprop:Generator_ColumnVarNameInTable="columnPROFILEID" msprop:Generator_ColumnPropNameInRow="PROFILEID" msprop:Generator_ColumnPropNameInTable="PROFILEIDColumn" msprop:Generator_UserColumnName="PROFILEID" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="20" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="NAMA" msprop:Generator_ColumnVarNameInTable="columnNAMA" msprop:Generator_ColumnPropNameInRow="NAMA" msprop:Generator_ColumnPropNameInTable="NAMAColumn" msprop:Generator_UserColumnName="NAMA" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="500" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="TTG" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columnTTG" msprop:Generator_ColumnPropNameInRow="TTG" msprop:Generator_ColumnPropNameInTable="TTGColumn" msprop:Generator_UserColumnName="TTG" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="1000" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="POLICYNO" msprop:Generator_ColumnVarNameInTable="columnPOLICYNO" msprop:Generator_ColumnPropNameInRow="POLICYNO" msprop:Generator_ColumnPropNameInTable="POLICYNOColumn" msprop:Generator_UserColumnName="POLICYNO" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="5000" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="DUEAMOUNT" msprop:Generator_ColumnVarNameInTable="columnDUEAMOUNT" msprop:Generator_ColumnPropNameInRow="DUEAMOUNT" msprop:Generator_ColumnPropNameInTable="DUEAMOUNTColumn" msprop:Generator_UserColumnName="DUEAMOUNT" type="xs:decimal" minOccurs="0" />
+              <xs:element name="DAYS" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columnDAYS" msprop:Generator_ColumnPropNameInRow="DAYS" msprop:Generator_ColumnPropNameInTable="DAYSColumn" msprop:Generator_UserColumnName="DAYS" type="xs:int" minOccurs="0" />
+              <xs:element name="DAYS30" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columnDAYS30" msprop:Generator_ColumnPropNameInRow="DAYS30" msprop:Generator_ColumnPropNameInTable="DAYS30Column" msprop:Generator_UserColumnName="DAYS30" type="xs:decimal" minOccurs="0" />
+              <xs:element name="DAYS60" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columnDAYS60" msprop:Generator_ColumnPropNameInRow="DAYS60" msprop:Generator_ColumnPropNameInTable="DAYS60Column" msprop:Generator_UserColumnName="DAYS60" type="xs:decimal" minOccurs="0" />
+              <xs:element name="DAYS90" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columnDAYS90" msprop:Generator_ColumnPropNameInRow="DAYS90" msprop:Generator_ColumnPropNameInTable="DAYS90Column" msprop:Generator_UserColumnName="DAYS90" type="xs:decimal" minOccurs="0" />
+              <xs:element name="DAYS91" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columnDAYS91" msprop:Generator_ColumnPropNameInRow="DAYS91" msprop:Generator_ColumnPropNameInTable="DAYS91Column" msprop:Generator_UserColumnName="DAYS91" type="xs:decimal" minOccurs="0" />
+              <xs:element name="MTU" msprop:Generator_ColumnVarNameInTable="columnMTU" msprop:Generator_ColumnPropNameInRow="MTU" msprop:Generator_ColumnPropNameInTable="MTUColumn" msprop:Generator_UserColumnName="MTU" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="3" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="PICMKT" msprop:Generator_ColumnVarNameInTable="columnPICMKT" msprop:Generator_ColumnPropNameInRow="PICMKT" msprop:Generator_ColumnPropNameInTable="PICMKTColumn" msprop:Generator_UserColumnName="PICMKT" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="5000" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="PLCID" msprop:Generator_ColumnVarNameInTable="columnPLCID" msprop:Generator_ColumnPropNameInRow="PLCID" msprop:Generator_ColumnPropNameInTable="PLCIDColumn" msprop:Generator_UserColumnName="PLCID">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="20" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="CUSTOMER" msprop:Generator_ColumnVarNameInTable="columnCUSTOMER" msprop:Generator_ColumnPropNameInRow="CUSTOMER" msprop:Generator_ColumnPropNameInTable="CUSTOMERColumn" msprop:Generator_UserColumnName="CUSTOMER" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="1000" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="KODECO" msprop:Generator_ColumnVarNameInTable="columnKODECO" msprop:Generator_ColumnPropNameInRow="KODECO" msprop:Generator_ColumnPropNameInTable="KODECOColumn" msprop:Generator_UserColumnName="KODECO" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="10" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="DN_PLCSYS1" msprop:Generator_ColumnVarNameInTable="columnDN_PLCSYS1" msprop:Generator_ColumnPropNameInRow="DN_PLCSYS1" msprop:Generator_ColumnPropNameInTable="DN_PLCSYS1Column" msprop:Generator_UserColumnName="DN_PLCSYS1" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="5000" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="DN_PLCSYS2" msprop:Generator_ColumnVarNameInTable="columnDN_PLCSYS2" msprop:Generator_ColumnPropNameInRow="DN_PLCSYS2" msprop:Generator_ColumnPropNameInTable="DN_PLCSYS2Column" msprop:Generator_UserColumnName="DN_PLCSYS2" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="5000" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="CUSTOMER_UNDUE" msprop:Generator_TableClassName="CUSTOMER_UNDUEDataTable" msprop:Generator_TableVarName="tableCUSTOMER_UNDUE" msprop:Generator_TablePropName="CUSTOMER_UNDUE" msprop:Generator_RowDeletingName="CUSTOMER_UNDUERowDeleting" msprop:Generator_RowChangingName="CUSTOMER_UNDUERowChanging" msprop:Generator_RowEvHandlerName="CUSTOMER_UNDUERowChangeEventHandler" msprop:Generator_RowDeletedName="CUSTOMER_UNDUERowDeleted" msprop:Generator_UserTableName="CUSTOMER_UNDUE" msprop:Generator_RowChangedName="CUSTOMER_UNDUERowChanged" msprop:Generator_RowEvArgName="CUSTOMER_UNDUERowChangeEvent" msprop:Generator_RowClassName="CUSTOMER_UNDUERow">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="VOUCHER" msprop:Generator_ColumnVarNameInTable="columnVOUCHER" msprop:Generator_ColumnPropNameInRow="VOUCHER" msprop:Generator_ColumnPropNameInTable="VOUCHERColumn" msprop:Generator_UserColumnName="VOUCHER">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="100" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="DUEDATE" msprop:Generator_ColumnVarNameInTable="columnDUEDATE" msprop:Generator_ColumnPropNameInRow="DUEDATE" msprop:Generator_ColumnPropNameInTable="DUEDATEColumn" msprop:Generator_UserColumnName="DUEDATE" type="xs:dateTime" minOccurs="0" />
+              <xs:element name="SDATE" msprop:Generator_ColumnVarNameInTable="columnSDATE" msprop:Generator_ColumnPropNameInRow="SDATE" msprop:Generator_ColumnPropNameInTable="SDATEColumn" msprop:Generator_UserColumnName="SDATE" type="xs:dateTime" minOccurs="0" />
+              <xs:element name="PROFILEID" msprop:Generator_ColumnVarNameInTable="columnPROFILEID" msprop:Generator_ColumnPropNameInRow="PROFILEID" msprop:Generator_ColumnPropNameInTable="PROFILEIDColumn" msprop:Generator_UserColumnName="PROFILEID" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="20" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="NAMA" msprop:Generator_ColumnVarNameInTable="columnNAMA" msprop:Generator_ColumnPropNameInRow="NAMA" msprop:Generator_ColumnPropNameInTable="NAMAColumn" msprop:Generator_UserColumnName="NAMA" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="500" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="LEADER" msprop:Generator_ColumnVarNameInTable="columnLEADER" msprop:Generator_ColumnPropNameInRow="LEADER" msprop:Generator_ColumnPropNameInTable="LEADERColumn" msprop:Generator_UserColumnName="LEADER" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="500" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="POLICYNO" msprop:Generator_ColumnVarNameInTable="columnPOLICYNO" msprop:Generator_ColumnPropNameInRow="POLICYNO" msprop:Generator_ColumnPropNameInTable="POLICYNOColumn" msprop:Generator_UserColumnName="POLICYNO" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="5000" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="MTU" msprop:Generator_ColumnVarNameInTable="columnMTU" msprop:Generator_ColumnPropNameInRow="MTU" msprop:Generator_ColumnPropNameInTable="MTUColumn" msprop:Generator_UserColumnName="MTU" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="3" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="DUEAMOUNT" msprop:Generator_ColumnVarNameInTable="columnDUEAMOUNT" msprop:Generator_ColumnPropNameInRow="DUEAMOUNT" msprop:Generator_ColumnPropNameInTable="DUEAMOUNTColumn" msprop:Generator_UserColumnName="DUEAMOUNT" type="xs:decimal" minOccurs="0" />
+              <xs:element name="PICMKT" msprop:Generator_ColumnVarNameInTable="columnPICMKT" msprop:Generator_ColumnPropNameInRow="PICMKT" msprop:Generator_ColumnPropNameInTable="PICMKTColumn" msprop:Generator_UserColumnName="PICMKT" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="5000" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="DAYS30" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columnDAYS30" msprop:Generator_ColumnPropNameInRow="DAYS30" msprop:Generator_ColumnPropNameInTable="DAYS30Column" msprop:Generator_UserColumnName="DAYS30" type="xs:decimal" minOccurs="0" />
+              <xs:element name="DAYS60" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columnDAYS60" msprop:Generator_ColumnPropNameInRow="DAYS60" msprop:Generator_ColumnPropNameInTable="DAYS60Column" msprop:Generator_UserColumnName="DAYS60" type="xs:decimal" minOccurs="0" />
+              <xs:element name="DAYS90" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columnDAYS90" msprop:Generator_ColumnPropNameInRow="DAYS90" msprop:Generator_ColumnPropNameInTable="DAYS90Column" msprop:Generator_UserColumnName="DAYS90" type="xs:decimal" minOccurs="0" />
+              <xs:element name="DAYS91" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columnDAYS91" msprop:Generator_ColumnPropNameInRow="DAYS91" msprop:Generator_ColumnPropNameInTable="DAYS91Column" msprop:Generator_UserColumnName="DAYS91" type="xs:decimal" minOccurs="0" />
+              <xs:element name="KODECO" msprop:Generator_ColumnVarNameInTable="columnKODECO" msprop:Generator_ColumnPropNameInRow="KODECO" msprop:Generator_ColumnPropNameInTable="KODECOColumn" msprop:Generator_UserColumnName="KODECO" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="10" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="CUSTOMERSUM" msprop:Generator_TableClassName="CUSTOMERSUMDataTable" msprop:Generator_TableVarName="tableCUSTOMERSUM" msprop:Generator_TablePropName="CUSTOMERSUM" msprop:Generator_RowDeletingName="CUSTOMERSUMRowDeleting" msprop:Generator_RowChangingName="CUSTOMERSUMRowChanging" msprop:Generator_RowEvHandlerName="CUSTOMERSUMRowChangeEventHandler" msprop:Generator_RowDeletedName="CUSTOMERSUMRowDeleted" msprop:Generator_UserTableName="CUSTOMERSUM" msprop:Generator_RowChangedName="CUSTOMERSUMRowChanged" msprop:Generator_RowEvArgName="CUSTOMERSUMRowChangeEvent" msprop:Generator_RowClassName="CUSTOMERSUMRow">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="MTU" msprop:Generator_ColumnVarNameInTable="columnMTU" msprop:Generator_ColumnPropNameInRow="MTU" msprop:Generator_ColumnPropNameInTable="MTUColumn" msprop:Generator_UserColumnName="MTU">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="3" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="DUEAMOUNT" msprop:Generator_ColumnVarNameInTable="columnDUEAMOUNT" msprop:Generator_ColumnPropNameInRow="DUEAMOUNT" msprop:Generator_ColumnPropNameInTable="DUEAMOUNTColumn" msprop:Generator_UserColumnName="DUEAMOUNT" type="xs:decimal" minOccurs="0" />
+              <xs:element name="DAYS30" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columnDAYS30" msprop:Generator_ColumnPropNameInRow="DAYS30" msprop:Generator_ColumnPropNameInTable="DAYS30Column" msprop:Generator_UserColumnName="DAYS30" type="xs:decimal" minOccurs="0" />
+              <xs:element name="DAYS60" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columnDAYS60" msprop:Generator_ColumnPropNameInRow="DAYS60" msprop:Generator_ColumnPropNameInTable="DAYS60Column" msprop:Generator_UserColumnName="DAYS60" type="xs:decimal" minOccurs="0" />
+              <xs:element name="DAYS90" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columnDAYS90" msprop:Generator_ColumnPropNameInRow="DAYS90" msprop:Generator_ColumnPropNameInTable="DAYS90Column" msprop:Generator_UserColumnName="DAYS90" type="xs:decimal" minOccurs="0" />
+              <xs:element name="DAYS91" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columnDAYS91" msprop:Generator_ColumnPropNameInRow="DAYS91" msprop:Generator_ColumnPropNameInTable="DAYS91Column" msprop:Generator_UserColumnName="DAYS91" type="xs:decimal" minOccurs="0" />
+              <xs:element name="NOTDUE" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columnNOTDUE" msprop:Generator_ColumnPropNameInRow="NOTDUE" msprop:Generator_ColumnPropNameInTable="NOTDUEColumn" msprop:Generator_UserColumnName="NOTDUE" type="xs:decimal" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+    </xs:complexType>
+    <xs:unique name="Constraint1" msdata:PrimaryKey="true">
+      <xs:selector xpath=".//mstns:CUSTOMERSUM" />
+      <xs:field xpath="mstns:MTU" />
+    </xs:unique>
+  </xs:element>
+</xs:schema>

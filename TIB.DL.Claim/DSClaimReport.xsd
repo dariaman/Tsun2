@@ -1,0 +1,826 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="DSClaimReport" targetNamespace="http://tempuri.org/DSClaimReport.xsd" xmlns:mstns="http://tempuri.org/DSClaimReport.xsd" xmlns="http://tempuri.org/DSClaimReport.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
+  <xs:annotation>
+    <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
+      <DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+        <Connections>
+          <Connection AppSettingsObjectName="Settings" AppSettingsPropertyName="ConnectionString" ConnectionStringObject="" IsAppSettingsProperty="true" Modifier="Assembly" Name="ConnectionString (Settings)" ParameterPrefix="@" PropertyReference="ApplicationSettings.TIB.DL.Claim.Properties.Settings.GlobalReference.Default.ConnectionString" Provider="System.Data.SqlClient" />
+        </Connections>
+        <Tables>
+          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="CLAIMPRODGRIDTableAdapter" GeneratorDataComponentClassName="CLAIMPRODGRIDTableAdapter" Name="CLAIMPRODGRID" UserDataComponentName="CLAIMPRODGRIDTableAdapter">
+            <MainSource>
+              <DbSource ConnectionRef="ConnectionString (Settings)" DbObjectType="Unknown" GenerateMethods="Get" GenerateShortCommands="false" GeneratorGetMethodName="GetDataFilterClaimReport" GetMethodModifier="Public" GetMethodName="GetDataFilterClaimReport" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="false" UserGetMethodName="GetDataFilterClaimReport" UserSourceName="GetDataFilterClaimReport">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="true">
+                    <CommandText>SELECT CLAIM.CLID, CLAIM.KODETOC, CLAIMNO, INSCLNO, CAST(CLAIM.REGDATE AS date) AS REGDATE,  LOCATION, CLAIMNAME,  CLAIM.PLCID, COL.DESCRIPTION AS COL, LOSSDATE, ADJUSTERPRID, MTU, CLRESERVE, CLADJ, CLDED, CLNETT,  STATUSF, REMARKS, MEMBER.VAL AS MEMBER, EMPLOYEE.VAL AS EMPLOYEE, 
+NIK.VAL AS MEMBERNO, CASE WHEN DOCRCV.VAL IS NULL THEN '-' ELSE DOCRCV.VAL END AS DOCRCV,
+ISNULL(PLCAD.VAL, PLCAD2.VAL) AS POLICY_NO, 
+PLCINSC.NAMA AS INSURANCE, NAMATOC AS TOC, ADJID.NAMA AS ADJUSTER,
+OBJEK.TEKS AS CONVEYANCE, CAST(PL.SDATE AS date) AS SHIPMENTDATE, PTG.PTG_MTU AS PTG_MTU, PTG.TOTAL_SI AS TSI,
+DATEDIFF(DAY, CLAIM.DON, GETDATE()) AS AGINGCLAIM, 
+CASE WHEN DATEDIFF(DAY, CLAIM.DON, GETDATE()) BETWEEN 0 AND 30 THEN 
+DATEDIFF(DAY, CLAIM.DON, GETDATE()) ELSE 0 END AS DAYS30, 
+CASE WHEN DATEDIFF(DAY, CLAIM.DON, GETDATE()) BETWEEN 31 AND 90 THEN 
+DATEDIFF(DAY, CLAIM.DON, GETDATE()) ELSE 0 END AS DAYS90, 
+CASE WHEN DATEDIFF(DAY, CLAIM.DON, GETDATE()) BETWEEN 91 AND 180 THEN 
+DATEDIFF(DAY, CLAIM.DON, GETDATE()) ELSE 0 END AS DAY180, 
+CASE WHEN DATEDIFF(DAY, CLAIM.DON, GETDATE()) BETWEEN 181 AND 360 THEN 
+DATEDIFF(DAY, CLAIM.DON, GETDATE()) ELSE 0 END AS DAY360, 
+CASE WHEN DATEDIFF(DAY, CLAIM.DON, GETDATE()) &gt; 361 THEN 
+DATEDIFF(DAY, CLAIM.DON, GETDATE()) ELSE 0 END AS DAY361
+FROM CLAIM
+LEFT OUTER JOIN PLACING AS PL ON CLAIM.PLCID = PL.PLCID
+LEFT OUTER JOIN COL AS COL ON CLAIM.COL = COL.COL
+LEFT OUTER JOIN MSTTOC AS TOC ON CLAIM.KODETOC = TOC.KODETOC
+LEFT OUTER JOIN PROFILE AS ADJID ON ADJID.PROFILEID = CLAIM.ADJUSTERPRID 
+LEFT OUTER JOIN 
+(SELECT PLCID, OBJEKHID, TEKS FROM PLCOBJEK WHERE (OBJEKHID = '=hbFt[(BI.M]0C]3Lba*')) AS OBJEK ON CLAIM.PLCID = OBJEK.PLCID
+LEFT OUTER JOIN 
+(SELECT PLCID, MTU AS PTG_MTU, SUM(SI) AS TOTAL_SI FROM    PLCPTG GROUP BY PLCID, MTU) AS PTG ON PTG.PLCID = CLAIM.PLCID AND PTG.PTG_MTU = CLAIM.MTU
+LEFT OUTER JOIN 
+(SELECT CLID, VAL FROM CLADDINFO WHERE (CONFIGID = 'CLAIM_MEMBERNAME')) AS MEMBER ON MEMBER.CLID = CLAIM.CLID
+LEFT OUTER JOIN 
+(SELECT CLID, VAL FROM CLADDINFO WHERE (CONFIGID = 'CLAIM_EMPLOYEENAME')) AS EMPLOYEE ON EMPLOYEE.CLID = CLAIM.CLID
+LEFT OUTER JOIN 
+(SELECT CLID, VAL FROM CLADDINFO WHERE (CONFIGID = 'CLAIM_NIK')) AS NIK ON NIK.CLID = CLAIM.CLID
+LEFT OUTER JOIN 
+(SELECT CLID, VAL FROM    CLADDINFO WHERE (CONFIGID = 'CLAIM_RCVDDOC')) AS DOCRCV ON DOCRCV.CLID = CLAIM.CLID
+LEFT OUTER JOIN 
+(SELECT PLCID, PROFILEID, NAMA, SHARE, TYPEF FROM PLCINSURANCE WHERE (TYPEF = 'L')) AS PLCINSC ON PLCINSC.PLCID = CLAIM.PLCID
+LEFT OUTER JOIN 
+(SELECT PLCID, VAL FROM    PLCADDINFO WHERE (CONFIGID = 'POLICY_NO')) AS PLCAD ON PLCAD.PLCID = CLAIM.PLCID
+LEFT OUTER JOIN 
+(SELECT PLCID, VAL FROM    PLCADDINFO WHERE (CONFIGID = 'POLICY_NO2')) AS PLCAD2 ON PLCAD2.PLCID = CLAIM.PLCID
+WHERE (CLAIM.REGDATE BETWEEN @SDATE AND @EDATE) AND (CLAIM.CLAIMNAME LIKE @CLAIMTTG) AND (CLAIM.STATUSF LIKE @STATUSF) AND (ISNULL(CLAIM.KODETOC,'') LIKE @KODETOC) AND (CLAIM.CLAIMNO LIKE @CLAIMNO) AND (ISNULL(PLCINSC.NAMA,'') LIKE @INSURANCE) 
+AND (TOC.KDTNEW1 != 'G')
+ORDER BY REGDATE</CommandText>
+                    <Parameters>
+                      <Parameter AllowDbNull="true" AutogeneratedName="SDATE" ColumnName="REGDATE" DataSourceName="TALYS.dbo.CLAIM" DataTypeServer="datetime" DbType="DateTime" Direction="Input" ParameterName="@SDATE" Precision="0" ProviderType="DateTime" Scale="0" Size="8" SourceColumn="REGDATE" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="EDATE" ColumnName="REGDATE" DataSourceName="TALYS.dbo.CLAIM" DataTypeServer="datetime" DbType="DateTime" Direction="Input" ParameterName="@EDATE" Precision="0" ProviderType="DateTime" Scale="0" Size="8" SourceColumn="REGDATE" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="CLAIMTTG" ColumnName="CLAIMNAME" DataSourceName="TALYS.dbo.CLAIM" DataTypeServer="varchar(500)" DbType="AnsiString" Direction="Input" ParameterName="@CLAIMTTG" Precision="0" ProviderType="VarChar" Scale="0" Size="500" SourceColumn="CLAIMNAME" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="STATUSF" ColumnName="STATUSF" DataSourceName="TALYS.dbo.CLAIM" DataTypeServer="varchar(1)" DbType="AnsiString" Direction="Input" ParameterName="@STATUSF" Precision="0" ProviderType="VarChar" Scale="0" Size="1" SourceColumn="STATUSF" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="false" AutogeneratedName="KODETOC" ColumnName="" DataSourceName="" DataTypeServer="unknown" DbType="AnsiString" Direction="Input" ParameterName="@KODETOC" Precision="0" Scale="0" Size="1024" SourceColumn="" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="CLAIMNO" ColumnName="CLAIMNO" DataSourceName="TALYS.dbo.CLAIM" DataTypeServer="varchar(50)" DbType="AnsiString" Direction="Input" ParameterName="@CLAIMNO" Precision="0" ProviderType="VarChar" Scale="0" Size="50" SourceColumn="CLAIMNO" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="false" AutogeneratedName="INSURANCE" ColumnName="" DataSourceName="" DataTypeServer="unknown" DbType="AnsiString" Direction="Input" ParameterName="@INSURANCE" Precision="0" Scale="0" Size="1024" SourceColumn="" SourceColumnNullMapping="false" SourceVersion="Current" />
+                    </Parameters>
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+            </MainSource>
+            <Mappings>
+              <Mapping SourceColumn="CLID" DataSetColumn="CLID" />
+              <Mapping SourceColumn="KODETOC" DataSetColumn="KODETOC" />
+              <Mapping SourceColumn="CLAIMNO" DataSetColumn="CLAIMNO" />
+              <Mapping SourceColumn="INSCLNO" DataSetColumn="INSCLNO" />
+              <Mapping SourceColumn="REGDATE" DataSetColumn="REGDATE" />
+              <Mapping SourceColumn="CLAIMNAME" DataSetColumn="CLAIMNAME" />
+              <Mapping SourceColumn="PLCID" DataSetColumn="PLCID" />
+              <Mapping SourceColumn="COL" DataSetColumn="COL" />
+              <Mapping SourceColumn="LOSSDATE" DataSetColumn="LOSSDATE" />
+              <Mapping SourceColumn="ADJUSTERPRID" DataSetColumn="ADJUSTERPRID" />
+              <Mapping SourceColumn="MTU" DataSetColumn="MTU" />
+              <Mapping SourceColumn="CLRESERVE" DataSetColumn="CLRESERVE" />
+              <Mapping SourceColumn="CLADJ" DataSetColumn="CLADJ" />
+              <Mapping SourceColumn="CLDED" DataSetColumn="CLDED" />
+              <Mapping SourceColumn="CLNETT" DataSetColumn="CLNETT" />
+              <Mapping SourceColumn="STATUSF" DataSetColumn="STATUSF" />
+              <Mapping SourceColumn="REMARKS" DataSetColumn="REMARKS" />
+              <Mapping SourceColumn="MEMBER" DataSetColumn="MEMBER" />
+              <Mapping SourceColumn="EMPLOYEE" DataSetColumn="EMPLOYEE" />
+              <Mapping SourceColumn="MEMBERNO" DataSetColumn="MEMBERNO" />
+              <Mapping SourceColumn="DOCRCV" DataSetColumn="DOCRCV" />
+              <Mapping SourceColumn="POLICY_NO" DataSetColumn="POLICY_NO" />
+              <Mapping SourceColumn="INSURANCE" DataSetColumn="INSURANCE" />
+              <Mapping SourceColumn="TOC" DataSetColumn="TOC" />
+              <Mapping SourceColumn="ADJUSTER" DataSetColumn="ADJUSTER" />
+              <Mapping SourceColumn="CONVEYANCE" DataSetColumn="CONVEYANCE" />
+              <Mapping SourceColumn="SHIPMENTDATE" DataSetColumn="SHIPMENTDATE" />
+              <Mapping SourceColumn="PTG_MTU" DataSetColumn="PTG_MTU" />
+              <Mapping SourceColumn="TSI" DataSetColumn="TSI" />
+              <Mapping SourceColumn="AGINGCLAIM" DataSetColumn="AGINGCLAIM" />
+              <Mapping SourceColumn="DAYS30" DataSetColumn="DAYS30" />
+              <Mapping SourceColumn="DAYS90" DataSetColumn="DAYS90" />
+              <Mapping SourceColumn="DAY180" DataSetColumn="DAY180" />
+              <Mapping SourceColumn="DAY360" DataSetColumn="DAY360" />
+              <Mapping SourceColumn="DAY361" DataSetColumn="DAY361" />
+              <Mapping SourceColumn="LOCATION" DataSetColumn="LOCATION" />
+            </Mappings>
+            <Sources />
+          </TableAdapter>
+          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="CLAIMREPORTMEDTableAdapter" GeneratorDataComponentClassName="CLAIMREPORTMEDTableAdapter" Name="CLAIMREPORTMED" UserDataComponentName="CLAIMREPORTMEDTableAdapter">
+            <MainSource>
+              <DbSource ConnectionRef="ConnectionString (Settings)" DbObjectType="Unknown" GenerateMethods="Get" GenerateShortCommands="false" GeneratorGetMethodName="GetDataByClaimMed" GetMethodModifier="Public" GetMethodName="GetDataByClaimMed" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="false" UserGetMethodName="GetDataByClaimMed" UserSourceName="GetDataByClaimMed">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="true">
+                    <CommandText>SELECT ISNULL(INS.CLIID, 0) AS CLIID, CLAIM.CLAIMNO, CLAIM.CLAIMNAME, INS.NAMA AS INSURANCE, CLAIM.USERHANDLER, CLAIM.CLID, CONVERT(VARCHAR, CLAIM.DON, 23) AS DON, CONVERT(VARCHAR, CLAIM.DOR, 23) AS DOR, INS.CLDED, CLAIM.INSCLNO, MEMBER.VAL AS MEMBER, EMPLOYEE.VAL AS EMPLOYEE, NIK.VAL AS MEMBERNO, CLAIM.KODETOC, CAST(CLAIM.REGDATE AS date) AS REGDATE, CLAIM.PLCID, CONVERT(VARCHAR, CLAIM.SDATE, 23) AS SDT, CONVERT(VARCHAR, CLAIM.EDATE, 23) 
+             AS EDT, CASE WHEN TOC.NAMATOC IN ('GROUP HEALTH INSURANCE', 'PERSONAL HEALTH INSURANCE', 'SPECIAL HEALTH INSURANCE (USD CURRENCY)') THEN CASE WHEN CLAIM.INDIDENT IS NOT NULL THEN CLAIM.INDIDENT END END AS DIAGNOSE, 
+             COL.DESCRIPTION AS COL, CLAIM.MTU, CLAIM.CLRESERVE, INS.CLAPP, INS.CLNEXCESS, CONVERT(VARCHAR, INS.PAIDDATE, 23) AS PAIDDATE, CLAIM.REMARKS, CLAIM.STATUSF, CASE WHEN TOC.NAMATOC IN ('GROUP HEALTH INSURANCE', 
+             'PERSONAL HEALTH INSURANCE', 'SPECIAL HEALTH INSURANCE (USD CURRENCY)') THEN CASE WHEN CLAIM.LOCATION IS NOT NULL THEN CLAIM.LOCATION END END AS PROVIDER, CLAIM.LOSSDATE, CASE WHEN DOCRCV.VAL IS NULL 
+             THEN '-' ELSE DOCRCV.VAL END AS DOCRCV, ISNULL(PLCAD.VAL, PLCAD2.VAL) AS POLICY_NO, TOC.NAMATOC AS TOC
+FROM   CLAIM LEFT OUTER JOIN
+             CLINSURANC AS INS ON INS.CLID = CLAIM.CLID LEFT OUTER JOIN
+             PLACING AS PL ON CLAIM.PLCID = PL.PLCID INNER JOIN
+             COL AS COL ON CLAIM.COL = COL.COL INNER JOIN
+             MSTTOC AS TOC ON CLAIM.KODETOC = TOC.KODETOC LEFT OUTER JOIN
+                 (SELECT CLID, VAL
+                 FROM    CLADDINFO
+                 WHERE (CONFIGID = 'CLAIM_MEMBERNAME')) AS MEMBER ON MEMBER.CLID = CLAIM.CLID LEFT OUTER JOIN
+                 (SELECT CLID, VAL
+                 FROM    CLADDINFO AS CLADDINFO_3
+                 WHERE (CONFIGID = 'CLAIM_EMPLOYEENAME')) AS EMPLOYEE ON EMPLOYEE.CLID = CLAIM.CLID LEFT OUTER JOIN
+                 (SELECT CLID, VAL
+                 FROM    CLADDINFO AS CLADDINFO_2
+                 WHERE (CONFIGID = 'CLAIM_NIK')) AS NIK ON NIK.CLID = CLAIM.CLID LEFT OUTER JOIN
+                 (SELECT CLID, VAL
+                 FROM    CLADDINFO AS CLADDINFO_1
+                 WHERE (CONFIGID = 'CLAIM_RCVDDOC')) AS DOCRCV ON DOCRCV.CLID = CLAIM.CLID LEFT OUTER JOIN
+                 (SELECT PLCID, PROFILEID, NAMA, SHARE, TYPEF
+                 FROM    PLCINSURANCE
+                 WHERE (TYPEF = 'L')) AS PLCINSC ON PLCINSC.PLCID = CLAIM.PLCID LEFT OUTER JOIN
+                 (SELECT PLCID, VAL
+                 FROM    PLCADDINFO
+                 WHERE (CONFIGID = 'POLICY_NO')) AS PLCAD ON PLCAD.PLCID = CLAIM.PLCID LEFT OUTER JOIN
+                 (SELECT PLCID, VAL
+                 FROM    PLCADDINFO AS PLCADDINFO_1
+                 WHERE (CONFIGID = 'POLICY_NO2')) AS PLCAD2 ON PLCAD2.PLCID = CLAIM.PLCID
+WHERE (CLAIM.REGDATE BETWEEN @SDATE AND @EDATE) AND (CLAIM.CLAIMNAME LIKE @CLAIMTTG) AND (CLAIM.STATUSF LIKE @STATUSF) AND (ISNULL(CLAIM.KODETOC, '') LIKE @KODETOC) AND (CLAIM.CLAIMNO LIKE @CLAIMNO) AND (ISNULL(MEMBER.VAL, '') LIKE @MEMBER) AND (ISNULL(PLCINSC.NAMA, '') 
+             LIKE @INSURANCE) AND (TOC.KDTNEW1 = 'G' OR TOC.KDTNEW1 = 'J')
+ORDER BY REGDATE</CommandText>
+                    <Parameters>
+                      <Parameter AllowDbNull="true" AutogeneratedName="SDATE" ColumnName="REGDATE" DataSourceName="TALYS.dbo.CLAIM" DataTypeServer="datetime" DbType="DateTime" Direction="Input" ParameterName="@SDATE" Precision="0" ProviderType="DateTime" Scale="0" Size="8" SourceColumn="REGDATE" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="EDATE" ColumnName="REGDATE" DataSourceName="TALYS.dbo.CLAIM" DataTypeServer="datetime" DbType="DateTime" Direction="Input" ParameterName="@EDATE" Precision="0" ProviderType="DateTime" Scale="0" Size="8" SourceColumn="REGDATE" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="CLAIMTTG" ColumnName="CLAIMNAME" DataSourceName="TALYS.dbo.CLAIM" DataTypeServer="varchar(500)" DbType="AnsiString" Direction="Input" ParameterName="@CLAIMTTG" Precision="0" ProviderType="VarChar" Scale="0" Size="500" SourceColumn="CLAIMNAME" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="STATUSF" ColumnName="STATUSF" DataSourceName="TALYS.dbo.CLAIM" DataTypeServer="varchar(1)" DbType="AnsiString" Direction="Input" ParameterName="@STATUSF" Precision="0" ProviderType="VarChar" Scale="0" Size="1" SourceColumn="STATUSF" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="false" AutogeneratedName="KODETOC" ColumnName="" DataSourceName="" DataTypeServer="unknown" DbType="AnsiString" Direction="Input" ParameterName="@KODETOC" Precision="0" Scale="0" Size="1024" SourceColumn="" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="CLAIMNO" ColumnName="CLAIMNO" DataSourceName="TALYS.dbo.CLAIM" DataTypeServer="varchar(50)" DbType="AnsiString" Direction="Input" ParameterName="@CLAIMNO" Precision="0" ProviderType="VarChar" Scale="0" Size="50" SourceColumn="CLAIMNO" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="false" AutogeneratedName="MEMBER" ColumnName="" DataSourceName="" DataTypeServer="unknown" DbType="AnsiString" Direction="Input" ParameterName="@MEMBER" Precision="0" Scale="0" Size="1024" SourceColumn="" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="false" AutogeneratedName="INSURANCE" ColumnName="" DataSourceName="" DataTypeServer="unknown" DbType="AnsiString" Direction="Input" ParameterName="@INSURANCE" Precision="0" Scale="0" Size="1024" SourceColumn="" SourceColumnNullMapping="false" SourceVersion="Current" />
+                    </Parameters>
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+            </MainSource>
+            <Mappings>
+              <Mapping SourceColumn="CLIID" DataSetColumn="CLIID" />
+              <Mapping SourceColumn="CLAIMNO" DataSetColumn="CLAIMNO" />
+              <Mapping SourceColumn="CLAIMNAME" DataSetColumn="CLAIMNAME" />
+              <Mapping SourceColumn="INSURANCE" DataSetColumn="INSURANCE" />
+              <Mapping SourceColumn="USERHANDLER" DataSetColumn="USERHANDLER" />
+              <Mapping SourceColumn="CLID" DataSetColumn="CLID" />
+              <Mapping SourceColumn="DON" DataSetColumn="DON" />
+              <Mapping SourceColumn="DOR" DataSetColumn="DOR" />
+              <Mapping SourceColumn="INSCLNO" DataSetColumn="INSCLNO" />
+              <Mapping SourceColumn="MEMBER" DataSetColumn="MEMBER" />
+              <Mapping SourceColumn="EMPLOYEE" DataSetColumn="EMPLOYEE" />
+              <Mapping SourceColumn="MEMBERNO" DataSetColumn="MEMBERNO" />
+              <Mapping SourceColumn="KODETOC" DataSetColumn="KODETOC" />
+              <Mapping SourceColumn="REGDATE" DataSetColumn="REGDATE" />
+              <Mapping SourceColumn="PLCID" DataSetColumn="PLCID" />
+              <Mapping SourceColumn="SDT" DataSetColumn="SDT" />
+              <Mapping SourceColumn="EDT" DataSetColumn="EDT" />
+              <Mapping SourceColumn="DIAGNOSE" DataSetColumn="DIAGNOSE" />
+              <Mapping SourceColumn="COL" DataSetColumn="COL" />
+              <Mapping SourceColumn="MTU" DataSetColumn="MTU" />
+              <Mapping SourceColumn="CLRESERVE" DataSetColumn="CLRESERVE" />
+              <Mapping SourceColumn="CLAPP" DataSetColumn="CLAPP" />
+              <Mapping SourceColumn="PAIDDATE" DataSetColumn="PAIDDATE" />
+              <Mapping SourceColumn="REMARKS" DataSetColumn="REMARKS" />
+              <Mapping SourceColumn="STATUSF" DataSetColumn="STATUSF" />
+              <Mapping SourceColumn="PROVIDER" DataSetColumn="PROVIDER" />
+              <Mapping SourceColumn="LOSSDATE" DataSetColumn="LOSSDATE" />
+              <Mapping SourceColumn="DOCRCV" DataSetColumn="DOCRCV" />
+              <Mapping SourceColumn="POLICY_NO" DataSetColumn="POLICY_NO" />
+              <Mapping SourceColumn="TOC" DataSetColumn="TOC" />
+              <Mapping SourceColumn="CLNEXCESS" DataSetColumn="CLNEXCESS" />
+              <Mapping SourceColumn="CLDED" DataSetColumn="CLDED" />
+            </Mappings>
+            <Sources />
+          </TableAdapter>
+          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="LOSSPROFILESGRIDTableAdapter" GeneratorDataComponentClassName="LOSSPROFILESGRIDTableAdapter" Name="LOSSPROFILESGRID" UserDataComponentName="LOSSPROFILESGRIDTableAdapter">
+            <MainSource>
+              <DbSource ConnectionRef="ConnectionString (Settings)" DbObjectType="Unknown" GenerateMethods="Get" GenerateShortCommands="false" GeneratorGetMethodName="GetData" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="false" UserGetMethodName="GetData" UserSourceName="GetData">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="true">
+                    <CommandText>SELECT CLAIM.CLID, CLAIM.KODETOC, TOC.KDTNEW1, CLAIMNO, INSCLNO, CAST(CLAIM.REGDATE AS date) AS REGDATE,  LOCATION,
+CLAIMNAME,  CLAIM.PLCID, COL.DESCRIPTION AS COL, 
+CASE WHEN TOC.KDTNEW1 != 'G' THEN CONVERT(VARCHAR,LOSSDATE,103) ELSE '-' END AS LOSSDATE,
+CASE WHEN TOC.KDTNEW1 = 'G' THEN CONVERT(VARCHAR,CLAIM.SDATE,103) ELSE '-' END AS SDATE,
+CASE WHEN TOC.KDTNEW1 = 'G' THEN CONVERT(VARCHAR,CLAIM.EDATE,103) ELSE '-' END AS EDATE,
+MTU, CLRESERVE, CLADJ, CLDED, CLNETT,  STATUSF, REMARKS, CL.TOTAL,
+NAMATOC AS TOC, PL.PLCNO, PL.POLICYTYPE, CAB.NAMACAB, MP.VAL AS MAIN, SP.VAL AS SEC, PN.VAL AS PON, PNN.VAL AS PONN
+FROM CLAIM
+LEFT OUTER JOIN PLACING AS PL ON CLAIM.PLCID = PL.PLCID
+LEFT OUTER JOIN MSTCAB AS CAB ON PL.KODECAB = CAB.KODECAB
+LEFT OUTER JOIN COL AS COL ON CLAIM.COL = COL.COL
+LEFT OUTER JOIN MSTTOC AS TOC ON CLAIM.KODETOC = TOC.KODETOC
+LEFT OUTER JOIN 
+(SELECT CLID, SUM(AMOUNT_OC) AS TOTAL FROM CLINSURANC GROUP BY CLID) AS CL ON CL.CLID = CLAIM.CLID 
+LEFT OUTER JOIN 
+(SELECT PLCID, VAL FROM PLCADDINFO WHERE (CONFIGID = 'PS_PIC_MKT')) AS MP ON MP.PLCID = CLAIM.PLCID
+LEFT OUTER JOIN 
+(SELECT PLCID, VAL FROM PLCADDINFO WHERE (CONFIGID = 'PS_PIC_MKT2')) AS SP ON SP.PLCID = CLAIM.PLCID
+LEFT OUTER JOIN 
+(SELECT PLCID, VAL FROM PLCADDINFO WHERE (CONFIGID = 'POLICY_NO')) AS PN ON PN.PLCID = CLAIM.PLCID
+LEFT OUTER JOIN 
+(SELECT PLCID, VAL FROM PLCADDINFO WHERE (CONFIGID = 'POLICY_NO2')) AS PNN ON PNN.PLCID = CLAIM.PLCID
+WHERE (CLAIM.REGDATE BETWEEN @SDATE AND @EDATE) AND (CLAIM.CLAIMNAME LIKE @CLAIMTTG) AND (CLAIM.STATUSF LIKE @STATUSF) AND (ISNULL(CLAIM.KODETOC,'') LIKE @KODETOC) AND (CLAIM.CLAIMNO LIKE @CLAIMNO) </CommandText>
+                    <Parameters>
+                      <Parameter AllowDbNull="true" AutogeneratedName="SDATE" ColumnName="REGDATE" DataSourceName="TALYS.dbo.CLAIM" DataTypeServer="datetime" DbType="DateTime" Direction="Input" ParameterName="@SDATE" Precision="0" ProviderType="DateTime" Scale="0" Size="8" SourceColumn="REGDATE" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="EDATE" ColumnName="REGDATE" DataSourceName="TALYS.dbo.CLAIM" DataTypeServer="datetime" DbType="DateTime" Direction="Input" ParameterName="@EDATE" Precision="0" ProviderType="DateTime" Scale="0" Size="8" SourceColumn="REGDATE" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="CLAIMTTG" ColumnName="CLAIMNAME" DataSourceName="TALYS.dbo.CLAIM" DataTypeServer="varchar(500)" DbType="AnsiString" Direction="Input" ParameterName="@CLAIMTTG" Precision="0" ProviderType="VarChar" Scale="0" Size="500" SourceColumn="CLAIMNAME" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="STATUSF" ColumnName="STATUSF" DataSourceName="TALYS.dbo.CLAIM" DataTypeServer="varchar(1)" DbType="AnsiString" Direction="Input" ParameterName="@STATUSF" Precision="0" ProviderType="VarChar" Scale="0" Size="1" SourceColumn="STATUSF" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="false" AutogeneratedName="KODETOC" ColumnName="" DataSourceName="" DataTypeServer="unknown" DbType="AnsiString" Direction="Input" ParameterName="@KODETOC" Precision="0" Scale="0" Size="1024" SourceColumn="" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="CLAIMNO" ColumnName="CLAIMNO" DataSourceName="TALYS.dbo.CLAIM" DataTypeServer="varchar(50)" DbType="AnsiString" Direction="Input" ParameterName="@CLAIMNO" Precision="0" ProviderType="VarChar" Scale="0" Size="50" SourceColumn="CLAIMNO" SourceColumnNullMapping="false" SourceVersion="Current" />
+                    </Parameters>
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+            </MainSource>
+            <Mappings>
+              <Mapping SourceColumn="CLID" DataSetColumn="CLID" />
+              <Mapping SourceColumn="KODETOC" DataSetColumn="KODETOC" />
+              <Mapping SourceColumn="CLAIMNO" DataSetColumn="CLAIMNO" />
+              <Mapping SourceColumn="INSCLNO" DataSetColumn="INSCLNO" />
+              <Mapping SourceColumn="REGDATE" DataSetColumn="REGDATE" />
+              <Mapping SourceColumn="CLAIMNAME" DataSetColumn="CLAIMNAME" />
+              <Mapping SourceColumn="PLCID" DataSetColumn="PLCID" />
+              <Mapping SourceColumn="COL" DataSetColumn="COL" />
+              <Mapping SourceColumn="MTU" DataSetColumn="MTU" />
+              <Mapping SourceColumn="CLRESERVE" DataSetColumn="CLRESERVE" />
+              <Mapping SourceColumn="CLADJ" DataSetColumn="CLADJ" />
+              <Mapping SourceColumn="CLDED" DataSetColumn="CLDED" />
+              <Mapping SourceColumn="CLNETT" DataSetColumn="CLNETT" />
+              <Mapping SourceColumn="STATUSF" DataSetColumn="STATUSF" />
+              <Mapping SourceColumn="REMARKS" DataSetColumn="REMARKS" />
+              <Mapping SourceColumn="TOC" DataSetColumn="TOC" />
+              <Mapping SourceColumn="PLCNO" DataSetColumn="PLCNO" />
+              <Mapping SourceColumn="POLICYTYPE" DataSetColumn="POLICYTYPE" />
+              <Mapping SourceColumn="NAMACAB" DataSetColumn="NAMACAB" />
+              <Mapping SourceColumn="MAIN" DataSetColumn="MAIN" />
+              <Mapping SourceColumn="SEC" DataSetColumn="SEC" />
+              <Mapping SourceColumn="PON" DataSetColumn="PON" />
+              <Mapping SourceColumn="PONN" DataSetColumn="PONN" />
+              <Mapping SourceColumn="LOCATION" DataSetColumn="LOCATION" />
+              <Mapping SourceColumn="KDTNEW1" DataSetColumn="KDTNEW1" />
+              <Mapping SourceColumn="LOSSDATE" DataSetColumn="LOSSDATE" />
+              <Mapping SourceColumn="SDATE" DataSetColumn="SDATE" />
+              <Mapping SourceColumn="EDATE" DataSetColumn="EDATE" />
+              <Mapping SourceColumn="TOTAL" DataSetColumn="TOTAL" />
+            </Mappings>
+            <Sources />
+          </TableAdapter>
+        </Tables>
+        <Sources />
+      </DataSource>
+    </xs:appinfo>
+  </xs:annotation>
+  <xs:element name="DSClaimReport" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:EnableTableAdapterManager="true" msprop:Generator_DataSetName="DSClaimReport" msprop:Generator_UserDSName="DSClaimReport">
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="CLAIMPRODGRID" msprop:Generator_TableClassName="CLAIMPRODGRIDDataTable" msprop:Generator_TableVarName="tableCLAIMPRODGRID" msprop:Generator_RowChangedName="CLAIMPRODGRIDRowChanged" msprop:Generator_TablePropName="CLAIMPRODGRID" msprop:Generator_RowDeletingName="CLAIMPRODGRIDRowDeleting" msprop:Generator_RowChangingName="CLAIMPRODGRIDRowChanging" msprop:Generator_RowEvHandlerName="CLAIMPRODGRIDRowChangeEventHandler" msprop:Generator_RowDeletedName="CLAIMPRODGRIDRowDeleted" msprop:Generator_RowClassName="CLAIMPRODGRIDRow" msprop:Generator_UserTableName="CLAIMPRODGRID" msprop:Generator_RowEvArgName="CLAIMPRODGRIDRowChangeEvent">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="CLID" msprop:Generator_ColumnVarNameInTable="columnCLID" msprop:Generator_ColumnPropNameInRow="CLID" msprop:Generator_ColumnPropNameInTable="CLIDColumn" msprop:Generator_UserColumnName="CLID">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="20" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="KODETOC" msprop:Generator_ColumnVarNameInTable="columnKODETOC" msprop:Generator_ColumnPropNameInRow="KODETOC" msprop:Generator_ColumnPropNameInTable="KODETOCColumn" msprop:Generator_UserColumnName="KODETOC" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="5" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="CLAIMNO" msprop:Generator_ColumnVarNameInTable="columnCLAIMNO" msprop:Generator_ColumnPropNameInRow="CLAIMNO" msprop:Generator_ColumnPropNameInTable="CLAIMNOColumn" msprop:Generator_UserColumnName="CLAIMNO" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="INSCLNO" msprop:Generator_ColumnVarNameInTable="columnINSCLNO" msprop:Generator_ColumnPropNameInRow="INSCLNO" msprop:Generator_ColumnPropNameInTable="INSCLNOColumn" msprop:Generator_UserColumnName="INSCLNO" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="REGDATE" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columnREGDATE" msprop:Generator_ColumnPropNameInRow="REGDATE" msprop:Generator_ColumnPropNameInTable="REGDATEColumn" msprop:Generator_UserColumnName="REGDATE" type="xs:dateTime" minOccurs="0" />
+              <xs:element name="CLAIMNAME" msprop:Generator_ColumnVarNameInTable="columnCLAIMNAME" msprop:Generator_ColumnPropNameInRow="CLAIMNAME" msprop:Generator_ColumnPropNameInTable="CLAIMNAMEColumn" msprop:Generator_UserColumnName="CLAIMNAME" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="500" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="PLCID" msprop:Generator_ColumnVarNameInTable="columnPLCID" msprop:Generator_ColumnPropNameInRow="PLCID" msprop:Generator_ColumnPropNameInTable="PLCIDColumn" msprop:Generator_UserColumnName="PLCID" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="20" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="COL" msprop:Generator_ColumnVarNameInTable="columnCOL" msprop:Generator_ColumnPropNameInRow="COL" msprop:Generator_ColumnPropNameInTable="COLColumn" msprop:Generator_UserColumnName="COL" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="LOSSDATE" msprop:Generator_ColumnVarNameInTable="columnLOSSDATE" msprop:Generator_ColumnPropNameInRow="LOSSDATE" msprop:Generator_ColumnPropNameInTable="LOSSDATEColumn" msprop:Generator_UserColumnName="LOSSDATE" type="xs:dateTime" minOccurs="0" />
+              <xs:element name="ADJUSTERPRID" msprop:Generator_ColumnVarNameInTable="columnADJUSTERPRID" msprop:Generator_ColumnPropNameInRow="ADJUSTERPRID" msprop:Generator_ColumnPropNameInTable="ADJUSTERPRIDColumn" msprop:Generator_UserColumnName="ADJUSTERPRID" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="20" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="MTU" msprop:Generator_ColumnVarNameInTable="columnMTU" msprop:Generator_ColumnPropNameInRow="MTU" msprop:Generator_ColumnPropNameInTable="MTUColumn" msprop:Generator_UserColumnName="MTU" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="3" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="CLRESERVE" msprop:Generator_ColumnVarNameInTable="columnCLRESERVE" msprop:Generator_ColumnPropNameInRow="CLRESERVE" msprop:Generator_ColumnPropNameInTable="CLRESERVEColumn" msprop:Generator_UserColumnName="CLRESERVE" type="xs:decimal" minOccurs="0" />
+              <xs:element name="CLADJ" msprop:Generator_ColumnVarNameInTable="columnCLADJ" msprop:Generator_ColumnPropNameInRow="CLADJ" msprop:Generator_ColumnPropNameInTable="CLADJColumn" msprop:Generator_UserColumnName="CLADJ" type="xs:decimal" minOccurs="0" />
+              <xs:element name="CLDED" msprop:Generator_ColumnVarNameInTable="columnCLDED" msprop:Generator_ColumnPropNameInRow="CLDED" msprop:Generator_ColumnPropNameInTable="CLDEDColumn" msprop:Generator_UserColumnName="CLDED" type="xs:decimal" minOccurs="0" />
+              <xs:element name="CLNETT" msprop:Generator_ColumnVarNameInTable="columnCLNETT" msprop:Generator_ColumnPropNameInRow="CLNETT" msprop:Generator_ColumnPropNameInTable="CLNETTColumn" msprop:Generator_UserColumnName="CLNETT" type="xs:decimal" minOccurs="0" />
+              <xs:element name="STATUSF" msprop:Generator_ColumnVarNameInTable="columnSTATUSF" msprop:Generator_ColumnPropNameInRow="STATUSF" msprop:Generator_ColumnPropNameInTable="STATUSFColumn" msprop:Generator_UserColumnName="STATUSF" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="1" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="REMARKS" msprop:Generator_ColumnVarNameInTable="columnREMARKS" msprop:Generator_ColumnPropNameInRow="REMARKS" msprop:Generator_ColumnPropNameInTable="REMARKSColumn" msprop:Generator_UserColumnName="REMARKS" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="2147483647" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="MEMBER" msprop:Generator_ColumnVarNameInTable="columnMEMBER" msprop:Generator_ColumnPropNameInRow="MEMBER" msprop:Generator_ColumnPropNameInTable="MEMBERColumn" msprop:Generator_UserColumnName="MEMBER" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="200" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="EMPLOYEE" msprop:Generator_ColumnVarNameInTable="columnEMPLOYEE" msprop:Generator_ColumnPropNameInRow="EMPLOYEE" msprop:Generator_ColumnPropNameInTable="EMPLOYEEColumn" msprop:Generator_UserColumnName="EMPLOYEE" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="200" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="MEMBERNO" msprop:Generator_ColumnVarNameInTable="columnMEMBERNO" msprop:Generator_ColumnPropNameInRow="MEMBERNO" msprop:Generator_ColumnPropNameInTable="MEMBERNOColumn" msprop:Generator_UserColumnName="MEMBERNO" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="200" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="DOCRCV" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columnDOCRCV" msprop:Generator_ColumnPropNameInRow="DOCRCV" msprop:Generator_ColumnPropNameInTable="DOCRCVColumn" msprop:Generator_UserColumnName="DOCRCV" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="200" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="POLICY_NO" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columnPOLICY_NO" msprop:Generator_ColumnPropNameInRow="POLICY_NO" msprop:Generator_ColumnPropNameInTable="POLICY_NOColumn" msprop:Generator_UserColumnName="POLICY_NO" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="5000" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="INSURANCE" msprop:Generator_ColumnVarNameInTable="columnINSURANCE" msprop:Generator_ColumnPropNameInRow="INSURANCE" msprop:Generator_ColumnPropNameInTable="INSURANCEColumn" msprop:Generator_UserColumnName="INSURANCE" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="500" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="TOC" msprop:Generator_ColumnVarNameInTable="columnTOC" msprop:Generator_ColumnPropNameInRow="TOC" msprop:Generator_ColumnPropNameInTable="TOCColumn" msprop:Generator_UserColumnName="TOC" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="300" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="ADJUSTER" msprop:Generator_ColumnVarNameInTable="columnADJUSTER" msprop:Generator_ColumnPropNameInRow="ADJUSTER" msprop:Generator_ColumnPropNameInTable="ADJUSTERColumn" msprop:Generator_UserColumnName="ADJUSTER" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="500" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="CONVEYANCE" msprop:Generator_ColumnVarNameInTable="columnCONVEYANCE" msprop:Generator_ColumnPropNameInRow="CONVEYANCE" msprop:Generator_ColumnPropNameInTable="CONVEYANCEColumn" msprop:Generator_UserColumnName="CONVEYANCE" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="500" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="SHIPMENTDATE" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columnSHIPMENTDATE" msprop:Generator_ColumnPropNameInRow="SHIPMENTDATE" msprop:Generator_ColumnPropNameInTable="SHIPMENTDATEColumn" msprop:Generator_UserColumnName="SHIPMENTDATE" type="xs:dateTime" minOccurs="0" />
+              <xs:element name="PTG_MTU" msprop:Generator_ColumnVarNameInTable="columnPTG_MTU" msprop:Generator_ColumnPropNameInRow="PTG_MTU" msprop:Generator_ColumnPropNameInTable="PTG_MTUColumn" msprop:Generator_UserColumnName="PTG_MTU" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="3" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="TSI" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columnTSI" msprop:Generator_ColumnPropNameInRow="TSI" msprop:Generator_ColumnPropNameInTable="TSIColumn" msprop:Generator_UserColumnName="TSI" type="xs:decimal" minOccurs="0" />
+              <xs:element name="AGINGCLAIM" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columnAGINGCLAIM" msprop:Generator_ColumnPropNameInRow="AGINGCLAIM" msprop:Generator_ColumnPropNameInTable="AGINGCLAIMColumn" msprop:Generator_UserColumnName="AGINGCLAIM" type="xs:int" minOccurs="0" />
+              <xs:element name="DAYS30" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columnDAYS30" msprop:Generator_ColumnPropNameInRow="DAYS30" msprop:Generator_ColumnPropNameInTable="DAYS30Column" msprop:Generator_UserColumnName="DAYS30" type="xs:int" minOccurs="0" />
+              <xs:element name="DAYS90" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columnDAYS90" msprop:Generator_ColumnPropNameInRow="DAYS90" msprop:Generator_ColumnPropNameInTable="DAYS90Column" msprop:Generator_UserColumnName="DAYS90" type="xs:int" minOccurs="0" />
+              <xs:element name="DAY180" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columnDAY180" msprop:Generator_ColumnPropNameInRow="DAY180" msprop:Generator_ColumnPropNameInTable="DAY180Column" msprop:Generator_UserColumnName="DAY180" type="xs:int" minOccurs="0" />
+              <xs:element name="DAY360" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columnDAY360" msprop:Generator_ColumnPropNameInRow="DAY360" msprop:Generator_ColumnPropNameInTable="DAY360Column" msprop:Generator_UserColumnName="DAY360" type="xs:int" minOccurs="0" />
+              <xs:element name="DAY361" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columnDAY361" msprop:Generator_ColumnPropNameInRow="DAY361" msprop:Generator_ColumnPropNameInTable="DAY361Column" msprop:Generator_UserColumnName="DAY361" type="xs:int" minOccurs="0" />
+              <xs:element name="LOCATION" msprop:Generator_ColumnVarNameInTable="columnLOCATION" msprop:Generator_ColumnPropNameInRow="LOCATION" msprop:Generator_ColumnPropNameInTable="LOCATIONColumn" msprop:Generator_UserColumnName="LOCATION" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="500" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="CLAIMREPORTMED" msprop:Generator_TableClassName="CLAIMREPORTMEDDataTable" msprop:Generator_TableVarName="tableCLAIMREPORTMED" msprop:Generator_RowChangedName="CLAIMREPORTMEDRowChanged" msprop:Generator_TablePropName="CLAIMREPORTMED" msprop:Generator_RowDeletingName="CLAIMREPORTMEDRowDeleting" msprop:Generator_RowChangingName="CLAIMREPORTMEDRowChanging" msprop:Generator_RowEvHandlerName="CLAIMREPORTMEDRowChangeEventHandler" msprop:Generator_RowDeletedName="CLAIMREPORTMEDRowDeleted" msprop:Generator_RowClassName="CLAIMREPORTMEDRow" msprop:Generator_UserTableName="CLAIMREPORTMED" msprop:Generator_RowEvArgName="CLAIMREPORTMEDRowChangeEvent">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="CLIID" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columnCLIID" msprop:Generator_ColumnPropNameInRow="CLIID" msprop:Generator_ColumnPropNameInTable="CLIIDColumn" msprop:Generator_UserColumnName="CLIID" type="xs:long" minOccurs="0" />
+              <xs:element name="CLAIMNO" msprop:Generator_ColumnVarNameInTable="columnCLAIMNO" msprop:Generator_ColumnPropNameInRow="CLAIMNO" msprop:Generator_ColumnPropNameInTable="CLAIMNOColumn" msprop:Generator_UserColumnName="CLAIMNO" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="CLAIMNAME" msprop:Generator_ColumnVarNameInTable="columnCLAIMNAME" msprop:Generator_ColumnPropNameInRow="CLAIMNAME" msprop:Generator_ColumnPropNameInTable="CLAIMNAMEColumn" msprop:Generator_UserColumnName="CLAIMNAME" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="500" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="INSURANCE" msprop:Generator_ColumnVarNameInTable="columnINSURANCE" msprop:Generator_ColumnPropNameInRow="INSURANCE" msprop:Generator_ColumnPropNameInTable="INSURANCEColumn" msprop:Generator_UserColumnName="INSURANCE" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="500" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="USERHANDLER" msprop:Generator_ColumnVarNameInTable="columnUSERHANDLER" msprop:Generator_ColumnPropNameInRow="USERHANDLER" msprop:Generator_ColumnPropNameInTable="USERHANDLERColumn" msprop:Generator_UserColumnName="USERHANDLER" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="20" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="CLID" msprop:Generator_ColumnVarNameInTable="columnCLID" msprop:Generator_ColumnPropNameInRow="CLID" msprop:Generator_ColumnPropNameInTable="CLIDColumn" msprop:Generator_UserColumnName="CLID">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="20" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="DON" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columnDON" msprop:Generator_ColumnPropNameInRow="DON" msprop:Generator_ColumnPropNameInTable="DONColumn" msprop:Generator_UserColumnName="DON" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="30" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="DOR" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columnDOR" msprop:Generator_ColumnPropNameInRow="DOR" msprop:Generator_ColumnPropNameInTable="DORColumn" msprop:Generator_UserColumnName="DOR" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="30" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="INSCLNO" msprop:Generator_ColumnVarNameInTable="columnINSCLNO" msprop:Generator_ColumnPropNameInRow="INSCLNO" msprop:Generator_ColumnPropNameInTable="INSCLNOColumn" msprop:Generator_UserColumnName="INSCLNO" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="MEMBER" msprop:Generator_ColumnVarNameInTable="columnMEMBER" msprop:Generator_ColumnPropNameInRow="MEMBER" msprop:Generator_ColumnPropNameInTable="MEMBERColumn" msprop:Generator_UserColumnName="MEMBER" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="200" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="EMPLOYEE" msprop:Generator_ColumnVarNameInTable="columnEMPLOYEE" msprop:Generator_ColumnPropNameInRow="EMPLOYEE" msprop:Generator_ColumnPropNameInTable="EMPLOYEEColumn" msprop:Generator_UserColumnName="EMPLOYEE" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="200" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="MEMBERNO" msprop:Generator_ColumnVarNameInTable="columnMEMBERNO" msprop:Generator_ColumnPropNameInRow="MEMBERNO" msprop:Generator_ColumnPropNameInTable="MEMBERNOColumn" msprop:Generator_UserColumnName="MEMBERNO" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="200" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="KODETOC" msprop:Generator_ColumnVarNameInTable="columnKODETOC" msprop:Generator_ColumnPropNameInRow="KODETOC" msprop:Generator_ColumnPropNameInTable="KODETOCColumn" msprop:Generator_UserColumnName="KODETOC" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="5" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="REGDATE" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columnREGDATE" msprop:Generator_ColumnPropNameInRow="REGDATE" msprop:Generator_ColumnPropNameInTable="REGDATEColumn" msprop:Generator_UserColumnName="REGDATE" type="xs:dateTime" minOccurs="0" />
+              <xs:element name="PLCID" msprop:Generator_ColumnVarNameInTable="columnPLCID" msprop:Generator_ColumnPropNameInRow="PLCID" msprop:Generator_ColumnPropNameInTable="PLCIDColumn" msprop:Generator_UserColumnName="PLCID" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="20" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="SDT" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columnSDT" msprop:Generator_ColumnPropNameInRow="SDT" msprop:Generator_ColumnPropNameInTable="SDTColumn" msprop:Generator_UserColumnName="SDT" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="30" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="EDT" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columnEDT" msprop:Generator_ColumnPropNameInRow="EDT" msprop:Generator_ColumnPropNameInTable="EDTColumn" msprop:Generator_UserColumnName="EDT" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="30" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="DIAGNOSE" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columnDIAGNOSE" msprop:Generator_ColumnPropNameInRow="DIAGNOSE" msprop:Generator_ColumnPropNameInTable="DIAGNOSEColumn" msprop:Generator_UserColumnName="DIAGNOSE" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="2147483647" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="COL" msprop:Generator_ColumnVarNameInTable="columnCOL" msprop:Generator_ColumnPropNameInRow="COL" msprop:Generator_ColumnPropNameInTable="COLColumn" msprop:Generator_UserColumnName="COL" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="MTU" msprop:Generator_ColumnVarNameInTable="columnMTU" msprop:Generator_ColumnPropNameInRow="MTU" msprop:Generator_ColumnPropNameInTable="MTUColumn" msprop:Generator_UserColumnName="MTU" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="3" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="CLRESERVE" msprop:Generator_ColumnVarNameInTable="columnCLRESERVE" msprop:Generator_ColumnPropNameInRow="CLRESERVE" msprop:Generator_ColumnPropNameInTable="CLRESERVEColumn" msprop:Generator_UserColumnName="CLRESERVE" type="xs:decimal" minOccurs="0" />
+              <xs:element name="CLAPP" msprop:Generator_ColumnVarNameInTable="columnCLAPP" msprop:Generator_ColumnPropNameInRow="CLAPP" msprop:Generator_ColumnPropNameInTable="CLAPPColumn" msprop:Generator_UserColumnName="CLAPP" type="xs:decimal" minOccurs="0" />
+              <xs:element name="PAIDDATE" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columnPAIDDATE" msprop:Generator_ColumnPropNameInRow="PAIDDATE" msprop:Generator_ColumnPropNameInTable="PAIDDATEColumn" msprop:Generator_UserColumnName="PAIDDATE" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="30" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="REMARKS" msprop:Generator_ColumnVarNameInTable="columnREMARKS" msprop:Generator_ColumnPropNameInRow="REMARKS" msprop:Generator_ColumnPropNameInTable="REMARKSColumn" msprop:Generator_UserColumnName="REMARKS" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="2147483647" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="STATUSF" msprop:Generator_ColumnVarNameInTable="columnSTATUSF" msprop:Generator_ColumnPropNameInRow="STATUSF" msprop:Generator_ColumnPropNameInTable="STATUSFColumn" msprop:Generator_UserColumnName="STATUSF" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="1" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="PROVIDER" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columnPROVIDER" msprop:Generator_ColumnPropNameInRow="PROVIDER" msprop:Generator_ColumnPropNameInTable="PROVIDERColumn" msprop:Generator_UserColumnName="PROVIDER" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="500" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="LOSSDATE" msprop:Generator_ColumnVarNameInTable="columnLOSSDATE" msprop:Generator_ColumnPropNameInRow="LOSSDATE" msprop:Generator_ColumnPropNameInTable="LOSSDATEColumn" msprop:Generator_UserColumnName="LOSSDATE" type="xs:dateTime" minOccurs="0" />
+              <xs:element name="DOCRCV" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columnDOCRCV" msprop:Generator_ColumnPropNameInRow="DOCRCV" msprop:Generator_ColumnPropNameInTable="DOCRCVColumn" msprop:Generator_UserColumnName="DOCRCV" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="200" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="POLICY_NO" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columnPOLICY_NO" msprop:Generator_ColumnPropNameInRow="POLICY_NO" msprop:Generator_ColumnPropNameInTable="POLICY_NOColumn" msprop:Generator_UserColumnName="POLICY_NO" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="5000" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="TOC" msprop:Generator_ColumnVarNameInTable="columnTOC" msprop:Generator_ColumnPropNameInRow="TOC" msprop:Generator_ColumnPropNameInTable="TOCColumn" msprop:Generator_UserColumnName="TOC">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="300" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="CLNEXCESS" msprop:Generator_ColumnVarNameInTable="columnCLNEXCESS" msprop:Generator_ColumnPropNameInRow="CLNEXCESS" msprop:Generator_ColumnPropNameInTable="CLNEXCESSColumn" msprop:Generator_UserColumnName="CLNEXCESS" type="xs:decimal" minOccurs="0" />
+              <xs:element name="CLDED" msprop:Generator_ColumnVarNameInTable="columnCLDED" msprop:Generator_ColumnPropNameInRow="CLDED" msprop:Generator_ColumnPropNameInTable="CLDEDColumn" msprop:Generator_UserColumnName="CLDED" type="xs:decimal" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="LOSSPROFILESGRID" msprop:Generator_TableClassName="LOSSPROFILESGRIDDataTable" msprop:Generator_TableVarName="tableLOSSPROFILESGRID" msprop:Generator_TablePropName="LOSSPROFILESGRID" msprop:Generator_RowDeletingName="LOSSPROFILESGRIDRowDeleting" msprop:Generator_RowChangingName="LOSSPROFILESGRIDRowChanging" msprop:Generator_RowEvHandlerName="LOSSPROFILESGRIDRowChangeEventHandler" msprop:Generator_RowDeletedName="LOSSPROFILESGRIDRowDeleted" msprop:Generator_UserTableName="LOSSPROFILESGRID" msprop:Generator_RowChangedName="LOSSPROFILESGRIDRowChanged" msprop:Generator_RowEvArgName="LOSSPROFILESGRIDRowChangeEvent" msprop:Generator_RowClassName="LOSSPROFILESGRIDRow">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="CLID" msprop:Generator_ColumnVarNameInTable="columnCLID" msprop:Generator_ColumnPropNameInRow="CLID" msprop:Generator_ColumnPropNameInTable="CLIDColumn" msprop:Generator_UserColumnName="CLID">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="20" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="KODETOC" msprop:Generator_ColumnVarNameInTable="columnKODETOC" msprop:Generator_ColumnPropNameInRow="KODETOC" msprop:Generator_ColumnPropNameInTable="KODETOCColumn" msprop:Generator_UserColumnName="KODETOC" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="5" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="CLAIMNO" msprop:Generator_ColumnVarNameInTable="columnCLAIMNO" msprop:Generator_ColumnPropNameInRow="CLAIMNO" msprop:Generator_ColumnPropNameInTable="CLAIMNOColumn" msprop:Generator_UserColumnName="CLAIMNO" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="INSCLNO" msprop:Generator_ColumnVarNameInTable="columnINSCLNO" msprop:Generator_ColumnPropNameInRow="INSCLNO" msprop:Generator_ColumnPropNameInTable="INSCLNOColumn" msprop:Generator_UserColumnName="INSCLNO" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="REGDATE" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columnREGDATE" msprop:Generator_ColumnPropNameInRow="REGDATE" msprop:Generator_ColumnPropNameInTable="REGDATEColumn" msprop:Generator_UserColumnName="REGDATE" type="xs:dateTime" minOccurs="0" />
+              <xs:element name="CLAIMNAME" msprop:Generator_ColumnVarNameInTable="columnCLAIMNAME" msprop:Generator_ColumnPropNameInRow="CLAIMNAME" msprop:Generator_ColumnPropNameInTable="CLAIMNAMEColumn" msprop:Generator_UserColumnName="CLAIMNAME" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="500" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="PLCID" msprop:Generator_ColumnVarNameInTable="columnPLCID" msprop:Generator_ColumnPropNameInRow="PLCID" msprop:Generator_ColumnPropNameInTable="PLCIDColumn" msprop:Generator_UserColumnName="PLCID" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="20" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="COL" msprop:Generator_ColumnVarNameInTable="columnCOL" msprop:Generator_ColumnPropNameInRow="COL" msprop:Generator_ColumnPropNameInTable="COLColumn" msprop:Generator_UserColumnName="COL" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="MTU" msprop:Generator_ColumnVarNameInTable="columnMTU" msprop:Generator_ColumnPropNameInRow="MTU" msprop:Generator_ColumnPropNameInTable="MTUColumn" msprop:Generator_UserColumnName="MTU" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="3" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="CLRESERVE" msprop:Generator_ColumnVarNameInTable="columnCLRESERVE" msprop:Generator_ColumnPropNameInRow="CLRESERVE" msprop:Generator_ColumnPropNameInTable="CLRESERVEColumn" msprop:Generator_UserColumnName="CLRESERVE" type="xs:decimal" minOccurs="0" />
+              <xs:element name="CLADJ" msprop:Generator_ColumnVarNameInTable="columnCLADJ" msprop:Generator_ColumnPropNameInRow="CLADJ" msprop:Generator_ColumnPropNameInTable="CLADJColumn" msprop:Generator_UserColumnName="CLADJ" type="xs:decimal" minOccurs="0" />
+              <xs:element name="CLDED" msprop:Generator_ColumnVarNameInTable="columnCLDED" msprop:Generator_ColumnPropNameInRow="CLDED" msprop:Generator_ColumnPropNameInTable="CLDEDColumn" msprop:Generator_UserColumnName="CLDED" type="xs:decimal" minOccurs="0" />
+              <xs:element name="CLNETT" msprop:Generator_ColumnVarNameInTable="columnCLNETT" msprop:Generator_ColumnPropNameInRow="CLNETT" msprop:Generator_ColumnPropNameInTable="CLNETTColumn" msprop:Generator_UserColumnName="CLNETT" type="xs:decimal" minOccurs="0" />
+              <xs:element name="STATUSF" msprop:Generator_ColumnVarNameInTable="columnSTATUSF" msprop:Generator_ColumnPropNameInRow="STATUSF" msprop:Generator_ColumnPropNameInTable="STATUSFColumn" msprop:Generator_UserColumnName="STATUSF" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="1" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="REMARKS" msprop:Generator_ColumnVarNameInTable="columnREMARKS" msprop:Generator_ColumnPropNameInRow="REMARKS" msprop:Generator_ColumnPropNameInTable="REMARKSColumn" msprop:Generator_UserColumnName="REMARKS" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="2147483647" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="TOC" msprop:Generator_ColumnVarNameInTable="columnTOC" msprop:Generator_ColumnPropNameInRow="TOC" msprop:Generator_ColumnPropNameInTable="TOCColumn" msprop:Generator_UserColumnName="TOC" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="300" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="PLCNO" msprop:Generator_ColumnVarNameInTable="columnPLCNO" msprop:Generator_ColumnPropNameInRow="PLCNO" msprop:Generator_ColumnPropNameInTable="PLCNOColumn" msprop:Generator_UserColumnName="PLCNO" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="100" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="POLICYTYPE" msprop:Generator_ColumnVarNameInTable="columnPOLICYTYPE" msprop:Generator_ColumnPropNameInRow="POLICYTYPE" msprop:Generator_ColumnPropNameInTable="POLICYTYPEColumn" msprop:Generator_UserColumnName="POLICYTYPE" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="2" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="NAMACAB" msprop:Generator_ColumnVarNameInTable="columnNAMACAB" msprop:Generator_ColumnPropNameInRow="NAMACAB" msprop:Generator_ColumnPropNameInTable="NAMACABColumn" msprop:Generator_UserColumnName="NAMACAB" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="100" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="MAIN" msprop:Generator_ColumnVarNameInTable="columnMAIN" msprop:Generator_ColumnPropNameInRow="MAIN" msprop:Generator_ColumnPropNameInTable="MAINColumn" msprop:Generator_UserColumnName="MAIN" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="5000" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="SEC" msprop:Generator_ColumnVarNameInTable="columnSEC" msprop:Generator_ColumnPropNameInRow="SEC" msprop:Generator_ColumnPropNameInTable="SECColumn" msprop:Generator_UserColumnName="SEC" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="5000" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="PON" msprop:Generator_ColumnVarNameInTable="columnPON" msprop:Generator_ColumnPropNameInRow="PON" msprop:Generator_ColumnPropNameInTable="PONColumn" msprop:Generator_UserColumnName="PON" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="5000" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="PONN" msprop:Generator_ColumnVarNameInTable="columnPONN" msprop:Generator_ColumnPropNameInRow="PONN" msprop:Generator_ColumnPropNameInTable="PONNColumn" msprop:Generator_UserColumnName="PONN" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="5000" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="LOCATION" msprop:Generator_ColumnVarNameInTable="columnLOCATION" msprop:Generator_ColumnPropNameInRow="LOCATION" msprop:Generator_ColumnPropNameInTable="LOCATIONColumn" msprop:Generator_UserColumnName="LOCATION" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="500" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="KDTNEW1" msprop:Generator_ColumnVarNameInTable="columnKDTNEW1" msprop:Generator_ColumnPropNameInRow="KDTNEW1" msprop:Generator_ColumnPropNameInTable="KDTNEW1Column" msprop:Generator_UserColumnName="KDTNEW1" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="1" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="LOSSDATE" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columnLOSSDATE" msprop:Generator_ColumnPropNameInRow="LOSSDATE" msprop:Generator_ColumnPropNameInTable="LOSSDATEColumn" msprop:Generator_UserColumnName="LOSSDATE" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="30" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="SDATE" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columnSDATE" msprop:Generator_ColumnPropNameInRow="SDATE" msprop:Generator_ColumnPropNameInTable="SDATEColumn" msprop:Generator_UserColumnName="SDATE" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="30" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="EDATE" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columnEDATE" msprop:Generator_ColumnPropNameInRow="EDATE" msprop:Generator_ColumnPropNameInTable="EDATEColumn" msprop:Generator_UserColumnName="EDATE" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="30" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="TOTAL" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columnTOTAL" msprop:Generator_ColumnPropNameInRow="TOTAL" msprop:Generator_ColumnPropNameInTable="TOTALColumn" msprop:Generator_UserColumnName="TOTAL" type="xs:decimal" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+    </xs:complexType>
+    <xs:unique name="Constraint1" msdata:PrimaryKey="true">
+      <xs:selector xpath=".//mstns:CLAIMPRODGRID" />
+      <xs:field xpath="mstns:CLID" />
+    </xs:unique>
+    <xs:unique name="LOSSPROFILESGRID_Constraint1" msdata:ConstraintName="Constraint1" msdata:PrimaryKey="true">
+      <xs:selector xpath=".//mstns:LOSSPROFILESGRID" />
+      <xs:field xpath="mstns:CLID" />
+    </xs:unique>
+  </xs:element>
+</xs:schema>

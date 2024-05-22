@@ -1,0 +1,499 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="DSPosted" targetNamespace="http://tempuri.org/DSPosted.xsd" xmlns:mstns="http://tempuri.org/DSPosted.xsd" xmlns="http://tempuri.org/DSPosted.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
+  <xs:annotation>
+    <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
+      <DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+        <Connections>
+          <Connection AppSettingsObjectName="Settings" AppSettingsPropertyName="FAConnectionString" ConnectionStringObject="" IsAppSettingsProperty="true" Modifier="Assembly" Name="FAConnectionString (Settings)" ParameterPrefix="@" PropertyReference="ApplicationSettings.TIB.DL.FA.Properties.Settings.GlobalReference.Default.FAConnectionString" Provider="System.Data.SqlClient" />
+        </Connections>
+        <Tables>
+          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="FULLTableAdapter" GeneratorDataComponentClassName="FULLTableAdapter" Name="FULL" UserDataComponentName="FULLTableAdapter">
+            <MainSource>
+              <DbSource ConnectionRef="FAConnectionString (Settings)" DbObjectType="Unknown" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="false" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="false" UserGetMethodName="GetData" UserSourceName="Fill">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="true">
+                    <CommandText>
+SELECT P.VOUCHER AS NOTENO_CUST, PLC.PLCTTG AS TTG, NT.ADATE,
+P.MTU, P.DUEAMOUNT, P.PAIDDATE, P.ISPAID AS CUST_PAYMENT_STATUS, PLC.KODECAB,
+RECEIPT.VOUCHER AS NOTENO_INSC, RECEIPT.NAMA AS INSURANCE, RECEIPT.MTU AS MTU_INSC,
+RECEIPT.DUEAMOUNT AS INS_PAYMENT, RECEIPT.ISPAID AS INS_PAYMENT_STAT,
+ADD1.VAL AS POLICY_NO, ADD2.VAL AS PIC_MKT, PRY.NAMA AS CUSTOMER, FASL.VOUCHER AS BRECEIPT_NO
+, VO2.RECEIPTDATE
+FROM FAPAYMENT P
+INNER JOIN FAVOUCHER VO ON VO.VOUCHER = P.VOUCHER
+INNER JOIN PLCNOTA NT ON NT.NOTANO = VO.NOTANO
+INNER JOIN PLACING PLC ON PLC.PLCID = NT.PLCID
+INNER JOIN PLCPAYOR PY ON PY.PLCID = PLC.PLCID
+INNER JOIN PROFILE PRY ON PRY.PROFILEID = PY.PROFILEID
+LEFT OUTER JOIN PLCADDINFO ADD1 ON NT.PLCID = ADD1.PLCID AND ADD1.CONFIGID = 'POLICY_NO'
+LEFT OUTER JOIN PLCADDINFO ADD2 ON NT.PLCID = ADD2.PLCID AND ADD2.CONFIGID = 'PS_PIC_MKT'
+INNER JOIN FASL ON FASL.DOCNO = P.VOUCHER
+INNER JOIN
+(
+	SELECT FAVOUCHER.VOUCHER, FAPAYMENT.MTU, FAPAYMENT.DUEAMOUNT, ISPAID, PLC.PLCID, PLCNOTA.NAMA, PLCNOTA.KODETOC, PLCNOTA.ADATE, FAPAYMENT.NPAYMENT
+	, FAVOUCHER.RECEIPTDATE
+	FROM FAPAYMENT
+	INNER JOIN FAVOUCHER ON FAVOUCHER.VOUCHER = FAPAYMENT.VOUCHER
+	INNER JOIN PLCNOTA PLCNOTA ON PLCNOTA.NOTANO = FAVOUCHER.NOTANO
+	INNER JOIN PLACING PLC ON PLC.PLCID = PLCNOTA.PLCID
+	WHERE PLCNOTA.DCTYPE IN ('DI','CF') AND ISPAID = 0
+) AS RECEIPT ON RECEIPT.PLCID = PLC.PLCID AND NT.KODETOC = RECEIPT.KODETOC AND NT.MTU = RECEIPT.MTU AND RECEIPT.NPAYMENT = P.NPAYMENT
+LEFT OUTER JOIN FAVOUCHER VO2 ON FASL.VOUCHER = VO2.VOUCHER
+WHERE NT.DCTYPE IN ('BB') AND (P.ISPAID = 1) AND (FASL.VOUCHER LIKE 'BR%') </CommandText>
+                    <Parameters />
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+            </MainSource>
+            <Mappings>
+              <Mapping SourceColumn="NOTENO_CUST" DataSetColumn="NOTENO_CUST" />
+              <Mapping SourceColumn="TTG" DataSetColumn="TTG" />
+              <Mapping SourceColumn="ADATE" DataSetColumn="ADATE" />
+              <Mapping SourceColumn="MTU" DataSetColumn="MTU" />
+              <Mapping SourceColumn="DUEAMOUNT" DataSetColumn="DUEAMOUNT" />
+              <Mapping SourceColumn="PAIDDATE" DataSetColumn="PAIDDATE" />
+              <Mapping SourceColumn="CUST_PAYMENT_STATUS" DataSetColumn="CUST_PAYMENT_STATUS" />
+              <Mapping SourceColumn="KODECAB" DataSetColumn="KODECAB" />
+              <Mapping SourceColumn="NOTENO_INSC" DataSetColumn="NOTENO_INSC" />
+              <Mapping SourceColumn="INSURANCE" DataSetColumn="INSURANCE" />
+              <Mapping SourceColumn="MTU_INSC" DataSetColumn="MTU_INSC" />
+              <Mapping SourceColumn="INS_PAYMENT" DataSetColumn="INS_PAYMENT" />
+              <Mapping SourceColumn="INS_PAYMENT_STAT" DataSetColumn="INS_PAYMENT_STAT" />
+              <Mapping SourceColumn="POLICY_NO" DataSetColumn="POLICY_NO" />
+              <Mapping SourceColumn="PIC_MKT" DataSetColumn="PIC_MKT" />
+              <Mapping SourceColumn="CUSTOMER" DataSetColumn="CUSTOMER" />
+              <Mapping SourceColumn="BRECEIPT_NO" DataSetColumn="BRECEIPT_NO" />
+              <Mapping SourceColumn="RECEIPTDATE" DataSetColumn="RECEIPTDATE" />
+            </Mappings>
+            <Sources>
+              <DbSource ConnectionRef="FAConnectionString (Settings)" DbObjectType="Unknown" GenerateMethods="Get" GenerateShortCommands="true" GeneratorGetMethodName="GetDataByFilter" GetMethodModifier="Public" GetMethodName="GetDataByFilter" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetDataByFilter" UserSourceName="GetDataByFilter">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="true">
+                    <CommandText>SELECT P.VOUCHER AS NOTENO_CUST,
+ CASE WHEN CHARINDEX('and/or', PLC.PLCTTG) &gt; 0 THEN SUBSTRING(PLC.PLCTTG, 0, CHARINDEX('and/or', PLC.PLCTTG)) ELSE PLC.PLCTTG END AS TTG, 
+NT.ADATE,
+P.MTU, P.DUEAMOUNT, P.PAIDDATE, P.ISPAID AS CUST_PAYMENT_STATUS, PLC.KODECAB,
+RECEIPT.VOUCHER AS NOTENO_INSC, RECEIPT.NAMA AS INSURANCE, RECEIPT.MTU AS MTU_INSC,
+RECEIPT.DUEAMOUNT AS INS_PAYMENT, RECEIPT.ISPAID AS INS_PAYMENT_STAT,
+ADD1.VAL AS POLICY_NO, ADD2.VAL AS PIC_MKT, PRY.NAMA AS CUSTOMER, 
+VO2.LASTVOUCHER AS BRECEIPT_NO, VO2.LASTRECEIPT AS RECEIPTDATE
+FROM FAPAYMENT P
+INNER JOIN FAVOUCHER VO ON VO.VOUCHER = P.VOUCHER
+INNER JOIN PLCNOTA NT ON NT.NOTANO = VO.NOTANO
+INNER JOIN PLACING PLC ON PLC.PLCID = NT.PLCID
+INNER JOIN PLCPAYOR PY ON PY.PLCID = PLC.PLCID
+INNER JOIN PROFILE PRY ON PRY.PROFILEID = PY.PROFILEID
+LEFT OUTER JOIN PLCADDINFO ADD1 ON NT.PLCID = ADD1.PLCID AND ADD1.CONFIGID = 'POLICY_NO'
+LEFT OUTER JOIN PLCADDINFO ADD2 ON NT.PLCID = ADD2.PLCID AND ADD2.CONFIGID = 'PS_PIC_MKT'
+INNER JOIN
+(
+	SELECT FAVOUCHER.VOUCHER, FAPAYMENT.MTU, FAPAYMENT.DUEAMOUNT, ISPAID, PLC.PLCID, PLCNOTA.NAMA, PLCNOTA.KODETOC, PLCNOTA.ADATE, FAPAYMENT.NPAYMENT
+	, FAVOUCHER.RECEIPTDATE, PLCNOTA.URUT
+	FROM FAPAYMENT
+	INNER JOIN FAVOUCHER ON FAVOUCHER.VOUCHER = FAPAYMENT.VOUCHER
+	INNER JOIN PLCNOTA PLCNOTA ON PLCNOTA.NOTANO = FAVOUCHER.NOTANO
+	INNER JOIN PLACING PLC ON PLC.PLCID = PLCNOTA.PLCID
+	WHERE PLCNOTA.DCTYPE IN ('DI','CF') AND ISPAID = 0
+) AS RECEIPT ON RECEIPT.PLCID = PLC.PLCID AND NT.KODETOC = RECEIPT.KODETOC 
+  AND NT.MTU = RECEIPT.MTU AND RECEIPT.NPAYMENT = P.NPAYMENT
+  AND NT.URUT = RECEIPT.URUT
+LEFT OUTER JOIN (SELECT SL.DOCNO, MAX(V.RECEIPTDATE) AS LASTRECEIPT, MAX(V.VOUCHER) AS LASTVOUCHER
+  FROM FAVOUCHER V
+  INNER JOIN FASL SL ON V.VOUCHER = SL.VOUCHER
+  GROUP BY SL.DOCNO) VO2 ON P.VOUCHER = VO2.DOCNO
+WHERE NT.DCTYPE IN ('BB') AND (P.ISPAID = 1) AND (VO2.LASTVOUCHER LIKE 'BR%')     
+AND (P.PAIDDATE BETWEEN @SDATE AND @EDATE) AND (PLC.PLCTTG LIKE @TTG) AND (RECEIPT.NAMA LIKE @INSURANCE) AND (PLC.KODECAB LIKE @KODECAB) AND (RECEIPT.VOUCHER LIKE @NOTENO)
+ORDER BY RECEIPT.VOUCHER</CommandText>
+                    <Parameters>
+                      <Parameter AllowDbNull="true" AutogeneratedName="SDATE" ColumnName="PAIDDATE" DataSourceName="TALYS.dbo.FAPAYMENT" DataTypeServer="datetime" DbType="DateTime" Direction="Input" ParameterName="@SDATE" Precision="0" ProviderType="DateTime" Scale="0" Size="8" SourceColumn="PAIDDATE" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="EDATE" ColumnName="PAIDDATE" DataSourceName="TALYS.dbo.FAPAYMENT" DataTypeServer="datetime" DbType="DateTime" Direction="Input" ParameterName="@EDATE" Precision="0" ProviderType="DateTime" Scale="0" Size="8" SourceColumn="PAIDDATE" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="TTG" ColumnName="PLCTTG" DataSourceName="TALYS.dbo.PLACING" DataTypeServer="varchar(600)" DbType="AnsiString" Direction="Input" ParameterName="@TTG" Precision="0" ProviderType="VarChar" Scale="0" Size="600" SourceColumn="PLCTTG" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="INSURANCE" ColumnName="NAMA" DataSourceName="SELECT FAVOUCHER.VOUCHER, FAPAYMENT.MTU, FAPAYMENT.DUEAMOUNT, ISPAID, PLC.PLCID, PLCNOTA.NAMA, PLCNOTA.KODETOC, PLCNOTA.ADATE, FAPAYMENT.NPAYMENT , FAVOUCHER.RECEIPTDATE, PLCNOTA.URUT FROM FAPAYMENT INNER JOIN FAVOUCHER ON FAVOUCHER.VOUCHER = FAPAYMENT.VOUCHER INNER JOIN PLCNOTA PLCNOTA ON PLCNOTA.NOTANO = FAVOUCHER.NOTANO INNER JOIN PLACING PLC ON PLC.PLCID = PLCNOTA.PLCID WHERE PLCNOTA.DCTYPE IN ('DI','CF') AND ISPAID = 0" DataTypeServer="varchar(600)" DbType="AnsiString" Direction="Input" ParameterName="@INSURANCE" Precision="0" Scale="0" Size="600" SourceColumn="INSURANCE" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="KODECAB" ColumnName="KODECAB" DataSourceName="TALYS.dbo.PLACING" DataTypeServer="varchar(20)" DbType="AnsiString" Direction="Input" ParameterName="@KODECAB" Precision="0" ProviderType="VarChar" Scale="0" Size="20" SourceColumn="KODECAB" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="false" AutogeneratedName="NOTENO" ColumnName="VOUCHER" DataSourceName="SELECT FAVOUCHER.VOUCHER, FAPAYMENT.MTU, FAPAYMENT.DUEAMOUNT, ISPAID, PLC.PLCID, PLCNOTA.NAMA, PLCNOTA.KODETOC, PLCNOTA.ADATE, FAPAYMENT.NPAYMENT , FAVOUCHER.RECEIPTDATE, PLCNOTA.URUT FROM FAPAYMENT INNER JOIN FAVOUCHER ON FAVOUCHER.VOUCHER = FAPAYMENT.VOUCHER INNER JOIN PLCNOTA PLCNOTA ON PLCNOTA.NOTANO = FAVOUCHER.NOTANO INNER JOIN PLACING PLC ON PLC.PLCID = PLCNOTA.PLCID WHERE PLCNOTA.DCTYPE IN ('DI','CF') AND ISPAID = 0" DataTypeServer="varchar(100)" DbType="AnsiString" Direction="Input" ParameterName="@NOTENO" Precision="0" Scale="0" Size="100" SourceColumn="NOTENO_INSC" SourceColumnNullMapping="false" SourceVersion="Current" />
+                    </Parameters>
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+            </Sources>
+          </TableAdapter>
+          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="PARTIALTableAdapter" GeneratorDataComponentClassName="PARTIALTableAdapter" Name="PARTIAL" UserDataComponentName="PARTIALTableAdapter">
+            <MainSource>
+              <DbSource ConnectionRef="FAConnectionString (Settings)" DbObjectType="Unknown" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="false" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="false" UserGetMethodName="GetData" UserSourceName="Fill">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="true">
+                    <CommandText>SELECT P.VOUCHER AS NOTENO_CUST, PLC.PLCTTG AS TTG, NT.ADATE,
+P.MTU, P.DUEAMOUNT, P.PAIDDATE, P.ISPAID AS CUST_PAYMENT_STATUS, PLC.KODECAB,
+RECEIPT.VOUCHER AS NOTENO_INSC, RECEIPT.NAMA AS INSURANCE, PROFILE_NO, RECEIPT.MTU AS MTU_INSC,
+RECEIPT.DUEAMOUNT AS INS_PAYMENT, RECEIPT.ISPAID AS INS_PAYMENT_STAT, 
+ADD1.VAL AS POLICY_NO, ADD2.VAL AS PIC_MKT, PRY.PROFILENO AS CUSTNO, PRY.NAMA AS CUSTOMER, FASL.VOUCHER AS BRECEIPT_NO,
+P.PAYMENT_OC AS CUST_PAYMENT, P.NPAYMENT, 
+CAST((P.PAYMENT_OC / P.DUEAMOUNT * RECEIPT.DUEAMOUNT) AS DECIMAL(16,2)) AS PARTIALPREMIUM,
+CAST((P.PAYMENT_OC / P.DUEAMOUNT * 100) AS DECIMAL(5,2)) AS RATE,
+P.NPAYMENT, VO2.RECEIPTDATE AS RECEIPTDATE
+FROM FAPAYMENT P
+INNER JOIN FAVOUCHER VO ON VO.VOUCHER = P.VOUCHER
+INNER JOIN PLCNOTA NT ON NT.NOTANO = VO.NOTANO AND (NT.DCTYPE IN ('BB'))
+INNER JOIN PLACING PLC ON PLC.PLCID = NT.PLCID
+INNER JOIN PLCPAYOR PY ON PY.PLCID = PLC.PLCID
+INNER JOIN PROFILE PRY ON PRY.PROFILEID = PY.PROFILEID
+LEFT OUTER JOIN PLCADDINFO ADD1 ON NT.PLCID = ADD1.PLCID AND ADD1.CONFIGID = 'POLICY_NO'
+LEFT OUTER JOIN PLCADDINFO ADD2 ON NT.PLCID = ADD2.PLCID AND ADD2.CONFIGID = 'PS_PIC_MKT'
+INNER JOIN FASL ON FASL.DOCNO = P.VOUCHER AND (FASL.VOUCHER LIKE 'BR%')
+LEFT OUTER JOIN FAVOUCHER VO2 ON VO2.VOUCHER = FASL.VOUCHER
+INNER JOIN
+(
+	SELECT FAVOUCHER.VOUCHER, FAPAYMENT.MTU, FAPAYMENT.DUEAMOUNT, ISPAID, PLC.PLCID, PLCNOTA.NAMA, PLCNOTA.KODETOC, PLCNOTA.ADATE, FAPAYMENT.NPAYMENT, PRO.PROFILENO AS PROFILE_NO
+	FROM FAPAYMENT
+	INNER JOIN FAVOUCHER ON FAPAYMENT.VOUCHER = FAVOUCHER.VOUCHER
+	INNER JOIN PLCNOTA PLCNOTA ON PLCNOTA.NOTANO = FAVOUCHER.NOTANO
+	INNER JOIN PLACING PLC ON PLC.PLCID = PLCNOTA.PLCID
+  INNER JOIN PROFILE PRO ON PRO.PROFILEID = PLCNOTA.PROFILEID
+	WHERE PLCNOTA.DCTYPE IN ('DI','CF') 
+) AS RECEIPT ON RECEIPT.PLCID = PLC.PLCID AND NT.KODETOC = RECEIPT.KODETOC AND NT.MTU = RECEIPT.MTU AND P.NPAYMENT=RECEIPT.NPAYMENT
+WHERE (P.ISPAID = 0)</CommandText>
+                    <Parameters />
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+            </MainSource>
+            <Mappings>
+              <Mapping SourceColumn="NOTENO_CUST" DataSetColumn="NOTENO_CUST" />
+              <Mapping SourceColumn="TTG" DataSetColumn="TTG" />
+              <Mapping SourceColumn="ADATE" DataSetColumn="ADATE" />
+              <Mapping SourceColumn="MTU" DataSetColumn="MTU" />
+              <Mapping SourceColumn="DUEAMOUNT" DataSetColumn="DUEAMOUNT" />
+              <Mapping SourceColumn="PAIDDATE" DataSetColumn="PAIDDATE" />
+              <Mapping SourceColumn="CUST_PAYMENT_STATUS" DataSetColumn="CUST_PAYMENT_STATUS" />
+              <Mapping SourceColumn="KODECAB" DataSetColumn="KODECAB" />
+              <Mapping SourceColumn="NOTENO_INSC" DataSetColumn="NOTENO_INSC" />
+              <Mapping SourceColumn="INSURANCE" DataSetColumn="INSURANCE" />
+              <Mapping SourceColumn="MTU_INSC" DataSetColumn="MTU_INSC" />
+              <Mapping SourceColumn="INS_PAYMENT" DataSetColumn="INS_PAYMENT" />
+              <Mapping SourceColumn="INS_PAYMENT_STAT" DataSetColumn="INS_PAYMENT_STAT" />
+              <Mapping SourceColumn="POLICY_NO" DataSetColumn="POLICY_NO" />
+              <Mapping SourceColumn="PIC_MKT" DataSetColumn="PIC_MKT" />
+              <Mapping SourceColumn="CUSTOMER" DataSetColumn="CUSTOMER" />
+              <Mapping SourceColumn="BRECEIPT_NO" DataSetColumn="BRECEIPT_NO" />
+              <Mapping SourceColumn="CUST_PAYMENT" DataSetColumn="CUST_PAYMENT" />
+              <Mapping SourceColumn="NPAYMENT" DataSetColumn="NPAYMENT" />
+              <Mapping SourceColumn="PARTIALPREMIUM" DataSetColumn="PARTIALPREMIUM" />
+              <Mapping SourceColumn="RATE" DataSetColumn="RATE" />
+              <Mapping SourceColumn="CUSTNO" DataSetColumn="CUSTNO" />
+              <Mapping SourceColumn="NPAYMENT1" DataSetColumn="NPAYMENT1" />
+              <Mapping SourceColumn="RECEIPTDATE" DataSetColumn="RECEIPTDATE" />
+              <Mapping SourceColumn="PROFILE_NO" DataSetColumn="PROFILE_NO" />
+            </Mappings>
+            <Sources>
+              <DbSource ConnectionRef="FAConnectionString (Settings)" DbObjectType="Unknown" GenerateMethods="Get" GenerateShortCommands="true" GeneratorGetMethodName="GetDataByFilter" GetMethodModifier="Public" GetMethodName="GetDataByFilter" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetDataByFilter" UserSourceName="GetDataByFilter">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="true">
+                    <CommandText>SELECT P.VOUCHER AS NOTENO_CUST, 
+CASE WHEN CHARINDEX('and/or', PLC.PLCTTG) &gt; 0 THEN SUBSTRING(PLC.PLCTTG, 0, CHARINDEX('and/or', PLC.PLCTTG)) ELSE PLC.PLCTTG END AS TTG, 
+NT.ADATE,
+P.MTU, P.DUEAMOUNT, P.PAIDDATE, P.ISPAID AS CUST_PAYMENT_STATUS, PLC.KODECAB,
+RECEIPT.VOUCHER AS NOTENO_INSC, RECEIPT.NAMA AS INSURANCE, PROFILE_NO, RECEIPT.MTU AS MTU_INSC,
+RECEIPT.DUEAMOUNT AS INS_PAYMENT, RECEIPT.ISPAID AS INS_PAYMENT_STAT, 
+ADD1.VAL AS POLICY_NO, ADD2.VAL AS PIC_MKT, PRY.PROFILENO AS CUSTNO, PRY.NAMA AS CUSTOMER, FASL.VOUCHER AS BRECEIPT_NO,
+P.PAYMENT_OC AS CUST_PAYMENT, P.NPAYMENT, 
+CAST((P.PAYMENT_OC / P.DUEAMOUNT * RECEIPT.DUEAMOUNT) AS DECIMAL(16,2)) AS PARTIALPREMIUM,
+CAST((P.PAYMENT_OC / P.DUEAMOUNT * 100) AS DECIMAL(5,2)) AS RATE,
+P.NPAYMENT, VO2.RECEIPTDATE AS RECEIPTDATE
+FROM FAPAYMENT P
+INNER JOIN FAVOUCHER VO ON VO.VOUCHER = P.VOUCHER
+INNER JOIN PLCNOTA NT ON NT.NOTANO = VO.NOTANO AND (NT.DCTYPE IN ('BB'))
+INNER JOIN PLACING PLC ON PLC.PLCID = NT.PLCID
+INNER JOIN PLCPAYOR PY ON PY.PLCID = PLC.PLCID
+INNER JOIN PROFILE PRY ON PRY.PROFILEID = PY.PROFILEID
+LEFT OUTER JOIN PLCADDINFO ADD1 ON NT.PLCID = ADD1.PLCID AND ADD1.CONFIGID = 'POLICY_NO'
+LEFT OUTER JOIN PLCADDINFO ADD2 ON NT.PLCID = ADD2.PLCID AND ADD2.CONFIGID = 'PS_PIC_MKT'
+INNER JOIN FASL ON FASL.DOCNO = P.VOUCHER AND (FASL.VOUCHER LIKE 'BR%')
+LEFT OUTER JOIN FAVOUCHER VO2 ON VO2.VOUCHER = FASL.VOUCHER
+INNER JOIN
+(
+	SELECT FAVOUCHER.VOUCHER, FAPAYMENT.MTU, FAPAYMENT.DUEAMOUNT, ISPAID, PLC.PLCID, PLCNOTA.NAMA, PLCNOTA.KODETOC, PLCNOTA.ADATE, FAPAYMENT.NPAYMENT, PRO.PROFILENO AS PROFILE_NO
+	FROM FAPAYMENT
+	INNER JOIN FAVOUCHER ON FAPAYMENT.VOUCHER = FAVOUCHER.VOUCHER
+	INNER JOIN PLCNOTA PLCNOTA ON PLCNOTA.NOTANO = FAVOUCHER.NOTANO
+	INNER JOIN PLACING PLC ON PLC.PLCID = PLCNOTA.PLCID
+                INNER JOIN PROFILE PRO ON PRO.PROFILEID = PLCNOTA.PROFILEID
+	WHERE PLCNOTA.DCTYPE IN ('DI','CF') 
+) AS RECEIPT ON RECEIPT.PLCID = PLC.PLCID AND NT.KODETOC = RECEIPT.KODETOC AND NT.MTU = RECEIPT.MTU AND P.NPAYMENT=RECEIPT.NPAYMENT
+WHERE (P.ISPAID = 0) AND (P.PAIDDATE BETWEEN @SDATE AND @EDATE) AND (PLC.PLCTTG LIKE @TTG) AND (RECEIPT.NAMA LIKE @INSURANCE) AND (PLC.KODECAB LIKE @KODECAB) 
+AND (RECEIPT.VOUCHER LIKE @NOTENO)
+ORDER BY RECEIPT.VOUCHER</CommandText>
+                    <Parameters>
+                      <Parameter AllowDbNull="true" AutogeneratedName="SDATE" ColumnName="PAIDDATE" DataSourceName="TALYS.dbo.FAPAYMENT" DataTypeServer="datetime" DbType="DateTime" Direction="Input" ParameterName="@SDATE" Precision="0" ProviderType="DateTime" Scale="0" Size="8" SourceColumn="PAIDDATE" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="EDATE" ColumnName="PAIDDATE" DataSourceName="TALYS.dbo.FAPAYMENT" DataTypeServer="datetime" DbType="DateTime" Direction="Input" ParameterName="@EDATE" Precision="0" ProviderType="DateTime" Scale="0" Size="8" SourceColumn="PAIDDATE" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="TTG" ColumnName="PLCTTG" DataSourceName="TALYS.dbo.PLACING" DataTypeServer="varchar(1000)" DbType="AnsiString" Direction="Input" ParameterName="@TTG" Precision="0" ProviderType="VarChar" Scale="0" Size="1000" SourceColumn="PLCTTG" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="INSURANCE" ColumnName="NAMA" DataSourceName="SELECT FAVOUCHER.VOUCHER, FAPAYMENT.MTU, FAPAYMENT.DUEAMOUNT, ISPAID, PLC.PLCID, PLCNOTA.NAMA, PLCNOTA.KODETOC, PLCNOTA.ADATE, FAPAYMENT.NPAYMENT, PRO.PROFILENO AS PROFILE_NO FROM FAPAYMENT INNER JOIN FAVOUCHER ON FAPAYMENT.VOUCHER = FAVOUCHER.VOUCHER INNER JOIN PLCNOTA PLCNOTA ON PLCNOTA.NOTANO = FAVOUCHER.NOTANO INNER JOIN PLACING PLC ON PLC.PLCID = PLCNOTA.PLCID INNER JOIN PROFILE PRO ON PRO.PROFILEID = PLCNOTA.PROFILEID WHERE PLCNOTA.DCTYPE IN ('DI','CF')" DataTypeServer="varchar(600)" DbType="AnsiString" Direction="Input" ParameterName="@INSURANCE" Precision="0" Scale="0" Size="600" SourceColumn="INSURANCE" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="KODECAB" ColumnName="KODECAB" DataSourceName="TALYS.dbo.PLACING" DataTypeServer="varchar(20)" DbType="AnsiString" Direction="Input" ParameterName="@KODECAB" Precision="0" ProviderType="VarChar" Scale="0" Size="20" SourceColumn="KODECAB" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="false" AutogeneratedName="NOTENO" ColumnName="VOUCHER" DataSourceName="SELECT FAVOUCHER.VOUCHER, FAPAYMENT.MTU, FAPAYMENT.DUEAMOUNT, ISPAID, PLC.PLCID, PLCNOTA.NAMA, PLCNOTA.KODETOC, PLCNOTA.ADATE, FAPAYMENT.NPAYMENT, PRO.PROFILENO AS PROFILE_NO FROM FAPAYMENT INNER JOIN FAVOUCHER ON FAPAYMENT.VOUCHER = FAVOUCHER.VOUCHER INNER JOIN PLCNOTA PLCNOTA ON PLCNOTA.NOTANO = FAVOUCHER.NOTANO INNER JOIN PLACING PLC ON PLC.PLCID = PLCNOTA.PLCID INNER JOIN PROFILE PRO ON PRO.PROFILEID = PLCNOTA.PROFILEID WHERE PLCNOTA.DCTYPE IN ('DI','CF')" DataTypeServer="varchar(100)" DbType="AnsiString" Direction="Input" ParameterName="@NOTENO" Precision="0" Scale="0" Size="100" SourceColumn="NOTENO_INSC" SourceColumnNullMapping="false" SourceVersion="Current" />
+                    </Parameters>
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+            </Sources>
+          </TableAdapter>
+          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="FAPARTIALTableAdapter" GeneratorDataComponentClassName="FAPARTIALTableAdapter" Name="FAPARTIAL" UserDataComponentName="FAPARTIALTableAdapter">
+            <MainSource>
+              <DbSource ConnectionRef="FAConnectionString (Settings)" DbObjectName="TALYS.dbo.FAPAYMENT" DbObjectType="Table" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="false" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="false" UserGetMethodName="GetData" UserSourceName="Fill">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="true">
+                    <CommandText>SELECT P.VOUCHER AS NOTENO_CUST, CAST(((PD.AMOUNT_OC / P.DUEAMOUNT) * 100) AS DECIMAL(18, 2)) AS TOTALPARTIALRATE
+FROM FAPAYMENT P
+INNER JOIN FAPAYMENTD PD ON PD.DOCNO = P.VOUCHER AND PD.NPAYMENT = P.NPAYMENT
+INNER JOIN FAVOUCHER VO ON VO.VOUCHER = P.VOUCHER
+INNER JOIN PLCNOTA NT ON NT.NOTANO = VO.NOTANO</CommandText>
+                    <Parameters />
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+            </MainSource>
+            <Mappings>
+              <Mapping SourceColumn="NOTENO_CUST" DataSetColumn="NOTENO_CUST" />
+              <Mapping SourceColumn="TOTALPARTIALRATE" DataSetColumn="TOTALPARTIALRATE" />
+            </Mappings>
+            <Sources>
+              <DbSource ConnectionRef="FAConnectionString (Settings)" DbObjectType="Unknown" GenerateShortCommands="true" GeneratorSourceName="GetSumPartialByVoucher" Modifier="Public" Name="GetSumPartialByVoucher" QueryType="Scalar" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetDataBy" UserSourceName="GetSumPartialByVoucher">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="true">
+                    <CommandText>SELECT SUM(CAST(((PD.AMOUNT_OC / P.DUEAMOUNT) * 100) AS DECIMAL(18, 2))) AS TOTALPARTIALRATE
+FROM FAPAYMENT P
+INNER JOIN FAPAYMENTD PD ON PD.DOCNO = P.VOUCHER AND PD.NPAYMENT = P.NPAYMENT
+INNER JOIN FAVOUCHER VO ON VO.VOUCHER = P.VOUCHER
+INNER JOIN PLCNOTA NT ON NT.NOTANO = VO.NOTANO
+WHERE (P.VOUCHER = @VOUCHER)</CommandText>
+                    <Parameters>
+                      <Parameter AllowDbNull="false" AutogeneratedName="VOUCHER" ColumnName="VOUCHER" DataSourceName="TALYS.dbo.FAPAYMENT" DataTypeServer="varchar(100)" DbType="AnsiString" Direction="Input" ParameterName="@VOUCHER" Precision="0" ProviderType="VarChar" Scale="0" Size="100" SourceColumn="VOUCHER" SourceColumnNullMapping="false" SourceVersion="Current" />
+                    </Parameters>
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+            </Sources>
+          </TableAdapter>
+        </Tables>
+        <Sources />
+      </DataSource>
+    </xs:appinfo>
+  </xs:annotation>
+  <xs:element name="DSPosted" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:EnableTableAdapterManager="true" msprop:Generator_DataSetName="DSPosted" msprop:Generator_UserDSName="DSPosted">
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="FULL" msprop:Generator_TableClassName="FULLDataTable" msprop:Generator_TableVarName="tableFULL" msprop:Generator_TablePropName="FULL" msprop:Generator_RowDeletingName="FULLRowDeleting" msprop:Generator_RowChangingName="FULLRowChanging" msprop:Generator_RowEvHandlerName="FULLRowChangeEventHandler" msprop:Generator_RowDeletedName="FULLRowDeleted" msprop:Generator_UserTableName="FULL" msprop:Generator_RowChangedName="FULLRowChanged" msprop:Generator_RowEvArgName="FULLRowChangeEvent" msprop:Generator_RowClassName="FULLRow">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="NOTENO_CUST" msprop:Generator_ColumnVarNameInTable="columnNOTENO_CUST" msprop:Generator_ColumnPropNameInRow="NOTENO_CUST" msprop:Generator_ColumnPropNameInTable="NOTENO_CUSTColumn" msprop:Generator_UserColumnName="NOTENO_CUST">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="100" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="TTG" msprop:Generator_ColumnVarNameInTable="columnTTG" msprop:Generator_ColumnPropNameInRow="TTG" msprop:Generator_ColumnPropNameInTable="TTGColumn" msprop:Generator_UserColumnName="TTG" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="500" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="ADATE" msprop:Generator_ColumnVarNameInTable="columnADATE" msprop:Generator_ColumnPropNameInRow="ADATE" msprop:Generator_ColumnPropNameInTable="ADATEColumn" msprop:Generator_UserColumnName="ADATE" type="xs:dateTime" minOccurs="0" />
+              <xs:element name="MTU" msprop:Generator_ColumnVarNameInTable="columnMTU" msprop:Generator_ColumnPropNameInRow="MTU" msprop:Generator_ColumnPropNameInTable="MTUColumn" msprop:Generator_UserColumnName="MTU" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="3" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="DUEAMOUNT" msprop:Generator_ColumnVarNameInTable="columnDUEAMOUNT" msprop:Generator_ColumnPropNameInRow="DUEAMOUNT" msprop:Generator_ColumnPropNameInTable="DUEAMOUNTColumn" msprop:Generator_UserColumnName="DUEAMOUNT" type="xs:decimal" minOccurs="0" />
+              <xs:element name="PAIDDATE" msprop:Generator_ColumnVarNameInTable="columnPAIDDATE" msprop:Generator_ColumnPropNameInRow="PAIDDATE" msprop:Generator_ColumnPropNameInTable="PAIDDATEColumn" msprop:Generator_UserColumnName="PAIDDATE" type="xs:dateTime" minOccurs="0" />
+              <xs:element name="CUST_PAYMENT_STATUS" msprop:Generator_ColumnVarNameInTable="columnCUST_PAYMENT_STATUS" msprop:Generator_ColumnPropNameInRow="CUST_PAYMENT_STATUS" msprop:Generator_ColumnPropNameInTable="CUST_PAYMENT_STATUSColumn" msprop:Generator_UserColumnName="CUST_PAYMENT_STATUS" type="xs:boolean" minOccurs="0" />
+              <xs:element name="KODECAB" msprop:Generator_ColumnVarNameInTable="columnKODECAB" msprop:Generator_ColumnPropNameInRow="KODECAB" msprop:Generator_ColumnPropNameInTable="KODECABColumn" msprop:Generator_UserColumnName="KODECAB" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="20" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="NOTENO_INSC" msprop:Generator_ColumnVarNameInTable="columnNOTENO_INSC" msprop:Generator_ColumnPropNameInRow="NOTENO_INSC" msprop:Generator_ColumnPropNameInTable="NOTENO_INSCColumn" msprop:Generator_UserColumnName="NOTENO_INSC">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="100" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="INSURANCE" msprop:Generator_ColumnVarNameInTable="columnINSURANCE" msprop:Generator_ColumnPropNameInRow="INSURANCE" msprop:Generator_ColumnPropNameInTable="INSURANCEColumn" msprop:Generator_UserColumnName="INSURANCE" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="500" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="MTU_INSC" msprop:Generator_ColumnVarNameInTable="columnMTU_INSC" msprop:Generator_ColumnPropNameInRow="MTU_INSC" msprop:Generator_ColumnPropNameInTable="MTU_INSCColumn" msprop:Generator_UserColumnName="MTU_INSC" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="3" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="INS_PAYMENT" msprop:Generator_ColumnVarNameInTable="columnINS_PAYMENT" msprop:Generator_ColumnPropNameInRow="INS_PAYMENT" msprop:Generator_ColumnPropNameInTable="INS_PAYMENTColumn" msprop:Generator_UserColumnName="INS_PAYMENT" type="xs:decimal" minOccurs="0" />
+              <xs:element name="INS_PAYMENT_STAT" msprop:Generator_ColumnVarNameInTable="columnINS_PAYMENT_STAT" msprop:Generator_ColumnPropNameInRow="INS_PAYMENT_STAT" msprop:Generator_ColumnPropNameInTable="INS_PAYMENT_STATColumn" msprop:Generator_UserColumnName="INS_PAYMENT_STAT" type="xs:boolean" minOccurs="0" />
+              <xs:element name="POLICY_NO" msprop:Generator_ColumnVarNameInTable="columnPOLICY_NO" msprop:Generator_ColumnPropNameInRow="POLICY_NO" msprop:Generator_ColumnPropNameInTable="POLICY_NOColumn" msprop:Generator_UserColumnName="POLICY_NO" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="5000" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="PIC_MKT" msprop:Generator_ColumnVarNameInTable="columnPIC_MKT" msprop:Generator_ColumnPropNameInRow="PIC_MKT" msprop:Generator_ColumnPropNameInTable="PIC_MKTColumn" msprop:Generator_UserColumnName="PIC_MKT" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="5000" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="CUSTOMER" msprop:Generator_ColumnVarNameInTable="columnCUSTOMER" msprop:Generator_ColumnPropNameInRow="CUSTOMER" msprop:Generator_ColumnPropNameInTable="CUSTOMERColumn" msprop:Generator_UserColumnName="CUSTOMER" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="500" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="BRECEIPT_NO" msprop:Generator_ColumnVarNameInTable="columnBRECEIPT_NO" msprop:Generator_ColumnPropNameInRow="BRECEIPT_NO" msprop:Generator_ColumnPropNameInTable="BRECEIPT_NOColumn" msprop:Generator_UserColumnName="BRECEIPT_NO" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="100" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="RECEIPTDATE" msprop:Generator_ColumnVarNameInTable="columnRECEIPTDATE" msprop:Generator_ColumnPropNameInRow="RECEIPTDATE" msprop:Generator_ColumnPropNameInTable="RECEIPTDATEColumn" msprop:Generator_UserColumnName="RECEIPTDATE" type="xs:dateTime" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="PARTIAL" msprop:Generator_TableClassName="PARTIALDataTable" msprop:Generator_TableVarName="tablePARTIAL" msprop:Generator_TablePropName="PARTIAL" msprop:Generator_RowDeletingName="PARTIALRowDeleting" msprop:Generator_RowChangingName="PARTIALRowChanging" msprop:Generator_RowEvHandlerName="PARTIALRowChangeEventHandler" msprop:Generator_RowDeletedName="PARTIALRowDeleted" msprop:Generator_UserTableName="PARTIAL" msprop:Generator_RowChangedName="PARTIALRowChanged" msprop:Generator_RowEvArgName="PARTIALRowChangeEvent" msprop:Generator_RowClassName="PARTIALRow">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="NOTENO_CUST" msprop:Generator_ColumnVarNameInTable="columnNOTENO_CUST" msprop:Generator_ColumnPropNameInRow="NOTENO_CUST" msprop:Generator_ColumnPropNameInTable="NOTENO_CUSTColumn" msprop:Generator_UserColumnName="NOTENO_CUST">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="100" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="TTG" msprop:Generator_ColumnVarNameInTable="columnTTG" msprop:Generator_ColumnPropNameInRow="TTG" msprop:Generator_ColumnPropNameInTable="TTGColumn" msprop:Generator_UserColumnName="TTG" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="500" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="ADATE" msprop:Generator_ColumnVarNameInTable="columnADATE" msprop:Generator_ColumnPropNameInRow="ADATE" msprop:Generator_ColumnPropNameInTable="ADATEColumn" msprop:Generator_UserColumnName="ADATE" type="xs:dateTime" minOccurs="0" />
+              <xs:element name="MTU" msprop:Generator_ColumnVarNameInTable="columnMTU" msprop:Generator_ColumnPropNameInRow="MTU" msprop:Generator_ColumnPropNameInTable="MTUColumn" msprop:Generator_UserColumnName="MTU" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="3" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="DUEAMOUNT" msprop:Generator_ColumnVarNameInTable="columnDUEAMOUNT" msprop:Generator_ColumnPropNameInRow="DUEAMOUNT" msprop:Generator_ColumnPropNameInTable="DUEAMOUNTColumn" msprop:Generator_UserColumnName="DUEAMOUNT" type="xs:decimal" minOccurs="0" />
+              <xs:element name="PAIDDATE" msprop:Generator_ColumnVarNameInTable="columnPAIDDATE" msprop:Generator_ColumnPropNameInRow="PAIDDATE" msprop:Generator_ColumnPropNameInTable="PAIDDATEColumn" msprop:Generator_UserColumnName="PAIDDATE" type="xs:dateTime" minOccurs="0" />
+              <xs:element name="CUST_PAYMENT_STATUS" msprop:Generator_ColumnVarNameInTable="columnCUST_PAYMENT_STATUS" msprop:Generator_ColumnPropNameInRow="CUST_PAYMENT_STATUS" msprop:Generator_ColumnPropNameInTable="CUST_PAYMENT_STATUSColumn" msprop:Generator_UserColumnName="CUST_PAYMENT_STATUS" type="xs:boolean" minOccurs="0" />
+              <xs:element name="KODECAB" msprop:Generator_ColumnVarNameInTable="columnKODECAB" msprop:Generator_ColumnPropNameInRow="KODECAB" msprop:Generator_ColumnPropNameInTable="KODECABColumn" msprop:Generator_UserColumnName="KODECAB" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="20" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="NOTENO_INSC" msprop:Generator_ColumnVarNameInTable="columnNOTENO_INSC" msprop:Generator_ColumnPropNameInRow="NOTENO_INSC" msprop:Generator_ColumnPropNameInTable="NOTENO_INSCColumn" msprop:Generator_UserColumnName="NOTENO_INSC">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="100" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="INSURANCE" msprop:Generator_ColumnVarNameInTable="columnINSURANCE" msprop:Generator_ColumnPropNameInRow="INSURANCE" msprop:Generator_ColumnPropNameInTable="INSURANCEColumn" msprop:Generator_UserColumnName="INSURANCE" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="500" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="MTU_INSC" msprop:Generator_ColumnVarNameInTable="columnMTU_INSC" msprop:Generator_ColumnPropNameInRow="MTU_INSC" msprop:Generator_ColumnPropNameInTable="MTU_INSCColumn" msprop:Generator_UserColumnName="MTU_INSC" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="3" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="INS_PAYMENT" msprop:Generator_ColumnVarNameInTable="columnINS_PAYMENT" msprop:Generator_ColumnPropNameInRow="INS_PAYMENT" msprop:Generator_ColumnPropNameInTable="INS_PAYMENTColumn" msprop:Generator_UserColumnName="INS_PAYMENT" type="xs:decimal" minOccurs="0" />
+              <xs:element name="INS_PAYMENT_STAT" msprop:Generator_ColumnVarNameInTable="columnINS_PAYMENT_STAT" msprop:Generator_ColumnPropNameInRow="INS_PAYMENT_STAT" msprop:Generator_ColumnPropNameInTable="INS_PAYMENT_STATColumn" msprop:Generator_UserColumnName="INS_PAYMENT_STAT" type="xs:boolean" minOccurs="0" />
+              <xs:element name="POLICY_NO" msprop:Generator_ColumnVarNameInTable="columnPOLICY_NO" msprop:Generator_ColumnPropNameInRow="POLICY_NO" msprop:Generator_ColumnPropNameInTable="POLICY_NOColumn" msprop:Generator_UserColumnName="POLICY_NO" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="5000" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="PIC_MKT" msprop:Generator_ColumnVarNameInTable="columnPIC_MKT" msprop:Generator_ColumnPropNameInRow="PIC_MKT" msprop:Generator_ColumnPropNameInTable="PIC_MKTColumn" msprop:Generator_UserColumnName="PIC_MKT" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="5000" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="CUSTOMER" msprop:Generator_ColumnVarNameInTable="columnCUSTOMER" msprop:Generator_ColumnPropNameInRow="CUSTOMER" msprop:Generator_ColumnPropNameInTable="CUSTOMERColumn" msprop:Generator_UserColumnName="CUSTOMER" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="500" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="BRECEIPT_NO" msprop:Generator_ColumnVarNameInTable="columnBRECEIPT_NO" msprop:Generator_ColumnPropNameInRow="BRECEIPT_NO" msprop:Generator_ColumnPropNameInTable="BRECEIPT_NOColumn" msprop:Generator_UserColumnName="BRECEIPT_NO" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="100" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="CUST_PAYMENT" msprop:Generator_ColumnVarNameInTable="columnCUST_PAYMENT" msprop:Generator_ColumnPropNameInRow="CUST_PAYMENT" msprop:Generator_ColumnPropNameInTable="CUST_PAYMENTColumn" msprop:Generator_UserColumnName="CUST_PAYMENT" type="xs:decimal" minOccurs="0" />
+              <xs:element name="NPAYMENT" msprop:Generator_ColumnVarNameInTable="columnNPAYMENT" msprop:Generator_ColumnPropNameInRow="NPAYMENT" msprop:Generator_ColumnPropNameInTable="NPAYMENTColumn" msprop:Generator_UserColumnName="NPAYMENT" type="xs:int" />
+              <xs:element name="PARTIALPREMIUM" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columnPARTIALPREMIUM" msprop:Generator_ColumnPropNameInRow="PARTIALPREMIUM" msprop:Generator_ColumnPropNameInTable="PARTIALPREMIUMColumn" msprop:Generator_UserColumnName="PARTIALPREMIUM" type="xs:decimal" minOccurs="0" />
+              <xs:element name="RATE" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columnRATE" msprop:Generator_ColumnPropNameInRow="RATE" msprop:Generator_ColumnPropNameInTable="RATEColumn" msprop:Generator_UserColumnName="RATE" type="xs:decimal" minOccurs="0" />
+              <xs:element name="CUSTNO" msprop:Generator_ColumnVarNameInTable="columnCUSTNO" msprop:Generator_ColumnPropNameInRow="CUSTNO" msprop:Generator_ColumnPropNameInTable="CUSTNOColumn" msprop:Generator_UserColumnName="CUSTNO" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="20" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="NPAYMENT1" msprop:Generator_ColumnVarNameInTable="columnNPAYMENT1" msprop:Generator_ColumnPropNameInRow="NPAYMENT1" msprop:Generator_ColumnPropNameInTable="NPAYMENT1Column" msprop:Generator_UserColumnName="NPAYMENT1" type="xs:int" />
+              <xs:element name="RECEIPTDATE" msprop:Generator_ColumnVarNameInTable="columnRECEIPTDATE" msprop:Generator_ColumnPropNameInRow="RECEIPTDATE" msprop:Generator_ColumnPropNameInTable="RECEIPTDATEColumn" msprop:Generator_UserColumnName="RECEIPTDATE" type="xs:dateTime" minOccurs="0" />
+              <xs:element name="PROFILE_NO" msprop:Generator_ColumnVarNameInTable="columnPROFILE_NO" msprop:Generator_ColumnPropNameInRow="PROFILE_NO" msprop:Generator_ColumnPropNameInTable="PROFILE_NOColumn" msprop:Generator_UserColumnName="PROFILE_NO" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="20" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="FAPARTIAL" msprop:Generator_TableClassName="FAPARTIALDataTable" msprop:Generator_TableVarName="tableFAPARTIAL" msprop:Generator_RowChangedName="FAPARTIALRowChanged" msprop:Generator_TablePropName="FAPARTIAL" msprop:Generator_RowDeletingName="FAPARTIALRowDeleting" msprop:Generator_RowChangingName="FAPARTIALRowChanging" msprop:Generator_RowEvHandlerName="FAPARTIALRowChangeEventHandler" msprop:Generator_RowDeletedName="FAPARTIALRowDeleted" msprop:Generator_RowClassName="FAPARTIALRow" msprop:Generator_UserTableName="FAPARTIAL" msprop:Generator_RowEvArgName="FAPARTIALRowChangeEvent">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="NOTENO_CUST" msprop:Generator_ColumnVarNameInTable="columnNOTENO_CUST" msprop:Generator_ColumnPropNameInRow="NOTENO_CUST" msprop:Generator_ColumnPropNameInTable="NOTENO_CUSTColumn" msprop:Generator_UserColumnName="NOTENO_CUST">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="100" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="TOTALPARTIALRATE" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columnTOTALPARTIALRATE" msprop:Generator_ColumnPropNameInRow="TOTALPARTIALRATE" msprop:Generator_ColumnPropNameInTable="TOTALPARTIALRATEColumn" msprop:Generator_UserColumnName="TOTALPARTIALRATE" type="xs:decimal" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

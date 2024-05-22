@@ -1,0 +1,654 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="DSJournalReport" targetNamespace="http://tempuri.org/DSJournalReport.xsd" xmlns:mstns="http://tempuri.org/DSJournalReport.xsd" xmlns="http://tempuri.org/DSJournalReport.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
+  <xs:annotation>
+    <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
+      <DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+        <Connections>
+          <Connection AppSettingsObjectName="Settings" AppSettingsPropertyName="FAConnectionString" ConnectionStringObject="" IsAppSettingsProperty="true" Modifier="Assembly" Name="FAConnectionString (Settings)" ParameterPrefix="@" PropertyReference="ApplicationSettings.TIB.DL.FA.Properties.Settings.GlobalReference.Default.FAConnectionString" Provider="System.Data.SqlClient" />
+        </Connections>
+        <Tables>
+          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="FAJOURNALSUMTableAdapter" GeneratorDataComponentClassName="FAJOURNALSUMTableAdapter" Name="FAJOURNALSUM" UserDataComponentName="FAJOURNALSUMTableAdapter">
+            <MainSource>
+              <DbSource ConnectionRef="FAConnectionString (Settings)" DbObjectType="Unknown" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="false" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="false" UserGetMethodName="GetData" UserSourceName="Fill">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="true">
+                    <CommandText>SELECT FAJOURNAL.COA, DATENAME(MONTH, FAJOURNAL.ADATE) AS BULAN, YEAR(FAJOURNAL.ADATE) AS TAHUN, FACOA.NAME AS NAMACOA, FAJOURNAL.MTU, SUM(FAJOURNAL.DEBIT) AS TOT_DEBIT, SUM(FAJOURNAL.DEBIT_OC) AS TOT_DEBITOC, SUM(FAJOURNAL.CREDIT) AS TOT_CREDIT, SUM(FAJOURNAL.CREDIT_OC) AS TOT_CREDITOC
+FROM   FAJOURNAL INNER JOIN
+FACOA ON FACOA.COA = FAJOURNAL.COA
+GROUP BY FAJOURNAL.COA, DATENAME(MONTH, FAJOURNAL.ADATE), YEAR(FAJOURNAL.ADATE), FACOA.NAME, FAJOURNAL.MTU</CommandText>
+                    <Parameters />
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+            </MainSource>
+            <Mappings>
+              <Mapping SourceColumn="COA" DataSetColumn="COA" />
+              <Mapping SourceColumn="BULAN" DataSetColumn="BULAN" />
+              <Mapping SourceColumn="TAHUN" DataSetColumn="TAHUN" />
+              <Mapping SourceColumn="NAMACOA" DataSetColumn="NAMACOA" />
+              <Mapping SourceColumn="MTU" DataSetColumn="MTU" />
+              <Mapping SourceColumn="TOT_DEBIT" DataSetColumn="TOT_DEBIT" />
+              <Mapping SourceColumn="TOT_DEBITOC" DataSetColumn="TOT_DEBITOC" />
+              <Mapping SourceColumn="TOT_CREDIT" DataSetColumn="TOT_CREDIT" />
+              <Mapping SourceColumn="TOT_CREDITOC" DataSetColumn="TOT_CREDITOC" />
+            </Mappings>
+            <Sources>
+              <DbSource ConnectionRef="FAConnectionString (Settings)" DbObjectType="Unknown" GenerateMethods="Get" GenerateShortCommands="true" GeneratorGetMethodName="GetDataByGLCOAandPeriod" GetMethodModifier="Public" GetMethodName="GetDataByGLCOAandPeriod" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetDataByGLCOAandPeriod" UserSourceName="GetDataByGLCOAandPeriod">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="true">
+                    <CommandText>SELECT FAJOURNAL.COA, DATENAME(MONTH, FAJOURNAL.ADATE) AS BULAN, MONTH(FAJOURNAL.ADATE) AS BLN, YEAR(FAJOURNAL.ADATE) AS TAHUN, FACOA.NAME AS NAMACOA, FAJOURNAL.MTU, SUM(FAJOURNAL.DEBIT) AS TOT_DEBIT, 
+             SUM(FAJOURNAL.DEBIT_OC) AS TOT_DEBITOC, SUM(FAJOURNAL.CREDIT) AS TOT_CREDIT, SUM(FAJOURNAL.CREDIT_OC) AS TOT_CREDITOC
+FROM   FAJOURNAL 
+INNER JOIN FACOA ON FACOA.COA = FAJOURNAL.COA
+WHERE (FAJOURNAL.ISPOSTING = 1) AND  (FAJOURNAL.COA = @COA)
+  AND (FAJOURNAL.ADATE BETWEEN @SDATE AND @EDATE)
+GROUP BY FAJOURNAL.COA, DATENAME(MONTH, FAJOURNAL.ADATE), 
+MONTH(FAJOURNAL.ADATE), YEAR(FAJOURNAL.ADATE), FACOA.NAME, FAJOURNAL.MTU
+ORDER BY TAHUN, BLN
+</CommandText>
+                    <Parameters>
+                      <Parameter AllowDbNull="false" AutogeneratedName="COA" ColumnName="COA" DataSourceName="TALYS.dbo.FAJOURNAL" DataTypeServer="varchar(8)" DbType="AnsiString" Direction="Input" ParameterName="@COA" Precision="0" ProviderType="VarChar" Scale="0" Size="8" SourceColumn="COA" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="SDATE" ColumnName="ADATE" DataSourceName="TALYS.dbo.FAJOURNAL" DataTypeServer="datetime" DbType="DateTime" Direction="Input" ParameterName="@SDATE" Precision="0" ProviderType="DateTime" Scale="0" Size="8" SourceColumn="ADATE" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="EDATE" ColumnName="ADATE" DataSourceName="TALYS.dbo.FAJOURNAL" DataTypeServer="datetime" DbType="DateTime" Direction="Input" ParameterName="@EDATE" Precision="0" ProviderType="DateTime" Scale="0" Size="8" SourceColumn="ADATE" SourceColumnNullMapping="false" SourceVersion="Current" />
+                    </Parameters>
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+            </Sources>
+          </TableAdapter>
+          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="FAJOURNALGLTableAdapter" GeneratorDataComponentClassName="FAJOURNALGLTableAdapter" Name="FAJOURNALGL" UserDataComponentName="FAJOURNALGLTableAdapter">
+            <MainSource>
+              <DbSource ConnectionRef="FAConnectionString (Settings)" DbObjectType="Unknown" GenerateMethods="Get" GenerateShortCommands="false" GeneratorGetMethodName="GetDataCOAandPeriod" GetMethodModifier="Public" GetMethodName="GetDataCOAandPeriod" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="false" UserGetMethodName="GetDataCOAandPeriod" UserSourceName="GetDataCOAandPeriod">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="true">
+                    <CommandText>SELECT FAJOURNAL.COA, ISNULL(VO.VOUCHER, FAJOURNAL.VOUCHER) AS VOUCHER, FAJOURNAL.MTU, FAJOURNAL.DEBIT_OC, FAJOURNAL.CREDIT_OC, FAJOURNAL.KURS, FAJOURNAL.DEBIT, FAJOURNAL.DESCRIPTION, FAJOURNAL.CREDIT, FAJOURNAL.SECDATE, FAJOURNAL.SECUSER, VO.ISPOSTING, 
+             VO.POSTUSER, VO.POSTDATE, FAJOURNAL.ADATE
+FROM   FAJOURNAL  
+LEFT OUTER JOIN FAVOUCHER VO ON FAJOURNAL.VOUCHER = VO.VOUCHER
+WHERE (FAJOURNAL.ISPOSTING = 1) AND (FAJOURNAL.COA = @COA) AND (FAJOURNAL.ADATE BETWEEN @SDATE AND @EDATE) 
+AND (FAJOURNAL.MTU = @MTU) AND (MONTH(FAJOURNAL.ADATE) = @MONTH) AND (YEAR(FAJOURNAL.ADATE) = @YEAR)
+ORDER BY FAJOURNAL.ADATE ASC, FAJOURNAL.VOUCHER ASC</CommandText>
+                    <Parameters>
+                      <Parameter AllowDbNull="false" AutogeneratedName="COA" ColumnName="COA" DataSourceName="TALYS.dbo.FAJOURNAL" DataTypeServer="varchar(8)" DbType="AnsiString" Direction="Input" ParameterName="@COA" Precision="0" ProviderType="VarChar" Scale="0" Size="8" SourceColumn="COA" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="SDATE" ColumnName="ADATE" DataSourceName="TALYS.dbo.FAJOURNAL" DataTypeServer="datetime" DbType="DateTime" Direction="Input" ParameterName="@SDATE" Precision="0" ProviderType="DateTime" Scale="0" Size="8" SourceColumn="ADATE" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="EDATE" ColumnName="ADATE" DataSourceName="TALYS.dbo.FAJOURNAL" DataTypeServer="datetime" DbType="DateTime" Direction="Input" ParameterName="@EDATE" Precision="0" ProviderType="DateTime" Scale="0" Size="8" SourceColumn="ADATE" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="MTU" ColumnName="MTU" DataSourceName="TALYS.dbo.FAJOURNAL" DataTypeServer="varchar(3)" DbType="AnsiString" Direction="Input" ParameterName="@MTU" Precision="0" ProviderType="VarChar" Scale="0" Size="3" SourceColumn="MTU" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="false" AutogeneratedName="MONTH" ColumnName="" DataSourceName="" DataTypeServer="unknown" DbType="Decimal" Direction="Input" ParameterName="@MONTH" Precision="0" Scale="0" Size="0" SourceColumn="" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="false" AutogeneratedName="YEAR" ColumnName="" DataSourceName="" DataTypeServer="unknown" DbType="Decimal" Direction="Input" ParameterName="@YEAR" Precision="0" Scale="0" Size="0" SourceColumn="" SourceColumnNullMapping="false" SourceVersion="Current" />
+                    </Parameters>
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+            </MainSource>
+            <Mappings>
+              <Mapping SourceColumn="COA" DataSetColumn="COA" />
+              <Mapping SourceColumn="VOUCHER" DataSetColumn="VOUCHER" />
+              <Mapping SourceColumn="MTU" DataSetColumn="MTU" />
+              <Mapping SourceColumn="DEBIT_OC" DataSetColumn="DEBIT_OC" />
+              <Mapping SourceColumn="CREDIT_OC" DataSetColumn="CREDIT_OC" />
+              <Mapping SourceColumn="KURS" DataSetColumn="KURS" />
+              <Mapping SourceColumn="DEBIT" DataSetColumn="DEBIT" />
+              <Mapping SourceColumn="DESCRIPTION" DataSetColumn="DESCRIPTION" />
+              <Mapping SourceColumn="CREDIT" DataSetColumn="CREDIT" />
+              <Mapping SourceColumn="SECDATE" DataSetColumn="SECDATE" />
+              <Mapping SourceColumn="SECUSER" DataSetColumn="SECUSER" />
+              <Mapping SourceColumn="ISPOSTING" DataSetColumn="ISPOSTING" />
+              <Mapping SourceColumn="POSTUSER" DataSetColumn="POSTUSER" />
+              <Mapping SourceColumn="POSTDATE" DataSetColumn="POSTDATE" />
+              <Mapping SourceColumn="ADATE" DataSetColumn="ADATE" />
+              <Mapping SourceColumn="VOUCHERPAYMENT" DataSetColumn="VOUCHERPAYMENT" />
+            </Mappings>
+            <Sources>
+              <DbSource ConnectionRef="FAConnectionString (Settings)" DbObjectType="Unknown" GenerateMethods="Get" GenerateShortCommands="true" GeneratorGetMethodName="GetDataByCoaPeriod" GetMethodModifier="Public" GetMethodName="GetDataByCoaPeriod" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetDataByCoaPeriod" UserSourceName="GetDataByCoaPeriod">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="true">
+                    <CommandText>SELECT FAJOURNAL.COA, ISNULL(VO.VOUCHER, FAJOURNAL.VOUCHER) AS VOUCHER, FAJOURNAL.MTU, FAJOURNAL.DEBIT_OC, FAJOURNAL.CREDIT_OC, FAJOURNAL.KURS, FAJOURNAL.DEBIT, FAJOURNAL.DESCRIPTION, FAJOURNAL.CREDIT, FAJOURNAL.SECDATE, FAJOURNAL.SECUSER, VO.ISPOSTING, 
+             VO.POSTUSER, VO.POSTDATE, FAJOURNAL.ADATE, PY.INVOICE AS VOUCHERPAYMENT
+FROM   FAJOURNAL  
+LEFT OUTER JOIN FAVOUCHER VO ON FAJOURNAL.VOUCHER = VO.VOUCHER
+LEFT OUTER JOIN FAPAYMENTDSUMV PY ON PY.VOUCHER = ISNULL(VO.VOUCHER, FAJOURNAL.VOUCHER)
+WHERE (FAJOURNAL.ISPOSTING = 1) AND (FAJOURNAL.COA = @COA) AND (FAJOURNAL.ADATE BETWEEN @SDATE AND @EDATE) 
+ORDER BY FAJOURNAL.ADATE ASC, FAJOURNAL.VOUCHER ASC</CommandText>
+                    <Parameters>
+                      <Parameter AllowDbNull="false" AutogeneratedName="COA" ColumnName="COA" DataSourceName="TALYS.dbo.FAJOURNAL" DataTypeServer="varchar(8)" DbType="AnsiString" Direction="Input" ParameterName="@COA" Precision="0" ProviderType="VarChar" Scale="0" Size="8" SourceColumn="COA" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="SDATE" ColumnName="ADATE" DataSourceName="TALYS.dbo.FAJOURNAL" DataTypeServer="datetime" DbType="DateTime" Direction="Input" ParameterName="@SDATE" Precision="0" ProviderType="DateTime" Scale="0" Size="8" SourceColumn="ADATE" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="EDATE" ColumnName="ADATE" DataSourceName="TALYS.dbo.FAJOURNAL" DataTypeServer="datetime" DbType="DateTime" Direction="Input" ParameterName="@EDATE" Precision="0" ProviderType="DateTime" Scale="0" Size="8" SourceColumn="ADATE" SourceColumnNullMapping="false" SourceVersion="Current" />
+                    </Parameters>
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+              <DbSource ConnectionRef="FAConnectionString (Settings)" DbObjectType="Unknown" GenerateShortCommands="true" GeneratorSourceName="GetSumCreditOC" Modifier="Public" Name="GetSumCreditOC" QueryType="Scalar" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetDataBy" UserSourceName="GetSumCreditOC">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="true">
+                    <CommandText>SELECT SUM(FAJOURNAL.CREDIT_OC)
+FROM   FAJOURNAL  
+LEFT OUTER JOIN FAVOUCHER VO ON FAJOURNAL.VOUCHER = VO.VOUCHER
+WHERE (FAJOURNAL.ISPOSTING = 1) AND (FAJOURNAL.COA = @COA) AND (FAJOURNAL.ADATE BETWEEN @SDATE AND @EDATE) AND (FAJOURNAL.MTU = @MTU) AND (MONTH(FAJOURNAL.ADATE) = @MONTH) AND (YEAR(FAJOURNAL.ADATE) = @YEAR)</CommandText>
+                    <Parameters>
+                      <Parameter AllowDbNull="false" AutogeneratedName="COA" ColumnName="COA" DataSourceName="TALYS.dbo.FAJOURNAL" DataTypeServer="varchar(8)" DbType="AnsiString" Direction="Input" ParameterName="@COA" Precision="0" ProviderType="VarChar" Scale="0" Size="8" SourceColumn="COA" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="SDATE" ColumnName="ADATE" DataSourceName="TALYS.dbo.FAJOURNAL" DataTypeServer="datetime" DbType="DateTime" Direction="Input" ParameterName="@SDATE" Precision="0" ProviderType="DateTime" Scale="0" Size="8" SourceColumn="ADATE" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="EDATE" ColumnName="ADATE" DataSourceName="TALYS.dbo.FAJOURNAL" DataTypeServer="datetime" DbType="DateTime" Direction="Input" ParameterName="@EDATE" Precision="0" ProviderType="DateTime" Scale="0" Size="8" SourceColumn="ADATE" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="MTU" ColumnName="MTU" DataSourceName="TALYS.dbo.FAJOURNAL" DataTypeServer="varchar(3)" DbType="AnsiString" Direction="Input" ParameterName="@MTU" Precision="0" ProviderType="VarChar" Scale="0" Size="3" SourceColumn="MTU" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="false" AutogeneratedName="MONTH" ColumnName="" DataSourceName="" DataTypeServer="unknown" DbType="Decimal" Direction="Input" ParameterName="@MONTH" Precision="0" Scale="0" Size="0" SourceColumn="" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="false" AutogeneratedName="YEAR" ColumnName="" DataSourceName="" DataTypeServer="unknown" DbType="Decimal" Direction="Input" ParameterName="@YEAR" Precision="0" Scale="0" Size="0" SourceColumn="" SourceColumnNullMapping="false" SourceVersion="Current" />
+                    </Parameters>
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+              <DbSource ConnectionRef="FAConnectionString (Settings)" DbObjectType="Unknown" GenerateShortCommands="true" GeneratorSourceName="GetSumCreditOC2" Modifier="Public" Name="GetSumCreditOC2" QueryType="Scalar" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetDataBy1" UserSourceName="GetSumCreditOC2">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="true">
+                    <CommandText>SELECT SUM(FAJOURNAL.CREDIT_OC)
+FROM   FAJOURNAL  
+LEFT OUTER JOIN FAVOUCHER VO ON FAJOURNAL.VOUCHER = VO.VOUCHER
+WHERE (FAJOURNAL.ISPOSTING = 1) AND (FAJOURNAL.COA = @COA) AND (FAJOURNAL.ADATE BETWEEN @SDATE AND @EDATE) AND (FAJOURNAL.MTU = @MTU)</CommandText>
+                    <Parameters>
+                      <Parameter AllowDbNull="false" AutogeneratedName="COA" ColumnName="COA" DataSourceName="TALYS.dbo.FAJOURNAL" DataTypeServer="varchar(8)" DbType="AnsiString" Direction="Input" ParameterName="@COA" Precision="0" ProviderType="VarChar" Scale="0" Size="8" SourceColumn="COA" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="SDATE" ColumnName="ADATE" DataSourceName="TALYS.dbo.FAJOURNAL" DataTypeServer="datetime" DbType="DateTime" Direction="Input" ParameterName="@SDATE" Precision="0" ProviderType="DateTime" Scale="0" Size="8" SourceColumn="ADATE" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="EDATE" ColumnName="ADATE" DataSourceName="TALYS.dbo.FAJOURNAL" DataTypeServer="datetime" DbType="DateTime" Direction="Input" ParameterName="@EDATE" Precision="0" ProviderType="DateTime" Scale="0" Size="8" SourceColumn="ADATE" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="MTU" ColumnName="MTU" DataSourceName="TALYS.dbo.FAJOURNAL" DataTypeServer="varchar(3)" DbType="AnsiString" Direction="Input" ParameterName="@MTU" Precision="0" ProviderType="VarChar" Scale="0" Size="3" SourceColumn="MTU" SourceColumnNullMapping="false" SourceVersion="Current" />
+                    </Parameters>
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+              <DbSource ConnectionRef="FAConnectionString (Settings)" DbObjectType="Unknown" GenerateShortCommands="true" GeneratorSourceName="GetSumCreditOC2BC" Modifier="Public" Name="GetSumCreditOC2BC" QueryType="Scalar" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetDataBy2" UserSourceName="GetSumCreditOC2BC">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="true">
+                    <CommandText>SELECT SUM(FAJOURNAL.CREDIT)
+FROM   FAJOURNAL  
+LEFT OUTER JOIN FAVOUCHER VO ON FAJOURNAL.VOUCHER = VO.VOUCHER
+WHERE (FAJOURNAL.ISPOSTING = 1) AND (FAJOURNAL.COA = @COA) AND (FAJOURNAL.ADATE BETWEEN @SDATE AND @EDATE)</CommandText>
+                    <Parameters>
+                      <Parameter AllowDbNull="false" AutogeneratedName="COA" ColumnName="COA" DataSourceName="TALYS.dbo.FAJOURNAL" DataTypeServer="varchar(8)" DbType="AnsiString" Direction="Input" ParameterName="@COA" Precision="0" ProviderType="VarChar" Scale="0" Size="8" SourceColumn="COA" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="SDATE" ColumnName="ADATE" DataSourceName="TALYS.dbo.FAJOURNAL" DataTypeServer="datetime" DbType="DateTime" Direction="Input" ParameterName="@SDATE" Precision="0" ProviderType="DateTime" Scale="0" Size="8" SourceColumn="ADATE" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="EDATE" ColumnName="ADATE" DataSourceName="TALYS.dbo.FAJOURNAL" DataTypeServer="datetime" DbType="DateTime" Direction="Input" ParameterName="@EDATE" Precision="0" ProviderType="DateTime" Scale="0" Size="8" SourceColumn="ADATE" SourceColumnNullMapping="false" SourceVersion="Current" />
+                    </Parameters>
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+              <DbSource ConnectionRef="FAConnectionString (Settings)" DbObjectType="Unknown" GenerateShortCommands="true" GeneratorSourceName="GetSumDebitOC" Modifier="Public" Name="GetSumDebitOC" QueryType="Scalar" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetDataBy3" UserSourceName="GetSumDebitOC">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="true">
+                    <CommandText>SELECT SUM(FAJOURNAL.DEBIT_OC)
+FROM   FAJOURNAL  
+LEFT OUTER JOIN FAVOUCHER VO ON FAJOURNAL.VOUCHER = VO.VOUCHER
+WHERE (FAJOURNAL.ISPOSTING = 1) AND (FAJOURNAL.COA = @COA) AND (FAJOURNAL.ADATE BETWEEN @SDATE AND @EDATE) AND (FAJOURNAL.MTU = @MTU) AND (MONTH(FAJOURNAL.ADATE) = @MONTH) AND (YEAR(FAJOURNAL.ADATE) = @YEAR)</CommandText>
+                    <Parameters>
+                      <Parameter AllowDbNull="false" AutogeneratedName="COA" ColumnName="COA" DataSourceName="TALYS.dbo.FAJOURNAL" DataTypeServer="varchar(8)" DbType="AnsiString" Direction="Input" ParameterName="@COA" Precision="0" ProviderType="VarChar" Scale="0" Size="8" SourceColumn="COA" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="SDATE" ColumnName="ADATE" DataSourceName="TALYS.dbo.FAJOURNAL" DataTypeServer="datetime" DbType="DateTime" Direction="Input" ParameterName="@SDATE" Precision="0" ProviderType="DateTime" Scale="0" Size="8" SourceColumn="ADATE" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="EDATE" ColumnName="ADATE" DataSourceName="TALYS.dbo.FAJOURNAL" DataTypeServer="datetime" DbType="DateTime" Direction="Input" ParameterName="@EDATE" Precision="0" ProviderType="DateTime" Scale="0" Size="8" SourceColumn="ADATE" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="MTU" ColumnName="MTU" DataSourceName="TALYS.dbo.FAJOURNAL" DataTypeServer="varchar(3)" DbType="AnsiString" Direction="Input" ParameterName="@MTU" Precision="0" ProviderType="VarChar" Scale="0" Size="3" SourceColumn="MTU" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="false" AutogeneratedName="MONTH" ColumnName="" DataSourceName="" DataTypeServer="unknown" DbType="Decimal" Direction="Input" ParameterName="@MONTH" Precision="0" Scale="0" Size="0" SourceColumn="" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="false" AutogeneratedName="YEAR" ColumnName="" DataSourceName="" DataTypeServer="unknown" DbType="Decimal" Direction="Input" ParameterName="@YEAR" Precision="0" Scale="0" Size="0" SourceColumn="" SourceColumnNullMapping="false" SourceVersion="Current" />
+                    </Parameters>
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+              <DbSource ConnectionRef="FAConnectionString (Settings)" DbObjectType="Unknown" GenerateShortCommands="true" GeneratorSourceName="GetSumDebitOC2" Modifier="Public" Name="GetSumDebitOC2" QueryType="Scalar" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetDataBy4" UserSourceName="GetSumDebitOC2">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="true">
+                    <CommandText>SELECT SUM(FAJOURNAL.DEBIT_OC)
+FROM   FAJOURNAL  
+LEFT OUTER JOIN FAVOUCHER VO ON FAJOURNAL.VOUCHER = VO.VOUCHER
+WHERE (FAJOURNAL.ISPOSTING = 1) AND (FAJOURNAL.COA = @COA) AND (FAJOURNAL.ADATE BETWEEN @SDATE AND @EDATE) AND (FAJOURNAL.MTU = @MTU) </CommandText>
+                    <Parameters>
+                      <Parameter AllowDbNull="false" AutogeneratedName="COA" ColumnName="COA" DataSourceName="TALYS.dbo.FAJOURNAL" DataTypeServer="varchar(8)" DbType="AnsiString" Direction="Input" ParameterName="@COA" Precision="0" ProviderType="VarChar" Scale="0" Size="8" SourceColumn="COA" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="SDATE" ColumnName="ADATE" DataSourceName="TALYS.dbo.FAJOURNAL" DataTypeServer="datetime" DbType="DateTime" Direction="Input" ParameterName="@SDATE" Precision="0" ProviderType="DateTime" Scale="0" Size="8" SourceColumn="ADATE" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="EDATE" ColumnName="ADATE" DataSourceName="TALYS.dbo.FAJOURNAL" DataTypeServer="datetime" DbType="DateTime" Direction="Input" ParameterName="@EDATE" Precision="0" ProviderType="DateTime" Scale="0" Size="8" SourceColumn="ADATE" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="MTU" ColumnName="MTU" DataSourceName="TALYS.dbo.FAJOURNAL" DataTypeServer="varchar(3)" DbType="AnsiString" Direction="Input" ParameterName="@MTU" Precision="0" ProviderType="VarChar" Scale="0" Size="3" SourceColumn="MTU" SourceColumnNullMapping="false" SourceVersion="Current" />
+                    </Parameters>
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+              <DbSource ConnectionRef="FAConnectionString (Settings)" DbObjectType="Unknown" GenerateShortCommands="true" GeneratorSourceName="GetSumDebitOC2BC" Modifier="Public" Name="GetSumDebitOC2BC" QueryType="Scalar" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetDataBy5" UserSourceName="GetSumDebitOC2BC">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="true">
+                    <CommandText>SELECT SUM(FAJOURNAL.DEBIT)
+FROM   FAJOURNAL  
+LEFT OUTER JOIN FAVOUCHER VO ON FAJOURNAL.VOUCHER = VO.VOUCHER
+WHERE (FAJOURNAL.ISPOSTING = 1) AND (FAJOURNAL.COA = @COA) AND (FAJOURNAL.ADATE BETWEEN @SDATE AND @EDATE) </CommandText>
+                    <Parameters>
+                      <Parameter AllowDbNull="false" AutogeneratedName="COA" ColumnName="COA" DataSourceName="TALYS.dbo.FAJOURNAL" DataTypeServer="varchar(8)" DbType="AnsiString" Direction="Input" ParameterName="@COA" Precision="0" ProviderType="VarChar" Scale="0" Size="8" SourceColumn="COA" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="SDATE" ColumnName="ADATE" DataSourceName="TALYS.dbo.FAJOURNAL" DataTypeServer="datetime" DbType="DateTime" Direction="Input" ParameterName="@SDATE" Precision="0" ProviderType="DateTime" Scale="0" Size="8" SourceColumn="ADATE" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="EDATE" ColumnName="ADATE" DataSourceName="TALYS.dbo.FAJOURNAL" DataTypeServer="datetime" DbType="DateTime" Direction="Input" ParameterName="@EDATE" Precision="0" ProviderType="DateTime" Scale="0" Size="8" SourceColumn="ADATE" SourceColumnNullMapping="false" SourceVersion="Current" />
+                    </Parameters>
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+            </Sources>
+          </TableAdapter>
+          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="FATBTableAdapter" GeneratorDataComponentClassName="FATBTableAdapter" Name="FATB" UserDataComponentName="FATBTableAdapter">
+            <MainSource>
+              <DbSource ConnectionRef="FAConnectionString (Settings)" DbObjectType="Unknown" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="false" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="false" UserGetMethodName="GetData" UserSourceName="Fill">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="true">
+                    <CommandText>SELECT FACOA.COA, YEAR(FJ1.ADATE) AS TAHUN, FJ1.MTU, 
+ SUM(FJ1.DEBIT_OC) AS TOT_DEBITOC, SUM(FJ1.CREDIT_OC) AS TOT_CREDITOC, 
+ (SUM(FJ1.DEBIT_OC) - SUM(FJ1.CREDIT_OC)) AS TOT_BLCOC,
+ FJ2.TOTDEBITYTD, FJ2.TOTCREDITYTD, FJ2.TOTBALANCEYTD
+FROM FACOA    
+LEFT OUTER JOIN FAJOURNAL FJ1 ON FACOA.COA = FJ1.COA
+LEFT OUTER JOIN
+(
+  SELECT FAJOURNAL.COA, YEAR(FAJOURNAL.ADATE) AS YTD, 
+  FAJOURNAL.MTU, SUM(FAJOURNAL.DEBIT_OC) AS TOTDEBITYTD, 
+  SUM(FAJOURNAL.CREDIT_OC) AS TOTCREDITYTD, (SUM(FAJOURNAL.DEBIT_OC) - SUM(FAJOURNAL.CREDIT_OC)) AS TOTBALANCEYTD
+  FROM FAJOURNAL
+  GROUP BY FAJOURNAL.COA, YEAR(FAJOURNAL.ADATE), FAJOURNAL.MTU
+  )AS FJ2 ON FJ1.COA = FJ2.COA AND FJ1.MTU = FJ2.MTU AND YEAR(FJ1.ADATE) = FJ2.YTD
+GROUP BY FACOA.COA, YEAR(FJ1.ADATE), FJ1.MTU,  FJ2.TOTDEBITYTD, FJ2.TOTCREDITYTD, FJ2.TOTBALANCEYTD
+ORDER BY FACOA.COA</CommandText>
+                    <Parameters />
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+            </MainSource>
+            <Mappings>
+              <Mapping SourceColumn="COA" DataSetColumn="COA" />
+              <Mapping SourceColumn="TAHUN" DataSetColumn="TAHUN" />
+              <Mapping SourceColumn="MTU" DataSetColumn="MTU" />
+              <Mapping SourceColumn="TOT_DEBITOC" DataSetColumn="TOT_DEBITOC" />
+              <Mapping SourceColumn="TOT_CREDITOC" DataSetColumn="TOT_CREDITOC" />
+              <Mapping SourceColumn="TOT_BLCOC" DataSetColumn="TOT_BLCOC" />
+              <Mapping SourceColumn="TOTDEBITYTD" DataSetColumn="TOTDEBITYTD" />
+              <Mapping SourceColumn="TOTCREDITYTD" DataSetColumn="TOTCREDITYTD" />
+              <Mapping SourceColumn="TOTBALANCEYTD" DataSetColumn="TOTBALANCEYTD" />
+            </Mappings>
+            <Sources>
+              <DbSource ConnectionRef="FAConnectionString (Settings)" DbObjectType="Unknown" GenerateMethods="Get" GenerateShortCommands="true" GeneratorGetMethodName="GetDataByTBByPeriode" GetMethodModifier="Public" GetMethodName="GetDataByTBByPeriode" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetDataByTBByPeriode" UserSourceName="GetDataByTBByPeriode">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="true">
+                    <CommandText>SELECT FACOA.COA, YEAR(FJ1.ADATE) AS TAHUN, FJ1.MTU, 
+ SUM(FJ1.DEBIT_OC) AS TOT_DEBITOC, SUM(FJ1.CREDIT_OC) AS TOT_CREDITOC, 
+ (SUM(FJ1.DEBIT_OC) - SUM(FJ1.CREDIT_OC)) AS TOT_BLCOC,
+ FJ2.TOTDEBITYTD, FJ2.TOTCREDITYTD, FJ2.TOTBALANCEYTD
+FROM FACOA    
+LEFT OUTER JOIN FAJOURNAL FJ1 ON FACOA.COA = FJ1.COA AND (FJ1.ISPOSTING = 1) AND (FJ1.ADATE BETWEEN @SDATE AND @EDATE)
+LEFT OUTER JOIN
+(
+  SELECT COA, YEAR(ADATE) AS YTD,  MTU, SUM(DEBIT_OC) AS TOTDEBITYTD, 
+  SUM(CREDIT_OC) AS TOTCREDITYTD, (SUM(DEBIT_OC) - SUM(CREDIT_OC)) AS TOTBALANCEYTD
+  FROM FAJOURNAL
+  WHERE (ISPOSTING = 1) AND (ADATE BETWEEN @SDATEY AND @EDATEY)
+  GROUP BY COA, YEAR(ADATE), MTU
+  ) AS FJ2 ON FJ1.COA = FJ2.COA AND FJ1.MTU = FJ2.MTU
+WHERE (FACOA.POSTF=1)
+GROUP BY FACOA.COA, YEAR(FJ1.ADATE), FJ1.MTU,  FJ2.TOTDEBITYTD, FJ2.TOTCREDITYTD, FJ2.TOTBALANCEYTD
+ORDER BY FACOA.COA, FJ1.MTU</CommandText>
+                    <Parameters>
+                      <Parameter AllowDbNull="true" AutogeneratedName="SDATE" ColumnName="ADATE" DataSourceName="TALYS.dbo.FAJOURNAL" DataTypeServer="datetime" DbType="DateTime" Direction="Input" ParameterName="@SDATE" Precision="0" ProviderType="DateTime" Scale="0" Size="8" SourceColumn="ADATE" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="EDATE" ColumnName="ADATE" DataSourceName="TALYS.dbo.FAJOURNAL" DataTypeServer="datetime" DbType="DateTime" Direction="Input" ParameterName="@EDATE" Precision="0" ProviderType="DateTime" Scale="0" Size="8" SourceColumn="ADATE" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="SDATEY" ColumnName="" DataSourceName="" DataTypeServer="datetime" DbType="DateTime" Direction="Input" ParameterName="@SDATEY" Precision="0" Scale="0" Size="8" SourceColumn="" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="EDATEY" ColumnName="" DataSourceName="" DataTypeServer="datetime" DbType="DateTime" Direction="Input" ParameterName="@EDATEY" Precision="0" Scale="0" Size="8" SourceColumn="" SourceColumnNullMapping="false" SourceVersion="Current" />
+                    </Parameters>
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+              <DbSource ConnectionRef="FAConnectionString (Settings)" DbObjectType="Unknown" GenerateMethods="Get" GenerateShortCommands="true" GeneratorGetMethodName="GetDataByTBByPeriodeIDR" GetMethodModifier="Public" GetMethodName="GetDataByTBByPeriodeIDR" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetDataByTBByPeriodeIDR" UserSourceName="GetDataByTBByPeriodeIDR">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="true">
+                    <CommandText>SELECT FACOA.COA, 'IDR' AS MTU, 
+ FJ1.TOT_DEBITOC, FJ1.TOT_CREDITOC, FJ1.TOT_DEBITOC - FJ1.TOT_CREDITOC AS TOT_BLCOC,
+ FJ2.TOTDEBITYTD, FJ2.TOTCREDITYTD, FJ2.TOTDEBITYTD - FJ2.TOTCREDITYTD AS TOTBALANCEYTD
+FROM FACOA    
+LEFT OUTER JOIN (
+  SELECT COA, SUM(DEBIT) AS TOT_DEBITOC, SUM(CREDIT) AS TOT_CREDITOC
+  FROM FAJOURNAL
+  WHERE (ISPOSTING = 1) AND (ADATE BETWEEN @SDATE AND @EDATE)
+  GROUP BY COA
+) AS FJ1 ON FACOA.COA = FJ1.COA
+LEFT OUTER JOIN (
+  SELECT COA, SUM(DEBIT) AS TOTDEBITYTD, SUM(CREDIT) AS TOTCREDITYTD
+  FROM FAJOURNAL
+  WHERE (ISPOSTING = 1) AND (ADATE BETWEEN @SDATEY AND @EDATEY)
+  GROUP BY COA
+) AS FJ2 ON FACOA.COA = FJ2.COA
+WHERE (FACOA.POSTF=1)
+ORDER BY FACOA.COA
+
+</CommandText>
+                    <Parameters>
+                      <Parameter AllowDbNull="true" AutogeneratedName="SDATE" ColumnName="" DataSourceName="" DataTypeServer="datetime" DbType="DateTime" Direction="Input" ParameterName="@SDATE" Precision="0" Scale="0" Size="8" SourceColumn="" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="EDATE" ColumnName="" DataSourceName="" DataTypeServer="datetime" DbType="DateTime" Direction="Input" ParameterName="@EDATE" Precision="0" Scale="0" Size="8" SourceColumn="" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="SDATEY" ColumnName="" DataSourceName="" DataTypeServer="datetime" DbType="DateTime" Direction="Input" ParameterName="@SDATEY" Precision="0" Scale="0" Size="8" SourceColumn="" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="EDATEY" ColumnName="" DataSourceName="" DataTypeServer="datetime" DbType="DateTime" Direction="Input" ParameterName="@EDATEY" Precision="0" Scale="0" Size="8" SourceColumn="" SourceColumnNullMapping="false" SourceVersion="Current" />
+                    </Parameters>
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+            </Sources>
+          </TableAdapter>
+          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="FATBSUMTableAdapter" GeneratorDataComponentClassName="FATBSUMTableAdapter" Name="FATBSUM" UserDataComponentName="FATBSUMTableAdapter">
+            <MainSource>
+              <DbSource ConnectionRef="FAConnectionString (Settings)" DbObjectName="SELECT YEAR(ADATE) AS YTD, SUM(DEBIT) AS TOTDEBITYTD, SUM(CREDIT) AS TOTCREDITYTD, (SUM(DEBIT) - SUM(CREDIT)) AS TOTBALANCEYTD FROM FAJOURNAL WHERE (ISPOSTING = 1) AND (ADATE BETWEEN @SDATEY AND @EDATEY) GROUP BY YEAR(ADATE)" DbObjectType="Unknown" GenerateMethods="Get" GenerateShortCommands="false" GeneratorGetMethodName="GetDataFATBSumOCByPeriode" GetMethodModifier="Public" GetMethodName="GetDataFATBSumOCByPeriode" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="false" UserGetMethodName="GetDataFATBSumOCByPeriode" UserSourceName="GetDataFATBSumOCByPeriode">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="true">
+                    <CommandText>
+SELECT YEAR(FJ1.ADATE) AS TAHUN, 
+ SUM(FJ1.DEBIT) AS TOT_DEBITOC, SUM(FJ1.CREDIT) AS TOT_CREDITOC, 
+ (SUM(FJ1.DEBIT) - SUM(FJ1.CREDIT)) AS TOT_BLCOC,
+ FJ2.TOTDEBITYTD, FJ2.TOTCREDITYTD, FJ2.TOTBALANCEYTD
+FROM FACOA    
+LEFT OUTER JOIN FAJOURNAL FJ1 ON FACOA.COA = FJ1.COA
+LEFT OUTER JOIN
+(
+  SELECT YEAR(ADATE) AS YTD, SUM(DEBIT) AS TOTDEBITYTD, 
+  SUM(CREDIT) AS TOTCREDITYTD, (SUM(DEBIT) - SUM(CREDIT)) AS TOTBALANCEYTD
+  FROM FAJOURNAL
+  WHERE (ISPOSTING = 1) AND (ADATE BETWEEN @SDATEY AND @EDATEY)
+  GROUP BY YEAR(ADATE)
+  ) AS FJ2 ON YEAR(FJ1.ADATE) = FJ2.YTD
+WHERE (FJ1.ISPOSTING = 1) AND (FJ1.ADATE BETWEEN @SDATE AND @EDATE)
+GROUP BY YEAR(FJ1.ADATE), FJ2.TOTDEBITYTD, FJ2.TOTCREDITYTD, FJ2.TOTBALANCEYTD</CommandText>
+                    <Parameters>
+                      <Parameter AllowDbNull="true" AutogeneratedName="SDATE" ColumnName="ADATE" DataSourceName="TALYS.dbo.FAJOURNAL" DataTypeServer="datetime" DbType="DateTime" Direction="Input" ParameterName="@SDATE" Precision="0" ProviderType="DateTime" Scale="0" Size="8" SourceColumn="ADATE" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="EDATE" ColumnName="ADATE" DataSourceName="TALYS.dbo.FAJOURNAL" DataTypeServer="datetime" DbType="DateTime" Direction="Input" ParameterName="@EDATE" Precision="0" ProviderType="DateTime" Scale="0" Size="8" SourceColumn="ADATE" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="SDATEY" ColumnName="" DataSourceName="" DataTypeServer="datetime" DbType="DateTime" Direction="Input" ParameterName="@SDATEY" Precision="0" Scale="0" Size="8" SourceColumn="" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="EDATEY" ColumnName="" DataSourceName="" DataTypeServer="datetime" DbType="DateTime" Direction="Input" ParameterName="@EDATEY" Precision="0" Scale="0" Size="8" SourceColumn="" SourceColumnNullMapping="false" SourceVersion="Current" />
+                    </Parameters>
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+            </MainSource>
+            <Mappings>
+              <Mapping SourceColumn="TAHUN" DataSetColumn="TAHUN" />
+              <Mapping SourceColumn="TOT_DEBITOC" DataSetColumn="TOT_DEBITOC" />
+              <Mapping SourceColumn="TOT_CREDITOC" DataSetColumn="TOT_CREDITOC" />
+              <Mapping SourceColumn="TOT_BLCOC" DataSetColumn="TOT_BLCOC" />
+              <Mapping SourceColumn="TOTDEBITYTD" DataSetColumn="TOTDEBITYTD" />
+              <Mapping SourceColumn="TOTCREDITYTD" DataSetColumn="TOTCREDITYTD" />
+              <Mapping SourceColumn="TOTBALANCEYTD" DataSetColumn="TOTBALANCEYTD" />
+            </Mappings>
+            <Sources />
+          </TableAdapter>
+          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="FATBGKTableAdapter" GeneratorDataComponentClassName="FATBGKTableAdapter" Name="FATBGK" UserDataComponentName="FATBGKTableAdapter">
+            <MainSource>
+              <DbSource ConnectionRef="FAConnectionString (Settings)" DbObjectType="Unknown" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="false" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="false" UserGetMethodName="GetData" UserSourceName="Fill">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="false">
+                    <CommandText>SELECT FACOA.COA, YEAR(FJ1.ADATE) AS TAHUN, FJ1.MTU, 
+ SUM(FJ1.DEBIT_OC) AS TOT_DEBITOC, SUM(FJ1.CREDIT_OC) AS TOT_CREDITOC, 
+ (SUM(FJ1.DEBIT_OC) - SUM(FJ1.CREDIT_OC)) AS TOT_BLCOC,
+ FJ2.TOTDEBITYTD, FJ2.TOTCREDITYTD, FJ2.TOTBALANCEYTD
+FROM FACOA    
+LEFT OUTER JOIN FAJOURNAL FJ1 ON FACOA.COA = FJ1.COA
+LEFT OUTER JOIN
+(
+  SELECT FAJOURNAL.COA, YEAR(FAJOURNAL.ADATE) AS YTD, 
+  FAJOURNAL.MTU, SUM(FAJOURNAL.DEBIT_OC) AS TOTDEBITYTD, 
+  SUM(FAJOURNAL.CREDIT_OC) AS TOTCREDITYTD, (SUM(FAJOURNAL.DEBIT_OC) - SUM(FAJOURNAL.CREDIT_OC)) AS TOTBALANCEYTD
+  FROM FAJOURNAL
+  GROUP BY FAJOURNAL.COA, YEAR(FAJOURNAL.ADATE), FAJOURNAL.MTU
+  )AS FJ2 ON FJ1.COA = FJ2.COA AND FJ1.MTU = FJ2.MTU AND YEAR(FJ1.ADATE) = FJ2.YTD
+GROUP BY FACOA.COA, YEAR(FJ1.ADATE), FJ1.MTU,  FJ2.TOTDEBITYTD, FJ2.TOTCREDITYTD, FJ2.TOTBALANCEYTD
+ORDER BY FACOA.COA</CommandText>
+                    <Parameters />
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+            </MainSource>
+            <Mappings>
+              <Mapping SourceColumn="COA" DataSetColumn="COA" />
+              <Mapping SourceColumn="TAHUN" DataSetColumn="TAHUN" />
+              <Mapping SourceColumn="MTU" DataSetColumn="MTU" />
+              <Mapping SourceColumn="TOT_DEBITOC" DataSetColumn="TOT_DEBITOC" />
+              <Mapping SourceColumn="TOT_CREDITOC" DataSetColumn="TOT_CREDITOC" />
+              <Mapping SourceColumn="TOT_BLCOC" DataSetColumn="TOT_BLCOC" />
+              <Mapping SourceColumn="TOTDEBITYTD" DataSetColumn="TOTDEBITYTD" />
+              <Mapping SourceColumn="TOTCREDITYTD" DataSetColumn="TOTCREDITYTD" />
+              <Mapping SourceColumn="TOTBALANCEYTD" DataSetColumn="TOTBALANCEYTD" />
+            </Mappings>
+            <Sources>
+              <DbSource ConnectionRef="FAConnectionString (Settings)" DbObjectType="Unknown" GenerateMethods="Get" GenerateShortCommands="true" GeneratorGetMethodName="GetDataByTBByPeriode" GetMethodModifier="Public" GetMethodName="GetDataByTBByPeriode" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetDataByTBByPeriode" UserSourceName="GetDataByTBByPeriode">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="false">
+                    <CommandText>SELECT FACOA.COA, YEAR(FJ1.ADATE) AS TAHUN, FJ1.MTU, 
+ SUM(FJ1.DEBIT_OC) AS TOT_DEBITOC, SUM(FJ1.CREDIT_OC) AS TOT_CREDITOC, 
+ (SUM(FJ1.DEBIT_OC) - SUM(FJ1.CREDIT_OC)) AS TOT_BLCOC,
+ FJ2.TOTDEBITYTD, FJ2.TOTCREDITYTD, FJ2.TOTBALANCEYTD
+FROM FACOA    
+LEFT OUTER JOIN FAJOURNAL FJ1 ON FACOA.COA = FJ1.COA AND (FJ1.ISPOSTING = 1) AND (FJ1.ADATE BETWEEN @SDATE AND @EDATE)
+LEFT OUTER JOIN
+(
+  SELECT COA, YEAR(ADATE) AS YTD,  MTU, SUM(DEBIT_OC) AS TOTDEBITYTD, 
+  SUM(CREDIT_OC) AS TOTCREDITYTD, (SUM(DEBIT_OC) - SUM(CREDIT_OC)) AS TOTBALANCEYTD
+  FROM FAJOURNAL
+  WHERE (ISPOSTING = 1) AND (ADATE BETWEEN @SDATEY AND @EDATEY)
+  GROUP BY COA, YEAR(ADATE), MTU
+  ) AS FJ2 ON FJ1.COA = FJ2.COA AND FJ1.MTU = FJ2.MTU
+WHERE (FACOA.POSTF=1)
+GROUP BY FACOA.COA, YEAR(FJ1.ADATE), FJ1.MTU,  FJ2.TOTDEBITYTD, FJ2.TOTCREDITYTD, FJ2.TOTBALANCEYTD
+ORDER BY FACOA.COA, FJ1.MTU</CommandText>
+                    <Parameters>
+                      <Parameter AllowDbNull="true" AutogeneratedName="SDATE" ColumnName="ADATE" DataSourceName="" DataTypeServer="datetime" DbType="DateTime" Direction="Input" ParameterName="@SDATE" Precision="0" ProviderType="DateTime" Scale="0" Size="8" SourceColumn="ADATE" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="EDATE" ColumnName="ADATE" DataSourceName="" DataTypeServer="datetime" DbType="DateTime" Direction="Input" ParameterName="@EDATE" Precision="0" ProviderType="DateTime" Scale="0" Size="8" SourceColumn="ADATE" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="SDATEY" ColumnName="" DataSourceName="" DataTypeServer="datetime" DbType="DateTime" Direction="Input" ParameterName="@SDATEY" Precision="0" Scale="0" Size="8" SourceColumn="" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="EDATEY" ColumnName="" DataSourceName="" DataTypeServer="datetime" DbType="DateTime" Direction="Input" ParameterName="@EDATEY" Precision="0" Scale="0" Size="8" SourceColumn="" SourceColumnNullMapping="false" SourceVersion="Current" />
+                    </Parameters>
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+              <DbSource ConnectionRef="FAConnectionString (Settings)" DbObjectType="Unknown" GenerateMethods="Get" GenerateShortCommands="true" GeneratorGetMethodName="GetDataByTBByPeriodeIDR" GetMethodModifier="Public" GetMethodName="GetDataByTBByPeriodeIDR" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetDataByTBByPeriodeIDR" UserSourceName="GetDataByTBByPeriodeIDR">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="true">
+                    <CommandText>SELECT FACOA.COA, 'IDR' AS MTU, 
+ FJ1.TOT_DEBITOC, FJ1.TOT_CREDITOC, FJ1.TOT_DEBITOC - FJ1.TOT_CREDITOC AS TOT_BLCOC,
+ FJ2.TOTDEBITYTD, FJ2.TOTCREDITYTD, FJ2.TOTDEBITYTD - FJ2.TOTCREDITYTD AS TOTBALANCEYTD
+FROM FACOA    
+LEFT OUTER JOIN (
+  SELECT COA, SUM(DEBIT) AS TOT_DEBITOC, SUM(CREDIT) AS TOT_CREDITOC
+  FROM FAJOURNALGK
+  WHERE (ISPOSTING = 1) AND (ADATE BETWEEN @SDATE AND @EDATE)
+  GROUP BY COA
+) AS FJ1 ON FACOA.COA = FJ1.COA
+LEFT OUTER JOIN (
+  SELECT COA, SUM(DEBIT) AS TOTDEBITYTD, SUM(CREDIT) AS TOTCREDITYTD
+  FROM FAJOURNALGK
+  WHERE (ISPOSTING = 1) AND (ADATE BETWEEN @SDATEY AND @EDATEY)
+  GROUP BY COA
+) AS FJ2 ON FACOA.COA = FJ2.COA
+WHERE (FACOA.POSTF=1)
+ORDER BY FACOA.COA
+
+</CommandText>
+                    <Parameters>
+                      <Parameter AllowDbNull="true" AutogeneratedName="SDATE" ColumnName="" DataSourceName="" DataTypeServer="datetime" DbType="DateTime" Direction="Input" ParameterName="@SDATE" Precision="0" Scale="0" Size="8" SourceColumn="" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="EDATE" ColumnName="" DataSourceName="" DataTypeServer="datetime" DbType="DateTime" Direction="Input" ParameterName="@EDATE" Precision="0" Scale="0" Size="8" SourceColumn="" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="SDATEY" ColumnName="" DataSourceName="" DataTypeServer="datetime" DbType="DateTime" Direction="Input" ParameterName="@SDATEY" Precision="0" Scale="0" Size="8" SourceColumn="" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="EDATEY" ColumnName="" DataSourceName="" DataTypeServer="datetime" DbType="DateTime" Direction="Input" ParameterName="@EDATEY" Precision="0" Scale="0" Size="8" SourceColumn="" SourceColumnNullMapping="false" SourceVersion="Current" />
+                    </Parameters>
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+            </Sources>
+          </TableAdapter>
+        </Tables>
+        <Sources />
+      </DataSource>
+    </xs:appinfo>
+  </xs:annotation>
+  <xs:element name="DSJournalReport" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:EnableTableAdapterManager="true" msprop:Generator_DataSetName="DSJournalReport" msprop:Generator_UserDSName="DSJournalReport">
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="FAJOURNALSUM" msprop:Generator_TableClassName="FAJOURNALSUMDataTable" msprop:Generator_TableVarName="tableFAJOURNALSUM" msprop:Generator_RowChangedName="FAJOURNALSUMRowChanged" msprop:Generator_TablePropName="FAJOURNALSUM" msprop:Generator_RowDeletingName="FAJOURNALSUMRowDeleting" msprop:Generator_RowChangingName="FAJOURNALSUMRowChanging" msprop:Generator_RowEvHandlerName="FAJOURNALSUMRowChangeEventHandler" msprop:Generator_RowDeletedName="FAJOURNALSUMRowDeleted" msprop:Generator_RowClassName="FAJOURNALSUMRow" msprop:Generator_UserTableName="FAJOURNALSUM" msprop:Generator_RowEvArgName="FAJOURNALSUMRowChangeEvent">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="COA" msprop:Generator_ColumnVarNameInTable="columnCOA" msprop:Generator_ColumnPropNameInRow="COA" msprop:Generator_ColumnPropNameInTable="COAColumn" msprop:Generator_UserColumnName="COA">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="8" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="BULAN" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columnBULAN" msprop:Generator_ColumnPropNameInRow="BULAN" msprop:Generator_ColumnPropNameInTable="BULANColumn" msprop:Generator_UserColumnName="BULAN" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="30" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="TAHUN" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columnTAHUN" msprop:Generator_ColumnPropNameInRow="TAHUN" msprop:Generator_ColumnPropNameInTable="TAHUNColumn" msprop:Generator_UserColumnName="TAHUN" type="xs:int" minOccurs="0" />
+              <xs:element name="NAMACOA" msprop:Generator_ColumnVarNameInTable="columnNAMACOA" msprop:Generator_ColumnPropNameInRow="NAMACOA" msprop:Generator_ColumnPropNameInTable="NAMACOAColumn" msprop:Generator_UserColumnName="NAMACOA" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="500" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="MTU" msprop:Generator_ColumnVarNameInTable="columnMTU" msprop:Generator_ColumnPropNameInRow="MTU" msprop:Generator_ColumnPropNameInTable="MTUColumn" msprop:Generator_UserColumnName="MTU" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="3" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="TOT_DEBIT" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columnTOT_DEBIT" msprop:Generator_ColumnPropNameInRow="TOT_DEBIT" msprop:Generator_ColumnPropNameInTable="TOT_DEBITColumn" msprop:Generator_UserColumnName="TOT_DEBIT" type="xs:decimal" minOccurs="0" />
+              <xs:element name="TOT_DEBITOC" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columnTOT_DEBITOC" msprop:Generator_ColumnPropNameInRow="TOT_DEBITOC" msprop:Generator_ColumnPropNameInTable="TOT_DEBITOCColumn" msprop:Generator_UserColumnName="TOT_DEBITOC" type="xs:decimal" minOccurs="0" />
+              <xs:element name="TOT_CREDIT" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columnTOT_CREDIT" msprop:Generator_ColumnPropNameInRow="TOT_CREDIT" msprop:Generator_ColumnPropNameInTable="TOT_CREDITColumn" msprop:Generator_UserColumnName="TOT_CREDIT" type="xs:decimal" minOccurs="0" />
+              <xs:element name="TOT_CREDITOC" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columnTOT_CREDITOC" msprop:Generator_ColumnPropNameInRow="TOT_CREDITOC" msprop:Generator_ColumnPropNameInTable="TOT_CREDITOCColumn" msprop:Generator_UserColumnName="TOT_CREDITOC" type="xs:decimal" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="FAJOURNALGL" msprop:Generator_TableClassName="FAJOURNALGLDataTable" msprop:Generator_TableVarName="tableFAJOURNALGL" msprop:Generator_RowChangedName="FAJOURNALGLRowChanged" msprop:Generator_TablePropName="FAJOURNALGL" msprop:Generator_RowDeletingName="FAJOURNALGLRowDeleting" msprop:Generator_RowChangingName="FAJOURNALGLRowChanging" msprop:Generator_RowEvHandlerName="FAJOURNALGLRowChangeEventHandler" msprop:Generator_RowDeletedName="FAJOURNALGLRowDeleted" msprop:Generator_RowClassName="FAJOURNALGLRow" msprop:Generator_UserTableName="FAJOURNALGL" msprop:Generator_RowEvArgName="FAJOURNALGLRowChangeEvent">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="COA" msprop:Generator_ColumnVarNameInTable="columnCOA" msprop:Generator_ColumnPropNameInRow="COA" msprop:Generator_ColumnPropNameInTable="COAColumn" msprop:Generator_UserColumnName="COA">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="8" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="VOUCHER" msprop:Generator_ColumnVarNameInTable="columnVOUCHER" msprop:Generator_ColumnPropNameInRow="VOUCHER" msprop:Generator_ColumnPropNameInTable="VOUCHERColumn" msprop:Generator_UserColumnName="VOUCHER" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="100" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="MTU" msprop:Generator_ColumnVarNameInTable="columnMTU" msprop:Generator_ColumnPropNameInRow="MTU" msprop:Generator_ColumnPropNameInTable="MTUColumn" msprop:Generator_UserColumnName="MTU" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="3" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="DEBIT_OC" msprop:Generator_ColumnVarNameInTable="columnDEBIT_OC" msprop:Generator_ColumnPropNameInRow="DEBIT_OC" msprop:Generator_ColumnPropNameInTable="DEBIT_OCColumn" msprop:Generator_UserColumnName="DEBIT_OC" type="xs:decimal" minOccurs="0" />
+              <xs:element name="CREDIT_OC" msprop:Generator_ColumnVarNameInTable="columnCREDIT_OC" msprop:Generator_ColumnPropNameInRow="CREDIT_OC" msprop:Generator_ColumnPropNameInTable="CREDIT_OCColumn" msprop:Generator_UserColumnName="CREDIT_OC" type="xs:decimal" minOccurs="0" />
+              <xs:element name="KURS" msprop:Generator_ColumnVarNameInTable="columnKURS" msprop:Generator_ColumnPropNameInRow="KURS" msprop:Generator_ColumnPropNameInTable="KURSColumn" msprop:Generator_UserColumnName="KURS" type="xs:decimal" minOccurs="0" />
+              <xs:element name="DEBIT" msprop:Generator_ColumnVarNameInTable="columnDEBIT" msprop:Generator_ColumnPropNameInRow="DEBIT" msprop:Generator_ColumnPropNameInTable="DEBITColumn" msprop:Generator_UserColumnName="DEBIT" type="xs:decimal" minOccurs="0" />
+              <xs:element name="DESCRIPTION" msprop:Generator_ColumnVarNameInTable="columnDESCRIPTION" msprop:Generator_ColumnPropNameInRow="DESCRIPTION" msprop:Generator_ColumnPropNameInTable="DESCRIPTIONColumn" msprop:Generator_UserColumnName="DESCRIPTION" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="500" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="CREDIT" msprop:Generator_ColumnVarNameInTable="columnCREDIT" msprop:Generator_ColumnPropNameInRow="CREDIT" msprop:Generator_ColumnPropNameInTable="CREDITColumn" msprop:Generator_UserColumnName="CREDIT" type="xs:decimal" minOccurs="0" />
+              <xs:element name="SECDATE" msprop:Generator_ColumnVarNameInTable="columnSECDATE" msprop:Generator_ColumnPropNameInRow="SECDATE" msprop:Generator_ColumnPropNameInTable="SECDATEColumn" msprop:Generator_UserColumnName="SECDATE" type="xs:dateTime" minOccurs="0" />
+              <xs:element name="SECUSER" msprop:Generator_ColumnVarNameInTable="columnSECUSER" msprop:Generator_ColumnPropNameInRow="SECUSER" msprop:Generator_ColumnPropNameInTable="SECUSERColumn" msprop:Generator_UserColumnName="SECUSER" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="20" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="ISPOSTING" msprop:Generator_ColumnVarNameInTable="columnISPOSTING" msprop:Generator_ColumnPropNameInRow="ISPOSTING" msprop:Generator_ColumnPropNameInTable="ISPOSTINGColumn" msprop:Generator_UserColumnName="ISPOSTING" type="xs:boolean" minOccurs="0" />
+              <xs:element name="POSTUSER" msprop:Generator_ColumnVarNameInTable="columnPOSTUSER" msprop:Generator_ColumnPropNameInRow="POSTUSER" msprop:Generator_ColumnPropNameInTable="POSTUSERColumn" msprop:Generator_UserColumnName="POSTUSER" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="20" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="POSTDATE" msprop:Generator_ColumnVarNameInTable="columnPOSTDATE" msprop:Generator_ColumnPropNameInRow="POSTDATE" msprop:Generator_ColumnPropNameInTable="POSTDATEColumn" msprop:Generator_UserColumnName="POSTDATE" type="xs:dateTime" minOccurs="0" />
+              <xs:element name="ADATE" msprop:Generator_ColumnVarNameInTable="columnADATE" msprop:Generator_ColumnPropNameInRow="ADATE" msprop:Generator_ColumnPropNameInTable="ADATEColumn" msprop:Generator_UserColumnName="ADATE" type="xs:dateTime" minOccurs="0" />
+              <xs:element name="VOUCHERPAYMENT" msprop:Generator_ColumnVarNameInTable="columnVOUCHERPAYMENT" msprop:Generator_ColumnPropNameInRow="VOUCHERPAYMENT" msprop:Generator_ColumnPropNameInTable="VOUCHERPAYMENTColumn" msprop:Generator_UserColumnName="VOUCHERPAYMENT" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50000" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="FATB" msprop:Generator_TableClassName="FATBDataTable" msprop:Generator_TableVarName="tableFATB" msprop:Generator_RowChangedName="FATBRowChanged" msprop:Generator_TablePropName="FATB" msprop:Generator_RowDeletingName="FATBRowDeleting" msprop:Generator_RowChangingName="FATBRowChanging" msprop:Generator_RowEvHandlerName="FATBRowChangeEventHandler" msprop:Generator_RowDeletedName="FATBRowDeleted" msprop:Generator_RowClassName="FATBRow" msprop:Generator_UserTableName="FATB" msprop:Generator_RowEvArgName="FATBRowChangeEvent">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="COA" msprop:Generator_ColumnVarNameInTable="columnCOA" msprop:Generator_ColumnPropNameInRow="COA" msprop:Generator_ColumnPropNameInTable="COAColumn" msprop:Generator_UserColumnName="COA">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="8" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="TAHUN" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columnTAHUN" msprop:Generator_ColumnPropNameInRow="TAHUN" msprop:Generator_ColumnPropNameInTable="TAHUNColumn" msprop:Generator_UserColumnName="TAHUN" type="xs:int" minOccurs="0" />
+              <xs:element name="MTU" msprop:Generator_ColumnVarNameInTable="columnMTU" msprop:Generator_ColumnPropNameInRow="MTU" msprop:Generator_ColumnPropNameInTable="MTUColumn" msprop:Generator_UserColumnName="MTU" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="3" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="TOT_DEBITOC" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columnTOT_DEBITOC" msprop:Generator_ColumnPropNameInRow="TOT_DEBITOC" msprop:Generator_ColumnPropNameInTable="TOT_DEBITOCColumn" msprop:Generator_UserColumnName="TOT_DEBITOC" type="xs:decimal" minOccurs="0" />
+              <xs:element name="TOT_CREDITOC" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columnTOT_CREDITOC" msprop:Generator_ColumnPropNameInRow="TOT_CREDITOC" msprop:Generator_ColumnPropNameInTable="TOT_CREDITOCColumn" msprop:Generator_UserColumnName="TOT_CREDITOC" type="xs:decimal" minOccurs="0" />
+              <xs:element name="TOT_BLCOC" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columnTOT_BLCOC" msprop:Generator_ColumnPropNameInRow="TOT_BLCOC" msprop:Generator_ColumnPropNameInTable="TOT_BLCOCColumn" msprop:Generator_UserColumnName="TOT_BLCOC" type="xs:decimal" minOccurs="0" />
+              <xs:element name="TOTDEBITYTD" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columnTOTDEBITYTD" msprop:Generator_ColumnPropNameInRow="TOTDEBITYTD" msprop:Generator_ColumnPropNameInTable="TOTDEBITYTDColumn" msprop:Generator_UserColumnName="TOTDEBITYTD" type="xs:decimal" minOccurs="0" />
+              <xs:element name="TOTCREDITYTD" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columnTOTCREDITYTD" msprop:Generator_ColumnPropNameInRow="TOTCREDITYTD" msprop:Generator_ColumnPropNameInTable="TOTCREDITYTDColumn" msprop:Generator_UserColumnName="TOTCREDITYTD" type="xs:decimal" minOccurs="0" />
+              <xs:element name="TOTBALANCEYTD" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columnTOTBALANCEYTD" msprop:Generator_ColumnPropNameInRow="TOTBALANCEYTD" msprop:Generator_ColumnPropNameInTable="TOTBALANCEYTDColumn" msprop:Generator_UserColumnName="TOTBALANCEYTD" type="xs:decimal" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="FATBSUM" msprop:Generator_TableClassName="FATBSUMDataTable" msprop:Generator_TableVarName="tableFATBSUM" msprop:Generator_RowChangedName="FATBSUMRowChanged" msprop:Generator_TablePropName="FATBSUM" msprop:Generator_RowDeletingName="FATBSUMRowDeleting" msprop:Generator_RowChangingName="FATBSUMRowChanging" msprop:Generator_RowEvHandlerName="FATBSUMRowChangeEventHandler" msprop:Generator_RowDeletedName="FATBSUMRowDeleted" msprop:Generator_RowClassName="FATBSUMRow" msprop:Generator_UserTableName="FATBSUM" msprop:Generator_RowEvArgName="FATBSUMRowChangeEvent">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="TAHUN" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columnTAHUN" msprop:Generator_ColumnPropNameInRow="TAHUN" msprop:Generator_ColumnPropNameInTable="TAHUNColumn" msprop:Generator_UserColumnName="TAHUN" type="xs:int" minOccurs="0" />
+              <xs:element name="TOT_DEBITOC" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columnTOT_DEBITOC" msprop:Generator_ColumnPropNameInRow="TOT_DEBITOC" msprop:Generator_ColumnPropNameInTable="TOT_DEBITOCColumn" msprop:Generator_UserColumnName="TOT_DEBITOC" type="xs:decimal" minOccurs="0" />
+              <xs:element name="TOT_CREDITOC" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columnTOT_CREDITOC" msprop:Generator_ColumnPropNameInRow="TOT_CREDITOC" msprop:Generator_ColumnPropNameInTable="TOT_CREDITOCColumn" msprop:Generator_UserColumnName="TOT_CREDITOC" type="xs:decimal" minOccurs="0" />
+              <xs:element name="TOT_BLCOC" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columnTOT_BLCOC" msprop:Generator_ColumnPropNameInRow="TOT_BLCOC" msprop:Generator_ColumnPropNameInTable="TOT_BLCOCColumn" msprop:Generator_UserColumnName="TOT_BLCOC" type="xs:decimal" minOccurs="0" />
+              <xs:element name="TOTDEBITYTD" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columnTOTDEBITYTD" msprop:Generator_ColumnPropNameInRow="TOTDEBITYTD" msprop:Generator_ColumnPropNameInTable="TOTDEBITYTDColumn" msprop:Generator_UserColumnName="TOTDEBITYTD" type="xs:decimal" minOccurs="0" />
+              <xs:element name="TOTCREDITYTD" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columnTOTCREDITYTD" msprop:Generator_ColumnPropNameInRow="TOTCREDITYTD" msprop:Generator_ColumnPropNameInTable="TOTCREDITYTDColumn" msprop:Generator_UserColumnName="TOTCREDITYTD" type="xs:decimal" minOccurs="0" />
+              <xs:element name="TOTBALANCEYTD" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columnTOTBALANCEYTD" msprop:Generator_ColumnPropNameInRow="TOTBALANCEYTD" msprop:Generator_ColumnPropNameInTable="TOTBALANCEYTDColumn" msprop:Generator_UserColumnName="TOTBALANCEYTD" type="xs:decimal" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="FATBGK" msprop:Generator_TableClassName="FATBGKDataTable" msprop:Generator_TableVarName="tableFATBGK" msprop:Generator_RowChangedName="FATBGKRowChanged" msprop:Generator_TablePropName="FATBGK" msprop:Generator_RowDeletingName="FATBGKRowDeleting" msprop:Generator_RowChangingName="FATBGKRowChanging" msprop:Generator_RowEvHandlerName="FATBGKRowChangeEventHandler" msprop:Generator_RowDeletedName="FATBGKRowDeleted" msprop:Generator_RowClassName="FATBGKRow" msprop:Generator_UserTableName="FATBGK" msprop:Generator_RowEvArgName="FATBGKRowChangeEvent">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="COA" msprop:Generator_ColumnVarNameInTable="columnCOA" msprop:Generator_ColumnPropNameInRow="COA" msprop:Generator_ColumnPropNameInTable="COAColumn" msprop:Generator_UserColumnName="COA">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="8" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="TAHUN" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columnTAHUN" msprop:Generator_ColumnPropNameInRow="TAHUN" msprop:Generator_ColumnPropNameInTable="TAHUNColumn" msprop:Generator_UserColumnName="TAHUN" type="xs:int" minOccurs="0" />
+              <xs:element name="MTU" msprop:Generator_ColumnVarNameInTable="columnMTU" msprop:Generator_ColumnPropNameInRow="MTU" msprop:Generator_ColumnPropNameInTable="MTUColumn" msprop:Generator_UserColumnName="MTU" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="3" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="TOT_DEBITOC" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columnTOT_DEBITOC" msprop:Generator_ColumnPropNameInRow="TOT_DEBITOC" msprop:Generator_ColumnPropNameInTable="TOT_DEBITOCColumn" msprop:Generator_UserColumnName="TOT_DEBITOC" type="xs:decimal" minOccurs="0" />
+              <xs:element name="TOT_CREDITOC" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columnTOT_CREDITOC" msprop:Generator_ColumnPropNameInRow="TOT_CREDITOC" msprop:Generator_ColumnPropNameInTable="TOT_CREDITOCColumn" msprop:Generator_UserColumnName="TOT_CREDITOC" type="xs:decimal" minOccurs="0" />
+              <xs:element name="TOT_BLCOC" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columnTOT_BLCOC" msprop:Generator_ColumnPropNameInRow="TOT_BLCOC" msprop:Generator_ColumnPropNameInTable="TOT_BLCOCColumn" msprop:Generator_UserColumnName="TOT_BLCOC" type="xs:decimal" minOccurs="0" />
+              <xs:element name="TOTDEBITYTD" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columnTOTDEBITYTD" msprop:Generator_ColumnPropNameInRow="TOTDEBITYTD" msprop:Generator_ColumnPropNameInTable="TOTDEBITYTDColumn" msprop:Generator_UserColumnName="TOTDEBITYTD" type="xs:decimal" minOccurs="0" />
+              <xs:element name="TOTCREDITYTD" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columnTOTCREDITYTD" msprop:Generator_ColumnPropNameInRow="TOTCREDITYTD" msprop:Generator_ColumnPropNameInTable="TOTCREDITYTDColumn" msprop:Generator_UserColumnName="TOTCREDITYTD" type="xs:decimal" minOccurs="0" />
+              <xs:element name="TOTBALANCEYTD" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columnTOTBALANCEYTD" msprop:Generator_ColumnPropNameInRow="TOTBALANCEYTD" msprop:Generator_ColumnPropNameInTable="TOTBALANCEYTDColumn" msprop:Generator_UserColumnName="TOTBALANCEYTD" type="xs:decimal" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+    </xs:complexType>
+    <xs:unique name="Constraint1" msdata:PrimaryKey="true">
+      <xs:selector xpath=".//mstns:FATB" />
+      <xs:field xpath="mstns:COA" />
+    </xs:unique>
+    <xs:unique name="FATBGK_Constraint1" msdata:ConstraintName="Constraint1" msdata:PrimaryKey="true">
+      <xs:selector xpath=".//mstns:FATBGK" />
+      <xs:field xpath="mstns:COA" />
+    </xs:unique>
+  </xs:element>
+</xs:schema>

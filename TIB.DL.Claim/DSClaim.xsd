@@ -1,0 +1,855 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="DSClaim" targetNamespace="http://tempuri.org/DSClaim.xsd" xmlns:mstns="http://tempuri.org/DSClaim.xsd" xmlns="http://tempuri.org/DSClaim.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
+  <xs:annotation>
+    <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
+      <DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+        <Connections>
+          <Connection AppSettingsObjectName="Settings" AppSettingsPropertyName="ConnectionString" ConnectionStringObject="" IsAppSettingsProperty="true" Modifier="Assembly" Name="ConnectionString (Settings)" ParameterPrefix="@" PropertyReference="ApplicationSettings.TIB.DL.Claim.Properties.Settings.GlobalReference.Default.ConnectionString" Provider="System.Data.SqlClient" />
+        </Connections>
+        <Tables>
+          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="CLAIMTableAdapter" GeneratorDataComponentClassName="CLAIMTableAdapter" Name="CLAIM" UserDataComponentName="CLAIMTableAdapter">
+            <MainSource>
+              <DbSource ConnectionRef="ConnectionString (Settings)" DbObjectName="TALYS.dbo.CLAIM" DbObjectType="Table" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="true" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetData" UserSourceName="Fill">
+                <DeleteCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="false">
+                    <CommandText>DELETE FROM [CLAIM] WHERE (([CLID] = @Original_CLID) AND ((@IsNull_COL = 1 AND [COL] IS NULL) OR ([COL] = @Original_COL)) AND ((@IsNull_KODECAB = 1 AND [KODECAB] IS NULL) OR ([KODECAB] = @Original_KODECAB)) AND ((@IsNull_KODETOC = 1 AND [KODETOC] IS NULL) OR ([KODETOC] = @Original_KODETOC)) AND ((@IsNull_PCLID = 1 AND [PCLID] IS NULL) OR ([PCLID] = @Original_PCLID)) AND ((@IsNull_PLCID = 1 AND [PLCID] IS NULL) OR ([PLCID] = @Original_PLCID)) AND ((@IsNull_CLAIMNO = 1 AND [CLAIMNO] IS NULL) OR ([CLAIMNO] = @Original_CLAIMNO)) AND ((@IsNull_CURUT = 1 AND [CURUT] IS NULL) OR ([CURUT] = @Original_CURUT)) AND ((@IsNull_ENDORS = 1 AND [ENDORS] IS NULL) OR ([ENDORS] = @Original_ENDORS)) AND ((@IsNull_REGDATE = 1 AND [REGDATE] IS NULL) OR ([REGDATE] = @Original_REGDATE)) AND ((@IsNull_LOSSDATE = 1 AND [LOSSDATE] IS NULL) OR ([LOSSDATE] = @Original_LOSSDATE)) AND ((@IsNull_TBAF = 1 AND [TBAF] IS NULL) OR ([TBAF] = @Original_TBAF)) AND ((@IsNull_BANKID = 1 AND [BANKID] IS NULL) OR ([BANKID] = @Original_BANKID)) AND ((@IsNull_CLAIMANTID = 1 AND [CLAIMANTID] IS NULL) OR ([CLAIMANTID] = @Original_CLAIMANTID)) AND ((@IsNull_CLAIMNAME = 1 AND [CLAIMNAME] IS NULL) OR ([CLAIMNAME] = @Original_CLAIMNAME)) AND ((@IsNull_ADJUSTERPRID = 1 AND [ADJUSTERPRID] IS NULL) OR ([ADJUSTERPRID] = @Original_ADJUSTERPRID)) AND ((@IsNull_TYPEF = 1 AND [TYPEF] IS NULL) OR ([TYPEF] = @Original_TYPEF)) AND ((@IsNull_STATUSF = 1 AND [STATUSF] IS NULL) OR ([STATUSF] = @Original_STATUSF)) AND ((@IsNull_SECUSER = 1 AND [SECUSER] IS NULL) OR ([SECUSER] = @Original_SECUSER)) AND ((@IsNull_SECDATE = 1 AND [SECDATE] IS NULL) OR ([SECDATE] = @Original_SECDATE)) AND ((@IsNull_SECROLE = 1 AND [SECROLE] IS NULL) OR ([SECROLE] = @Original_SECROLE)) AND ((@IsNull_ISCATEVENT = 1 AND [ISCATEVENT] IS NULL) OR ([ISCATEVENT] = @Original_ISCATEVENT)) AND ((@IsNull_INSCLNO = 1 AND [INSCLNO] IS NULL) OR ([INSCLNO] = @Original_INSCLNO)) AND ((@IsNull_LOCATION = 1 AND [LOCATION] IS NULL) OR ([LOCATION] = @Original_LOCATION)) AND ((@IsNull_DON = 1 AND [DON] IS NULL) OR ([DON] = @Original_DON)) AND ((@IsNull_DOR = 1 AND [DOR] IS NULL) OR ([DOR] = @Original_DOR)) AND ((@IsNull_USERHANDLER = 1 AND [USERHANDLER] IS NULL) OR ([USERHANDLER] = @Original_USERHANDLER)) AND ((@IsNull_SURVEYORPRID = 1 AND [SURVEYORPRID] IS NULL) OR ([SURVEYORPRID] = @Original_SURVEYORPRID)) AND ((@IsNull_MTU = 1 AND [MTU] IS NULL) OR ([MTU] = @Original_MTU)) AND ((@IsNull_CLRESERVE = 1 AND [CLRESERVE] IS NULL) OR ([CLRESERVE] = @Original_CLRESERVE)) AND ((@IsNull_CLADJ = 1 AND [CLADJ] IS NULL) OR ([CLADJ] = @Original_CLADJ)) AND ((@IsNull_CLSALV = 1 AND [CLSALV] IS NULL) OR ([CLSALV] = @Original_CLSALV)) AND ((@IsNull_CLRECV = 1 AND [CLRECV] IS NULL) OR ([CLRECV] = @Original_CLRECV)) AND ((@IsNull_CLDED = 1 AND [CLDED] IS NULL) OR ([CLDED] = @Original_CLDED)) AND ((@IsNull_CLNETT = 1 AND [CLNETT] IS NULL) OR ([CLNETT] = @Original_CLNETT)) AND ((@IsNull_PAYMENTDATE = 1 AND [PAYMENTDATE] IS NULL) OR ([PAYMENTDATE] = @Original_PAYMENTDATE)) AND ((@IsNull_REMARKS = 1 AND [REMARKS] IS NULL) OR ([REMARKS] = @Original_REMARKS)) AND ((@IsNull_CLOSEDATE = 1 AND [CLOSEDATE] IS NULL) OR ([CLOSEDATE] = @Original_CLOSEDATE)) AND ((@IsNull_SDATE = 1 AND [SDATE] IS NULL) OR ([SDATE] = @Original_SDATE)) AND ((@IsNull_EDATE = 1 AND [EDATE] IS NULL) OR ([EDATE] = @Original_EDATE)))</CommandText>
+                    <Parameters>
+                      <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="AnsiString" Direction="Input" ParameterName="@Original_CLID" Precision="0" ProviderType="VarChar" Scale="0" Size="0" SourceColumn="CLID" SourceColumnNullMapping="false" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@IsNull_COL" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="COL" SourceColumnNullMapping="true" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="AnsiString" Direction="Input" ParameterName="@Original_COL" Precision="0" ProviderType="VarChar" Scale="0" Size="0" SourceColumn="COL" SourceColumnNullMapping="false" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@IsNull_KODECAB" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="KODECAB" SourceColumnNullMapping="true" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="AnsiString" Direction="Input" ParameterName="@Original_KODECAB" Precision="0" ProviderType="VarChar" Scale="0" Size="0" SourceColumn="KODECAB" SourceColumnNullMapping="false" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@IsNull_KODETOC" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="KODETOC" SourceColumnNullMapping="true" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="AnsiString" Direction="Input" ParameterName="@Original_KODETOC" Precision="0" ProviderType="VarChar" Scale="0" Size="0" SourceColumn="KODETOC" SourceColumnNullMapping="false" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@IsNull_PCLID" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="PCLID" SourceColumnNullMapping="true" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="AnsiString" Direction="Input" ParameterName="@Original_PCLID" Precision="0" ProviderType="VarChar" Scale="0" Size="0" SourceColumn="PCLID" SourceColumnNullMapping="false" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@IsNull_PLCID" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="PLCID" SourceColumnNullMapping="true" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="AnsiString" Direction="Input" ParameterName="@Original_PLCID" Precision="0" ProviderType="VarChar" Scale="0" Size="0" SourceColumn="PLCID" SourceColumnNullMapping="false" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@IsNull_CLAIMNO" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="CLAIMNO" SourceColumnNullMapping="true" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="AnsiString" Direction="Input" ParameterName="@Original_CLAIMNO" Precision="0" ProviderType="VarChar" Scale="0" Size="0" SourceColumn="CLAIMNO" SourceColumnNullMapping="false" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@IsNull_CURUT" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="CURUT" SourceColumnNullMapping="true" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@Original_CURUT" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="CURUT" SourceColumnNullMapping="false" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@IsNull_ENDORS" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="ENDORS" SourceColumnNullMapping="true" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@Original_ENDORS" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="ENDORS" SourceColumnNullMapping="false" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@IsNull_REGDATE" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="REGDATE" SourceColumnNullMapping="true" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="DateTime" Direction="Input" ParameterName="@Original_REGDATE" Precision="0" ProviderType="DateTime" Scale="0" Size="0" SourceColumn="REGDATE" SourceColumnNullMapping="false" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@IsNull_LOSSDATE" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="LOSSDATE" SourceColumnNullMapping="true" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="DateTime" Direction="Input" ParameterName="@Original_LOSSDATE" Precision="0" ProviderType="DateTime" Scale="0" Size="0" SourceColumn="LOSSDATE" SourceColumnNullMapping="false" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@IsNull_TBAF" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="TBAF" SourceColumnNullMapping="true" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Boolean" Direction="Input" ParameterName="@Original_TBAF" Precision="0" ProviderType="Bit" Scale="0" Size="0" SourceColumn="TBAF" SourceColumnNullMapping="false" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@IsNull_BANKID" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="BANKID" SourceColumnNullMapping="true" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="AnsiString" Direction="Input" ParameterName="@Original_BANKID" Precision="0" ProviderType="VarChar" Scale="0" Size="0" SourceColumn="BANKID" SourceColumnNullMapping="false" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@IsNull_CLAIMANTID" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="CLAIMANTID" SourceColumnNullMapping="true" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="AnsiString" Direction="Input" ParameterName="@Original_CLAIMANTID" Precision="0" ProviderType="VarChar" Scale="0" Size="0" SourceColumn="CLAIMANTID" SourceColumnNullMapping="false" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@IsNull_CLAIMNAME" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="CLAIMNAME" SourceColumnNullMapping="true" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="AnsiString" Direction="Input" ParameterName="@Original_CLAIMNAME" Precision="0" ProviderType="VarChar" Scale="0" Size="0" SourceColumn="CLAIMNAME" SourceColumnNullMapping="false" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@IsNull_ADJUSTERPRID" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="ADJUSTERPRID" SourceColumnNullMapping="true" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="AnsiString" Direction="Input" ParameterName="@Original_ADJUSTERPRID" Precision="0" ProviderType="VarChar" Scale="0" Size="0" SourceColumn="ADJUSTERPRID" SourceColumnNullMapping="false" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@IsNull_TYPEF" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="TYPEF" SourceColumnNullMapping="true" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="AnsiString" Direction="Input" ParameterName="@Original_TYPEF" Precision="0" ProviderType="VarChar" Scale="0" Size="0" SourceColumn="TYPEF" SourceColumnNullMapping="false" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@IsNull_STATUSF" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="STATUSF" SourceColumnNullMapping="true" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="AnsiString" Direction="Input" ParameterName="@Original_STATUSF" Precision="0" ProviderType="VarChar" Scale="0" Size="0" SourceColumn="STATUSF" SourceColumnNullMapping="false" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@IsNull_SECUSER" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="SECUSER" SourceColumnNullMapping="true" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="AnsiString" Direction="Input" ParameterName="@Original_SECUSER" Precision="0" ProviderType="VarChar" Scale="0" Size="0" SourceColumn="SECUSER" SourceColumnNullMapping="false" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@IsNull_SECDATE" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="SECDATE" SourceColumnNullMapping="true" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="DateTime" Direction="Input" ParameterName="@Original_SECDATE" Precision="0" ProviderType="DateTime" Scale="0" Size="0" SourceColumn="SECDATE" SourceColumnNullMapping="false" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@IsNull_SECROLE" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="SECROLE" SourceColumnNullMapping="true" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="AnsiString" Direction="Input" ParameterName="@Original_SECROLE" Precision="0" ProviderType="VarChar" Scale="0" Size="0" SourceColumn="SECROLE" SourceColumnNullMapping="false" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@IsNull_ISCATEVENT" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="ISCATEVENT" SourceColumnNullMapping="true" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Boolean" Direction="Input" ParameterName="@Original_ISCATEVENT" Precision="0" ProviderType="Bit" Scale="0" Size="0" SourceColumn="ISCATEVENT" SourceColumnNullMapping="false" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@IsNull_INSCLNO" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="INSCLNO" SourceColumnNullMapping="true" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="AnsiString" Direction="Input" ParameterName="@Original_INSCLNO" Precision="0" ProviderType="VarChar" Scale="0" Size="0" SourceColumn="INSCLNO" SourceColumnNullMapping="false" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@IsNull_LOCATION" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="LOCATION" SourceColumnNullMapping="true" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="AnsiString" Direction="Input" ParameterName="@Original_LOCATION" Precision="0" ProviderType="VarChar" Scale="0" Size="0" SourceColumn="LOCATION" SourceColumnNullMapping="false" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@IsNull_DON" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="DON" SourceColumnNullMapping="true" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Date" Direction="Input" ParameterName="@Original_DON" Precision="0" ProviderType="Date" Scale="0" Size="0" SourceColumn="DON" SourceColumnNullMapping="false" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@IsNull_DOR" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="DOR" SourceColumnNullMapping="true" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Date" Direction="Input" ParameterName="@Original_DOR" Precision="0" ProviderType="Date" Scale="0" Size="0" SourceColumn="DOR" SourceColumnNullMapping="false" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@IsNull_USERHANDLER" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="USERHANDLER" SourceColumnNullMapping="true" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="AnsiString" Direction="Input" ParameterName="@Original_USERHANDLER" Precision="0" ProviderType="VarChar" Scale="0" Size="0" SourceColumn="USERHANDLER" SourceColumnNullMapping="false" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@IsNull_SURVEYORPRID" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="SURVEYORPRID" SourceColumnNullMapping="true" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="AnsiString" Direction="Input" ParameterName="@Original_SURVEYORPRID" Precision="0" ProviderType="VarChar" Scale="0" Size="0" SourceColumn="SURVEYORPRID" SourceColumnNullMapping="false" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@IsNull_MTU" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="MTU" SourceColumnNullMapping="true" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="AnsiString" Direction="Input" ParameterName="@Original_MTU" Precision="0" ProviderType="VarChar" Scale="0" Size="0" SourceColumn="MTU" SourceColumnNullMapping="false" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@IsNull_CLRESERVE" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="CLRESERVE" SourceColumnNullMapping="true" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Decimal" Direction="Input" ParameterName="@Original_CLRESERVE" Precision="19" ProviderType="Decimal" Scale="2" Size="0" SourceColumn="CLRESERVE" SourceColumnNullMapping="false" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@IsNull_CLADJ" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="CLADJ" SourceColumnNullMapping="true" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Decimal" Direction="Input" ParameterName="@Original_CLADJ" Precision="19" ProviderType="Decimal" Scale="2" Size="0" SourceColumn="CLADJ" SourceColumnNullMapping="false" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@IsNull_CLSALV" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="CLSALV" SourceColumnNullMapping="true" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Decimal" Direction="Input" ParameterName="@Original_CLSALV" Precision="19" ProviderType="Decimal" Scale="2" Size="0" SourceColumn="CLSALV" SourceColumnNullMapping="false" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@IsNull_CLRECV" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="CLRECV" SourceColumnNullMapping="true" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Decimal" Direction="Input" ParameterName="@Original_CLRECV" Precision="19" ProviderType="Decimal" Scale="2" Size="0" SourceColumn="CLRECV" SourceColumnNullMapping="false" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@IsNull_CLDED" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="CLDED" SourceColumnNullMapping="true" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Decimal" Direction="Input" ParameterName="@Original_CLDED" Precision="19" ProviderType="Decimal" Scale="2" Size="0" SourceColumn="CLDED" SourceColumnNullMapping="false" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@IsNull_CLNETT" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="CLNETT" SourceColumnNullMapping="true" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Decimal" Direction="Input" ParameterName="@Original_CLNETT" Precision="19" ProviderType="Decimal" Scale="2" Size="0" SourceColumn="CLNETT" SourceColumnNullMapping="false" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@IsNull_PAYMENTDATE" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="PAYMENTDATE" SourceColumnNullMapping="true" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Date" Direction="Input" ParameterName="@Original_PAYMENTDATE" Precision="0" ProviderType="Date" Scale="0" Size="0" SourceColumn="PAYMENTDATE" SourceColumnNullMapping="false" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@IsNull_REMARKS" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="REMARKS" SourceColumnNullMapping="true" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="AnsiString" Direction="Input" ParameterName="@Original_REMARKS" Precision="0" ProviderType="VarChar" Scale="0" Size="0" SourceColumn="REMARKS" SourceColumnNullMapping="false" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@IsNull_CLOSEDATE" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="CLOSEDATE" SourceColumnNullMapping="true" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="DateTime" Direction="Input" ParameterName="@Original_CLOSEDATE" Precision="0" ProviderType="DateTime" Scale="0" Size="0" SourceColumn="CLOSEDATE" SourceColumnNullMapping="false" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@IsNull_SDATE" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="SDATE" SourceColumnNullMapping="true" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="DateTime" Direction="Input" ParameterName="@Original_SDATE" Precision="0" ProviderType="DateTime" Scale="0" Size="0" SourceColumn="SDATE" SourceColumnNullMapping="false" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@IsNull_EDATE" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="EDATE" SourceColumnNullMapping="true" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="DateTime" Direction="Input" ParameterName="@Original_EDATE" Precision="0" ProviderType="DateTime" Scale="0" Size="0" SourceColumn="EDATE" SourceColumnNullMapping="false" SourceVersion="Original" />
+                    </Parameters>
+                  </DbCommand>
+                </DeleteCommand>
+                <InsertCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="false">
+                    <CommandText>INSERT INTO [CLAIM] ([CLID], [COL], [KODECAB], [KODETOC], [PCLID], [PLCID], [CLAIMNO], [CURUT], [ENDORS], [REGDATE], [LOSSDATE], [TBAF], [BANKID], [CLAIMANTID], [CLAIMNAME], [ADJUSTERPRID], [TYPEF], [STATUSF], [INDIDENT], [SECUSER], [SECDATE], [SECROLE], [ISCATEVENT], [INSCLNO], [LOCATION], [DON], [DOR], [USERHANDLER], [SURVEYORPRID], [MTU], [CLRESERVE], [CLADJ], [CLSALV], [CLRECV], [CLDED], [CLNETT], [PAYMENTDATE], [REMARKS], [CLOSEDATE], [SDATE], [EDATE]) VALUES (@CLID, @COL, @KODECAB, @KODETOC, @PCLID, @PLCID, @CLAIMNO, @CURUT, @ENDORS, @REGDATE, @LOSSDATE, @TBAF, @BANKID, @CLAIMANTID, @CLAIMNAME, @ADJUSTERPRID, @TYPEF, @STATUSF, @INDIDENT, @SECUSER, @SECDATE, @SECROLE, @ISCATEVENT, @INSCLNO, @LOCATION, @DON, @DOR, @USERHANDLER, @SURVEYORPRID, @MTU, @CLRESERVE, @CLADJ, @CLSALV, @CLRECV, @CLDED, @CLNETT, @PAYMENTDATE, @REMARKS, @CLOSEDATE, @SDATE, @EDATE)</CommandText>
+                    <Parameters>
+                      <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="AnsiString" Direction="Input" ParameterName="@CLID" Precision="0" ProviderType="VarChar" Scale="0" Size="0" SourceColumn="CLID" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="AnsiString" Direction="Input" ParameterName="@COL" Precision="0" ProviderType="VarChar" Scale="0" Size="0" SourceColumn="COL" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="AnsiString" Direction="Input" ParameterName="@KODECAB" Precision="0" ProviderType="VarChar" Scale="0" Size="0" SourceColumn="KODECAB" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="AnsiString" Direction="Input" ParameterName="@KODETOC" Precision="0" ProviderType="VarChar" Scale="0" Size="0" SourceColumn="KODETOC" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="AnsiString" Direction="Input" ParameterName="@PCLID" Precision="0" ProviderType="VarChar" Scale="0" Size="0" SourceColumn="PCLID" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="AnsiString" Direction="Input" ParameterName="@PLCID" Precision="0" ProviderType="VarChar" Scale="0" Size="0" SourceColumn="PLCID" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="AnsiString" Direction="Input" ParameterName="@CLAIMNO" Precision="0" ProviderType="VarChar" Scale="0" Size="0" SourceColumn="CLAIMNO" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@CURUT" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="CURUT" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@ENDORS" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="ENDORS" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="DateTime" Direction="Input" ParameterName="@REGDATE" Precision="0" ProviderType="DateTime" Scale="0" Size="0" SourceColumn="REGDATE" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="DateTime" Direction="Input" ParameterName="@LOSSDATE" Precision="0" ProviderType="DateTime" Scale="0" Size="0" SourceColumn="LOSSDATE" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Boolean" Direction="Input" ParameterName="@TBAF" Precision="0" ProviderType="Bit" Scale="0" Size="0" SourceColumn="TBAF" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="AnsiString" Direction="Input" ParameterName="@BANKID" Precision="0" ProviderType="VarChar" Scale="0" Size="0" SourceColumn="BANKID" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="AnsiString" Direction="Input" ParameterName="@CLAIMANTID" Precision="0" ProviderType="VarChar" Scale="0" Size="0" SourceColumn="CLAIMANTID" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="AnsiString" Direction="Input" ParameterName="@CLAIMNAME" Precision="0" ProviderType="VarChar" Scale="0" Size="0" SourceColumn="CLAIMNAME" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="AnsiString" Direction="Input" ParameterName="@ADJUSTERPRID" Precision="0" ProviderType="VarChar" Scale="0" Size="0" SourceColumn="ADJUSTERPRID" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="AnsiString" Direction="Input" ParameterName="@TYPEF" Precision="0" ProviderType="VarChar" Scale="0" Size="0" SourceColumn="TYPEF" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="AnsiString" Direction="Input" ParameterName="@STATUSF" Precision="0" ProviderType="VarChar" Scale="0" Size="0" SourceColumn="STATUSF" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="AnsiString" Direction="Input" ParameterName="@INDIDENT" Precision="0" ProviderType="Text" Scale="0" Size="0" SourceColumn="INDIDENT" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="AnsiString" Direction="Input" ParameterName="@SECUSER" Precision="0" ProviderType="VarChar" Scale="0" Size="0" SourceColumn="SECUSER" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="DateTime" Direction="Input" ParameterName="@SECDATE" Precision="0" ProviderType="DateTime" Scale="0" Size="0" SourceColumn="SECDATE" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="AnsiString" Direction="Input" ParameterName="@SECROLE" Precision="0" ProviderType="VarChar" Scale="0" Size="0" SourceColumn="SECROLE" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Boolean" Direction="Input" ParameterName="@ISCATEVENT" Precision="0" ProviderType="Bit" Scale="0" Size="0" SourceColumn="ISCATEVENT" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="AnsiString" Direction="Input" ParameterName="@INSCLNO" Precision="0" ProviderType="VarChar" Scale="0" Size="0" SourceColumn="INSCLNO" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="AnsiString" Direction="Input" ParameterName="@LOCATION" Precision="0" ProviderType="VarChar" Scale="0" Size="0" SourceColumn="LOCATION" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Date" Direction="Input" ParameterName="@DON" Precision="0" ProviderType="Date" Scale="0" Size="0" SourceColumn="DON" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Date" Direction="Input" ParameterName="@DOR" Precision="0" ProviderType="Date" Scale="0" Size="0" SourceColumn="DOR" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="AnsiString" Direction="Input" ParameterName="@USERHANDLER" Precision="0" ProviderType="VarChar" Scale="0" Size="0" SourceColumn="USERHANDLER" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="AnsiString" Direction="Input" ParameterName="@SURVEYORPRID" Precision="0" ProviderType="VarChar" Scale="0" Size="0" SourceColumn="SURVEYORPRID" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="AnsiString" Direction="Input" ParameterName="@MTU" Precision="0" ProviderType="VarChar" Scale="0" Size="0" SourceColumn="MTU" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Decimal" Direction="Input" ParameterName="@CLRESERVE" Precision="19" ProviderType="Decimal" Scale="2" Size="0" SourceColumn="CLRESERVE" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Decimal" Direction="Input" ParameterName="@CLADJ" Precision="19" ProviderType="Decimal" Scale="2" Size="0" SourceColumn="CLADJ" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Decimal" Direction="Input" ParameterName="@CLSALV" Precision="19" ProviderType="Decimal" Scale="2" Size="0" SourceColumn="CLSALV" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Decimal" Direction="Input" ParameterName="@CLRECV" Precision="19" ProviderType="Decimal" Scale="2" Size="0" SourceColumn="CLRECV" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Decimal" Direction="Input" ParameterName="@CLDED" Precision="19" ProviderType="Decimal" Scale="2" Size="0" SourceColumn="CLDED" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Decimal" Direction="Input" ParameterName="@CLNETT" Precision="19" ProviderType="Decimal" Scale="2" Size="0" SourceColumn="CLNETT" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Date" Direction="Input" ParameterName="@PAYMENTDATE" Precision="0" ProviderType="Date" Scale="0" Size="0" SourceColumn="PAYMENTDATE" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="AnsiString" Direction="Input" ParameterName="@REMARKS" Precision="0" ProviderType="VarChar" Scale="0" Size="0" SourceColumn="REMARKS" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="DateTime" Direction="Input" ParameterName="@CLOSEDATE" Precision="0" ProviderType="DateTime" Scale="0" Size="0" SourceColumn="CLOSEDATE" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="DateTime" Direction="Input" ParameterName="@SDATE" Precision="0" ProviderType="DateTime" Scale="0" Size="0" SourceColumn="SDATE" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="DateTime" Direction="Input" ParameterName="@EDATE" Precision="0" ProviderType="DateTime" Scale="0" Size="0" SourceColumn="EDATE" SourceColumnNullMapping="false" SourceVersion="Current" />
+                    </Parameters>
+                  </DbCommand>
+                </InsertCommand>
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="true">
+                    <CommandText>SELECT CLID, COL, KODECAB, KODETOC, PCLID, PLCID, CLAIMNO, CURUT, ENDORS, REGDATE, LOSSDATE, TBAF, BANKID, CLAIMANTID, CLAIMNAME, ADJUSTERPRID, TYPEF, STATUSF, INDIDENT, SECUSER, SECDATE, SECROLE, ISCATEVENT, INSCLNO, LOCATION, DON, DOR, 
+             USERHANDLER, SURVEYORPRID, MTU, CLRESERVE, CLADJ, CLSALV, CLRECV, CLDED, CLNETT, PAYMENTDATE, REMARKS, CLOSEDATE, SDATE, EDATE
+FROM   CLAIM</CommandText>
+                    <Parameters />
+                  </DbCommand>
+                </SelectCommand>
+                <UpdateCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="false">
+                    <CommandText>UPDATE [CLAIM] SET [CLID] = @CLID, [COL] = @COL, [KODECAB] = @KODECAB, [KODETOC] = @KODETOC, [PCLID] = @PCLID, [PLCID] = @PLCID, [CLAIMNO] = @CLAIMNO, [CURUT] = @CURUT, [ENDORS] = @ENDORS, [REGDATE] = @REGDATE, [LOSSDATE] = @LOSSDATE, [TBAF] = @TBAF, [BANKID] = @BANKID, [CLAIMANTID] = @CLAIMANTID, [CLAIMNAME] = @CLAIMNAME, [ADJUSTERPRID] = @ADJUSTERPRID, [TYPEF] = @TYPEF, [STATUSF] = @STATUSF, [INDIDENT] = @INDIDENT, [SECUSER] = @SECUSER, [SECDATE] = @SECDATE, [SECROLE] = @SECROLE, [ISCATEVENT] = @ISCATEVENT, [INSCLNO] = @INSCLNO, [LOCATION] = @LOCATION, [DON] = @DON, [DOR] = @DOR, [USERHANDLER] = @USERHANDLER, [SURVEYORPRID] = @SURVEYORPRID, [MTU] = @MTU, [CLRESERVE] = @CLRESERVE, [CLADJ] = @CLADJ, [CLSALV] = @CLSALV, [CLRECV] = @CLRECV, [CLDED] = @CLDED, [CLNETT] = @CLNETT, [PAYMENTDATE] = @PAYMENTDATE, [REMARKS] = @REMARKS, [CLOSEDATE] = @CLOSEDATE, [SDATE] = @SDATE, [EDATE] = @EDATE WHERE (([CLID] = @Original_CLID) AND ((@IsNull_COL = 1 AND [COL] IS NULL) OR ([COL] = @Original_COL)) AND ((@IsNull_KODECAB = 1 AND [KODECAB] IS NULL) OR ([KODECAB] = @Original_KODECAB)) AND ((@IsNull_KODETOC = 1 AND [KODETOC] IS NULL) OR ([KODETOC] = @Original_KODETOC)) AND ((@IsNull_PCLID = 1 AND [PCLID] IS NULL) OR ([PCLID] = @Original_PCLID)) AND ((@IsNull_PLCID = 1 AND [PLCID] IS NULL) OR ([PLCID] = @Original_PLCID)) AND ((@IsNull_CLAIMNO = 1 AND [CLAIMNO] IS NULL) OR ([CLAIMNO] = @Original_CLAIMNO)) AND ((@IsNull_CURUT = 1 AND [CURUT] IS NULL) OR ([CURUT] = @Original_CURUT)) AND ((@IsNull_ENDORS = 1 AND [ENDORS] IS NULL) OR ([ENDORS] = @Original_ENDORS)) AND ((@IsNull_REGDATE = 1 AND [REGDATE] IS NULL) OR ([REGDATE] = @Original_REGDATE)) AND ((@IsNull_LOSSDATE = 1 AND [LOSSDATE] IS NULL) OR ([LOSSDATE] = @Original_LOSSDATE)) AND ((@IsNull_TBAF = 1 AND [TBAF] IS NULL) OR ([TBAF] = @Original_TBAF)) AND ((@IsNull_BANKID = 1 AND [BANKID] IS NULL) OR ([BANKID] = @Original_BANKID)) AND ((@IsNull_CLAIMANTID = 1 AND [CLAIMANTID] IS NULL) OR ([CLAIMANTID] = @Original_CLAIMANTID)) AND ((@IsNull_CLAIMNAME = 1 AND [CLAIMNAME] IS NULL) OR ([CLAIMNAME] = @Original_CLAIMNAME)) AND ((@IsNull_ADJUSTERPRID = 1 AND [ADJUSTERPRID] IS NULL) OR ([ADJUSTERPRID] = @Original_ADJUSTERPRID)) AND ((@IsNull_TYPEF = 1 AND [TYPEF] IS NULL) OR ([TYPEF] = @Original_TYPEF)) AND ((@IsNull_STATUSF = 1 AND [STATUSF] IS NULL) OR ([STATUSF] = @Original_STATUSF)) AND ((@IsNull_SECUSER = 1 AND [SECUSER] IS NULL) OR ([SECUSER] = @Original_SECUSER)) AND ((@IsNull_SECDATE = 1 AND [SECDATE] IS NULL) OR ([SECDATE] = @Original_SECDATE)) AND ((@IsNull_SECROLE = 1 AND [SECROLE] IS NULL) OR ([SECROLE] = @Original_SECROLE)) AND ((@IsNull_ISCATEVENT = 1 AND [ISCATEVENT] IS NULL) OR ([ISCATEVENT] = @Original_ISCATEVENT)) AND ((@IsNull_INSCLNO = 1 AND [INSCLNO] IS NULL) OR ([INSCLNO] = @Original_INSCLNO)) AND ((@IsNull_LOCATION = 1 AND [LOCATION] IS NULL) OR ([LOCATION] = @Original_LOCATION)) AND ((@IsNull_DON = 1 AND [DON] IS NULL) OR ([DON] = @Original_DON)) AND ((@IsNull_DOR = 1 AND [DOR] IS NULL) OR ([DOR] = @Original_DOR)) AND ((@IsNull_USERHANDLER = 1 AND [USERHANDLER] IS NULL) OR ([USERHANDLER] = @Original_USERHANDLER)) AND ((@IsNull_SURVEYORPRID = 1 AND [SURVEYORPRID] IS NULL) OR ([SURVEYORPRID] = @Original_SURVEYORPRID)) AND ((@IsNull_MTU = 1 AND [MTU] IS NULL) OR ([MTU] = @Original_MTU)) AND ((@IsNull_CLRESERVE = 1 AND [CLRESERVE] IS NULL) OR ([CLRESERVE] = @Original_CLRESERVE)) AND ((@IsNull_CLADJ = 1 AND [CLADJ] IS NULL) OR ([CLADJ] = @Original_CLADJ)) AND ((@IsNull_CLSALV = 1 AND [CLSALV] IS NULL) OR ([CLSALV] = @Original_CLSALV)) AND ((@IsNull_CLRECV = 1 AND [CLRECV] IS NULL) OR ([CLRECV] = @Original_CLRECV)) AND ((@IsNull_CLDED = 1 AND [CLDED] IS NULL) OR ([CLDED] = @Original_CLDED)) AND ((@IsNull_CLNETT = 1 AND [CLNETT] IS NULL) OR ([CLNETT] = @Original_CLNETT)) AND ((@IsNull_PAYMENTDATE = 1 AND [PAYMENTDATE] IS NULL) OR ([PAYMENTDATE] = @Original_PAYMENTDATE)) AND ((@IsNull_REMARKS = 1 AND [REMARKS] IS NULL) OR ([REMARKS] = @Original_REMARKS)) AND ((@IsNull_CLOSEDATE = 1 AND [CLOSEDATE] IS NULL) OR ([CLOSEDATE] = @Original_CLOSEDATE)) AND ((@IsNull_SDATE = 1 AND [SDATE] IS NULL) OR ([SDATE] = @Original_SDATE)) AND ((@IsNull_EDATE = 1 AND [EDATE] IS NULL) OR ([EDATE] = @Original_EDATE)))</CommandText>
+                    <Parameters>
+                      <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="AnsiString" Direction="Input" ParameterName="@CLID" Precision="0" ProviderType="VarChar" Scale="0" Size="0" SourceColumn="CLID" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="AnsiString" Direction="Input" ParameterName="@COL" Precision="0" ProviderType="VarChar" Scale="0" Size="0" SourceColumn="COL" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="AnsiString" Direction="Input" ParameterName="@KODECAB" Precision="0" ProviderType="VarChar" Scale="0" Size="0" SourceColumn="KODECAB" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="AnsiString" Direction="Input" ParameterName="@KODETOC" Precision="0" ProviderType="VarChar" Scale="0" Size="0" SourceColumn="KODETOC" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="AnsiString" Direction="Input" ParameterName="@PCLID" Precision="0" ProviderType="VarChar" Scale="0" Size="0" SourceColumn="PCLID" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="AnsiString" Direction="Input" ParameterName="@PLCID" Precision="0" ProviderType="VarChar" Scale="0" Size="0" SourceColumn="PLCID" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="AnsiString" Direction="Input" ParameterName="@CLAIMNO" Precision="0" ProviderType="VarChar" Scale="0" Size="0" SourceColumn="CLAIMNO" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@CURUT" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="CURUT" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@ENDORS" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="ENDORS" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="DateTime" Direction="Input" ParameterName="@REGDATE" Precision="0" ProviderType="DateTime" Scale="0" Size="0" SourceColumn="REGDATE" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="DateTime" Direction="Input" ParameterName="@LOSSDATE" Precision="0" ProviderType="DateTime" Scale="0" Size="0" SourceColumn="LOSSDATE" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Boolean" Direction="Input" ParameterName="@TBAF" Precision="0" ProviderType="Bit" Scale="0" Size="0" SourceColumn="TBAF" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="AnsiString" Direction="Input" ParameterName="@BANKID" Precision="0" ProviderType="VarChar" Scale="0" Size="0" SourceColumn="BANKID" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="AnsiString" Direction="Input" ParameterName="@CLAIMANTID" Precision="0" ProviderType="VarChar" Scale="0" Size="0" SourceColumn="CLAIMANTID" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="AnsiString" Direction="Input" ParameterName="@CLAIMNAME" Precision="0" ProviderType="VarChar" Scale="0" Size="0" SourceColumn="CLAIMNAME" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="AnsiString" Direction="Input" ParameterName="@ADJUSTERPRID" Precision="0" ProviderType="VarChar" Scale="0" Size="0" SourceColumn="ADJUSTERPRID" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="AnsiString" Direction="Input" ParameterName="@TYPEF" Precision="0" ProviderType="VarChar" Scale="0" Size="0" SourceColumn="TYPEF" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="AnsiString" Direction="Input" ParameterName="@STATUSF" Precision="0" ProviderType="VarChar" Scale="0" Size="0" SourceColumn="STATUSF" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="AnsiString" Direction="Input" ParameterName="@INDIDENT" Precision="0" ProviderType="Text" Scale="0" Size="0" SourceColumn="INDIDENT" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="AnsiString" Direction="Input" ParameterName="@SECUSER" Precision="0" ProviderType="VarChar" Scale="0" Size="0" SourceColumn="SECUSER" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="DateTime" Direction="Input" ParameterName="@SECDATE" Precision="0" ProviderType="DateTime" Scale="0" Size="0" SourceColumn="SECDATE" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="AnsiString" Direction="Input" ParameterName="@SECROLE" Precision="0" ProviderType="VarChar" Scale="0" Size="0" SourceColumn="SECROLE" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Boolean" Direction="Input" ParameterName="@ISCATEVENT" Precision="0" ProviderType="Bit" Scale="0" Size="0" SourceColumn="ISCATEVENT" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="AnsiString" Direction="Input" ParameterName="@INSCLNO" Precision="0" ProviderType="VarChar" Scale="0" Size="0" SourceColumn="INSCLNO" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="AnsiString" Direction="Input" ParameterName="@LOCATION" Precision="0" ProviderType="VarChar" Scale="0" Size="0" SourceColumn="LOCATION" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Date" Direction="Input" ParameterName="@DON" Precision="0" ProviderType="Date" Scale="0" Size="0" SourceColumn="DON" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Date" Direction="Input" ParameterName="@DOR" Precision="0" ProviderType="Date" Scale="0" Size="0" SourceColumn="DOR" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="AnsiString" Direction="Input" ParameterName="@USERHANDLER" Precision="0" ProviderType="VarChar" Scale="0" Size="0" SourceColumn="USERHANDLER" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="AnsiString" Direction="Input" ParameterName="@SURVEYORPRID" Precision="0" ProviderType="VarChar" Scale="0" Size="0" SourceColumn="SURVEYORPRID" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="AnsiString" Direction="Input" ParameterName="@MTU" Precision="0" ProviderType="VarChar" Scale="0" Size="0" SourceColumn="MTU" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Decimal" Direction="Input" ParameterName="@CLRESERVE" Precision="19" ProviderType="Decimal" Scale="2" Size="0" SourceColumn="CLRESERVE" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Decimal" Direction="Input" ParameterName="@CLADJ" Precision="19" ProviderType="Decimal" Scale="2" Size="0" SourceColumn="CLADJ" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Decimal" Direction="Input" ParameterName="@CLSALV" Precision="19" ProviderType="Decimal" Scale="2" Size="0" SourceColumn="CLSALV" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Decimal" Direction="Input" ParameterName="@CLRECV" Precision="19" ProviderType="Decimal" Scale="2" Size="0" SourceColumn="CLRECV" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Decimal" Direction="Input" ParameterName="@CLDED" Precision="19" ProviderType="Decimal" Scale="2" Size="0" SourceColumn="CLDED" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Decimal" Direction="Input" ParameterName="@CLNETT" Precision="19" ProviderType="Decimal" Scale="2" Size="0" SourceColumn="CLNETT" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Date" Direction="Input" ParameterName="@PAYMENTDATE" Precision="0" ProviderType="Date" Scale="0" Size="0" SourceColumn="PAYMENTDATE" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="AnsiString" Direction="Input" ParameterName="@REMARKS" Precision="0" ProviderType="VarChar" Scale="0" Size="0" SourceColumn="REMARKS" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="DateTime" Direction="Input" ParameterName="@CLOSEDATE" Precision="0" ProviderType="DateTime" Scale="0" Size="0" SourceColumn="CLOSEDATE" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="DateTime" Direction="Input" ParameterName="@SDATE" Precision="0" ProviderType="DateTime" Scale="0" Size="0" SourceColumn="SDATE" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="DateTime" Direction="Input" ParameterName="@EDATE" Precision="0" ProviderType="DateTime" Scale="0" Size="0" SourceColumn="EDATE" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="AnsiString" Direction="Input" ParameterName="@Original_CLID" Precision="0" ProviderType="VarChar" Scale="0" Size="0" SourceColumn="CLID" SourceColumnNullMapping="false" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@IsNull_COL" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="COL" SourceColumnNullMapping="true" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="AnsiString" Direction="Input" ParameterName="@Original_COL" Precision="0" ProviderType="VarChar" Scale="0" Size="0" SourceColumn="COL" SourceColumnNullMapping="false" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@IsNull_KODECAB" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="KODECAB" SourceColumnNullMapping="true" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="AnsiString" Direction="Input" ParameterName="@Original_KODECAB" Precision="0" ProviderType="VarChar" Scale="0" Size="0" SourceColumn="KODECAB" SourceColumnNullMapping="false" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@IsNull_KODETOC" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="KODETOC" SourceColumnNullMapping="true" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="AnsiString" Direction="Input" ParameterName="@Original_KODETOC" Precision="0" ProviderType="VarChar" Scale="0" Size="0" SourceColumn="KODETOC" SourceColumnNullMapping="false" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@IsNull_PCLID" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="PCLID" SourceColumnNullMapping="true" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="AnsiString" Direction="Input" ParameterName="@Original_PCLID" Precision="0" ProviderType="VarChar" Scale="0" Size="0" SourceColumn="PCLID" SourceColumnNullMapping="false" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@IsNull_PLCID" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="PLCID" SourceColumnNullMapping="true" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="AnsiString" Direction="Input" ParameterName="@Original_PLCID" Precision="0" ProviderType="VarChar" Scale="0" Size="0" SourceColumn="PLCID" SourceColumnNullMapping="false" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@IsNull_CLAIMNO" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="CLAIMNO" SourceColumnNullMapping="true" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="AnsiString" Direction="Input" ParameterName="@Original_CLAIMNO" Precision="0" ProviderType="VarChar" Scale="0" Size="0" SourceColumn="CLAIMNO" SourceColumnNullMapping="false" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@IsNull_CURUT" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="CURUT" SourceColumnNullMapping="true" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@Original_CURUT" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="CURUT" SourceColumnNullMapping="false" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@IsNull_ENDORS" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="ENDORS" SourceColumnNullMapping="true" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@Original_ENDORS" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="ENDORS" SourceColumnNullMapping="false" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@IsNull_REGDATE" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="REGDATE" SourceColumnNullMapping="true" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="DateTime" Direction="Input" ParameterName="@Original_REGDATE" Precision="0" ProviderType="DateTime" Scale="0" Size="0" SourceColumn="REGDATE" SourceColumnNullMapping="false" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@IsNull_LOSSDATE" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="LOSSDATE" SourceColumnNullMapping="true" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="DateTime" Direction="Input" ParameterName="@Original_LOSSDATE" Precision="0" ProviderType="DateTime" Scale="0" Size="0" SourceColumn="LOSSDATE" SourceColumnNullMapping="false" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@IsNull_TBAF" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="TBAF" SourceColumnNullMapping="true" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Boolean" Direction="Input" ParameterName="@Original_TBAF" Precision="0" ProviderType="Bit" Scale="0" Size="0" SourceColumn="TBAF" SourceColumnNullMapping="false" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@IsNull_BANKID" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="BANKID" SourceColumnNullMapping="true" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="AnsiString" Direction="Input" ParameterName="@Original_BANKID" Precision="0" ProviderType="VarChar" Scale="0" Size="0" SourceColumn="BANKID" SourceColumnNullMapping="false" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@IsNull_CLAIMANTID" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="CLAIMANTID" SourceColumnNullMapping="true" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="AnsiString" Direction="Input" ParameterName="@Original_CLAIMANTID" Precision="0" ProviderType="VarChar" Scale="0" Size="0" SourceColumn="CLAIMANTID" SourceColumnNullMapping="false" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@IsNull_CLAIMNAME" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="CLAIMNAME" SourceColumnNullMapping="true" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="AnsiString" Direction="Input" ParameterName="@Original_CLAIMNAME" Precision="0" ProviderType="VarChar" Scale="0" Size="0" SourceColumn="CLAIMNAME" SourceColumnNullMapping="false" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@IsNull_ADJUSTERPRID" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="ADJUSTERPRID" SourceColumnNullMapping="true" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="AnsiString" Direction="Input" ParameterName="@Original_ADJUSTERPRID" Precision="0" ProviderType="VarChar" Scale="0" Size="0" SourceColumn="ADJUSTERPRID" SourceColumnNullMapping="false" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@IsNull_TYPEF" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="TYPEF" SourceColumnNullMapping="true" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="AnsiString" Direction="Input" ParameterName="@Original_TYPEF" Precision="0" ProviderType="VarChar" Scale="0" Size="0" SourceColumn="TYPEF" SourceColumnNullMapping="false" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@IsNull_STATUSF" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="STATUSF" SourceColumnNullMapping="true" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="AnsiString" Direction="Input" ParameterName="@Original_STATUSF" Precision="0" ProviderType="VarChar" Scale="0" Size="0" SourceColumn="STATUSF" SourceColumnNullMapping="false" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@IsNull_SECUSER" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="SECUSER" SourceColumnNullMapping="true" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="AnsiString" Direction="Input" ParameterName="@Original_SECUSER" Precision="0" ProviderType="VarChar" Scale="0" Size="0" SourceColumn="SECUSER" SourceColumnNullMapping="false" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@IsNull_SECDATE" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="SECDATE" SourceColumnNullMapping="true" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="DateTime" Direction="Input" ParameterName="@Original_SECDATE" Precision="0" ProviderType="DateTime" Scale="0" Size="0" SourceColumn="SECDATE" SourceColumnNullMapping="false" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@IsNull_SECROLE" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="SECROLE" SourceColumnNullMapping="true" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="AnsiString" Direction="Input" ParameterName="@Original_SECROLE" Precision="0" ProviderType="VarChar" Scale="0" Size="0" SourceColumn="SECROLE" SourceColumnNullMapping="false" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@IsNull_ISCATEVENT" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="ISCATEVENT" SourceColumnNullMapping="true" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Boolean" Direction="Input" ParameterName="@Original_ISCATEVENT" Precision="0" ProviderType="Bit" Scale="0" Size="0" SourceColumn="ISCATEVENT" SourceColumnNullMapping="false" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@IsNull_INSCLNO" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="INSCLNO" SourceColumnNullMapping="true" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="AnsiString" Direction="Input" ParameterName="@Original_INSCLNO" Precision="0" ProviderType="VarChar" Scale="0" Size="0" SourceColumn="INSCLNO" SourceColumnNullMapping="false" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@IsNull_LOCATION" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="LOCATION" SourceColumnNullMapping="true" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="AnsiString" Direction="Input" ParameterName="@Original_LOCATION" Precision="0" ProviderType="VarChar" Scale="0" Size="0" SourceColumn="LOCATION" SourceColumnNullMapping="false" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@IsNull_DON" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="DON" SourceColumnNullMapping="true" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Date" Direction="Input" ParameterName="@Original_DON" Precision="0" ProviderType="Date" Scale="0" Size="0" SourceColumn="DON" SourceColumnNullMapping="false" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@IsNull_DOR" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="DOR" SourceColumnNullMapping="true" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Date" Direction="Input" ParameterName="@Original_DOR" Precision="0" ProviderType="Date" Scale="0" Size="0" SourceColumn="DOR" SourceColumnNullMapping="false" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@IsNull_USERHANDLER" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="USERHANDLER" SourceColumnNullMapping="true" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="AnsiString" Direction="Input" ParameterName="@Original_USERHANDLER" Precision="0" ProviderType="VarChar" Scale="0" Size="0" SourceColumn="USERHANDLER" SourceColumnNullMapping="false" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@IsNull_SURVEYORPRID" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="SURVEYORPRID" SourceColumnNullMapping="true" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="AnsiString" Direction="Input" ParameterName="@Original_SURVEYORPRID" Precision="0" ProviderType="VarChar" Scale="0" Size="0" SourceColumn="SURVEYORPRID" SourceColumnNullMapping="false" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@IsNull_MTU" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="MTU" SourceColumnNullMapping="true" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="AnsiString" Direction="Input" ParameterName="@Original_MTU" Precision="0" ProviderType="VarChar" Scale="0" Size="0" SourceColumn="MTU" SourceColumnNullMapping="false" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@IsNull_CLRESERVE" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="CLRESERVE" SourceColumnNullMapping="true" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Decimal" Direction="Input" ParameterName="@Original_CLRESERVE" Precision="19" ProviderType="Decimal" Scale="2" Size="0" SourceColumn="CLRESERVE" SourceColumnNullMapping="false" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@IsNull_CLADJ" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="CLADJ" SourceColumnNullMapping="true" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Decimal" Direction="Input" ParameterName="@Original_CLADJ" Precision="19" ProviderType="Decimal" Scale="2" Size="0" SourceColumn="CLADJ" SourceColumnNullMapping="false" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@IsNull_CLSALV" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="CLSALV" SourceColumnNullMapping="true" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Decimal" Direction="Input" ParameterName="@Original_CLSALV" Precision="19" ProviderType="Decimal" Scale="2" Size="0" SourceColumn="CLSALV" SourceColumnNullMapping="false" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@IsNull_CLRECV" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="CLRECV" SourceColumnNullMapping="true" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Decimal" Direction="Input" ParameterName="@Original_CLRECV" Precision="19" ProviderType="Decimal" Scale="2" Size="0" SourceColumn="CLRECV" SourceColumnNullMapping="false" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@IsNull_CLDED" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="CLDED" SourceColumnNullMapping="true" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Decimal" Direction="Input" ParameterName="@Original_CLDED" Precision="19" ProviderType="Decimal" Scale="2" Size="0" SourceColumn="CLDED" SourceColumnNullMapping="false" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@IsNull_CLNETT" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="CLNETT" SourceColumnNullMapping="true" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Decimal" Direction="Input" ParameterName="@Original_CLNETT" Precision="19" ProviderType="Decimal" Scale="2" Size="0" SourceColumn="CLNETT" SourceColumnNullMapping="false" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@IsNull_PAYMENTDATE" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="PAYMENTDATE" SourceColumnNullMapping="true" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Date" Direction="Input" ParameterName="@Original_PAYMENTDATE" Precision="0" ProviderType="Date" Scale="0" Size="0" SourceColumn="PAYMENTDATE" SourceColumnNullMapping="false" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@IsNull_REMARKS" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="REMARKS" SourceColumnNullMapping="true" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="AnsiString" Direction="Input" ParameterName="@Original_REMARKS" Precision="0" ProviderType="VarChar" Scale="0" Size="0" SourceColumn="REMARKS" SourceColumnNullMapping="false" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@IsNull_CLOSEDATE" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="CLOSEDATE" SourceColumnNullMapping="true" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="DateTime" Direction="Input" ParameterName="@Original_CLOSEDATE" Precision="0" ProviderType="DateTime" Scale="0" Size="0" SourceColumn="CLOSEDATE" SourceColumnNullMapping="false" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@IsNull_SDATE" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="SDATE" SourceColumnNullMapping="true" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="DateTime" Direction="Input" ParameterName="@Original_SDATE" Precision="0" ProviderType="DateTime" Scale="0" Size="0" SourceColumn="SDATE" SourceColumnNullMapping="false" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@IsNull_EDATE" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="EDATE" SourceColumnNullMapping="true" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="DateTime" Direction="Input" ParameterName="@Original_EDATE" Precision="0" ProviderType="DateTime" Scale="0" Size="0" SourceColumn="EDATE" SourceColumnNullMapping="false" SourceVersion="Original" />
+                    </Parameters>
+                  </DbCommand>
+                </UpdateCommand>
+              </DbSource>
+            </MainSource>
+            <Mappings>
+              <Mapping SourceColumn="CLID" DataSetColumn="CLID" />
+              <Mapping SourceColumn="COL" DataSetColumn="COL" />
+              <Mapping SourceColumn="KODECAB" DataSetColumn="KODECAB" />
+              <Mapping SourceColumn="KODETOC" DataSetColumn="KODETOC" />
+              <Mapping SourceColumn="PCLID" DataSetColumn="PCLID" />
+              <Mapping SourceColumn="PLCID" DataSetColumn="PLCID" />
+              <Mapping SourceColumn="CLAIMNO" DataSetColumn="CLAIMNO" />
+              <Mapping SourceColumn="CURUT" DataSetColumn="CURUT" />
+              <Mapping SourceColumn="ENDORS" DataSetColumn="ENDORS" />
+              <Mapping SourceColumn="REGDATE" DataSetColumn="REGDATE" />
+              <Mapping SourceColumn="LOSSDATE" DataSetColumn="LOSSDATE" />
+              <Mapping SourceColumn="TBAF" DataSetColumn="TBAF" />
+              <Mapping SourceColumn="CLAIMANTID" DataSetColumn="CLAIMANTID" />
+              <Mapping SourceColumn="CLAIMNAME" DataSetColumn="CLAIMNAME" />
+              <Mapping SourceColumn="TYPEF" DataSetColumn="TYPEF" />
+              <Mapping SourceColumn="STATUSF" DataSetColumn="STATUSF" />
+              <Mapping SourceColumn="INDIDENT" DataSetColumn="INDIDENT" />
+              <Mapping SourceColumn="SECUSER" DataSetColumn="SECUSER" />
+              <Mapping SourceColumn="SECDATE" DataSetColumn="SECDATE" />
+              <Mapping SourceColumn="SECROLE" DataSetColumn="SECROLE" />
+              <Mapping SourceColumn="BANKID" DataSetColumn="BANKID" />
+              <Mapping SourceColumn="ADJUSTERPRID" DataSetColumn="ADJUSTERPRID" />
+              <Mapping SourceColumn="ISCATEVENT" DataSetColumn="ISCATEVENT" />
+              <Mapping SourceColumn="INSCLNO" DataSetColumn="INSCLNO" />
+              <Mapping SourceColumn="LOCATION" DataSetColumn="LOCATION" />
+              <Mapping SourceColumn="DON" DataSetColumn="DON" />
+              <Mapping SourceColumn="DOR" DataSetColumn="DOR" />
+              <Mapping SourceColumn="USERHANDLER" DataSetColumn="USERHANDLER" />
+              <Mapping SourceColumn="SURVEYORPRID" DataSetColumn="SURVEYORPRID" />
+              <Mapping SourceColumn="MTU" DataSetColumn="MTU" />
+              <Mapping SourceColumn="CLRESERVE" DataSetColumn="CLRESERVE" />
+              <Mapping SourceColumn="CLADJ" DataSetColumn="CLADJ" />
+              <Mapping SourceColumn="CLSALV" DataSetColumn="CLSALV" />
+              <Mapping SourceColumn="CLRECV" DataSetColumn="CLRECV" />
+              <Mapping SourceColumn="CLDED" DataSetColumn="CLDED" />
+              <Mapping SourceColumn="CLNETT" DataSetColumn="CLNETT" />
+              <Mapping SourceColumn="PAYMENTDATE" DataSetColumn="PAYMENTDATE" />
+              <Mapping SourceColumn="REMARKS" DataSetColumn="REMARKS" />
+              <Mapping SourceColumn="CLOSEDATE" DataSetColumn="CLOSEDATE" />
+              <Mapping SourceColumn="SDATE" DataSetColumn="SDATE" />
+              <Mapping SourceColumn="EDATE" DataSetColumn="EDATE" />
+            </Mappings>
+            <Sources>
+              <DbSource ConnectionRef="ConnectionString (Settings)" DbObjectName="" DbObjectType="Unknown" GenerateShortCommands="true" GeneratorSourceName="DeleteQuery" Modifier="Public" Name="DeleteQuery" QueryType="NoData" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetDataBy" UserSourceName="DeleteQuery">
+                <DeleteCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="true">
+                    <CommandText>DELETE FROM CLAIM
+WHERE (CLID = @Original_CLID)</CommandText>
+                    <Parameters>
+                      <Parameter AllowDbNull="false" AutogeneratedName="Original_CLID" ColumnName="CLID" DataSourceName="TALYS.dbo.CLAIM" DataTypeServer="varchar(20)" DbType="AnsiString" Direction="Input" ParameterName="@Original_CLID" Precision="0" ProviderType="VarChar" Scale="0" Size="20" SourceColumn="CLID" SourceColumnNullMapping="false" SourceVersion="Original" />
+                    </Parameters>
+                  </DbCommand>
+                </DeleteCommand>
+              </DbSource>
+              <DbSource ConnectionRef="ConnectionString (Settings)" DbObjectName="TALYS.dbo.CLAIM" DbObjectType="Table" GenerateMethods="Get" GenerateShortCommands="true" GeneratorGetMethodName="GetDataByID" GetMethodModifier="Public" GetMethodName="GetDataByID" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetDataByID" UserSourceName="GetDataByID">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="true">
+                    <CommandText>SELECT ADJUSTERPRID, BANKID, CLADJ, CLAIMANTID, CLAIMNAME, CLAIMNO, CLDED, CLID, CLNETT, CLOSEDATE, CLRECV, CLRESERVE, CLSALV, COL, CURUT, DON, DOR, EDATE, ENDORS, INDIDENT, INSCLNO, ISCATEVENT, KODECAB, KODETOC, LOCATION, LOSSDATE, MTU, PAYMENTDATE, PCLID, PLCID, REGDATE, REMARKS, SDATE, SECDATE, SECROLE, SECUSER, STATUSF, SURVEYORPRID, TBAF, TYPEF, USERHANDLER FROM CLAIM WHERE (CLID = @CLID)</CommandText>
+                    <Parameters>
+                      <Parameter AllowDbNull="false" AutogeneratedName="CLID" ColumnName="CLID" DataSourceName="TALYS.dbo.CLAIM" DataTypeServer="varchar(20)" DbType="AnsiString" Direction="Input" ParameterName="@CLID" Precision="0" ProviderType="VarChar" Scale="0" Size="20" SourceColumn="CLID" SourceColumnNullMapping="false" SourceVersion="Current" />
+                    </Parameters>
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+              <DbSource ConnectionRef="ConnectionString (Settings)" DbObjectName="TALYS.dbo.CLAIM" DbObjectType="Table" GenerateMethods="Get" GenerateShortCommands="true" GeneratorGetMethodName="GetDataByPCLID" GetMethodModifier="Public" GetMethodName="GetDataByPCLID" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetDataByPCLID" UserSourceName="GetDataByPCLID">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="true">
+                    <CommandText>SELECT ADJUSTERPRID, BANKID, CLADJ, CLAIMANTID, CLAIMNAME, CLAIMNO, CLDED, CLID, CLNETT, CLOSEDATE, CLRECV, CLRESERVE, CLSALV, COL, CURUT, DON, DOR, EDATE, ENDORS, INDIDENT, INSCLNO, ISCATEVENT, KODECAB, KODETOC, LOCATION, LOSSDATE, MTU, PAYMENTDATE, PCLID, PLCID, REGDATE, REMARKS, SDATE, SECDATE, SECROLE, SECUSER, STATUSF, SURVEYORPRID, TBAF, TYPEF, USERHANDLER FROM CLAIM WHERE (PCLID = @PCLID)</CommandText>
+                    <Parameters>
+                      <Parameter AllowDbNull="true" AutogeneratedName="PCLID" ColumnName="PCLID" DataSourceName="TALYS.dbo.CLAIM" DataTypeServer="varchar(20)" DbType="AnsiString" Direction="Input" ParameterName="@PCLID" Precision="0" ProviderType="VarChar" Scale="0" Size="20" SourceColumn="PCLID" SourceColumnNullMapping="false" SourceVersion="Current" />
+                    </Parameters>
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+              <DbSource ConnectionRef="ConnectionString (Settings)" DbObjectName="TALYS.dbo.CLAIM" DbObjectType="Table" GenerateMethods="Get" GenerateShortCommands="true" GeneratorGetMethodName="GetDataByPLCID" GetMethodModifier="Public" GetMethodName="GetDataByPLCID" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetDataByPLCID" UserSourceName="GetDataByPLCID">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="true">
+                    <CommandText>SELECT ADJUSTERPRID, BANKID, CLADJ, CLAIMANTID, CLAIMNAME, CLAIMNO, CLDED, CLID, CLNETT, CLOSEDATE, CLRECV, CLRESERVE, CLSALV, COL, CURUT, DON, DOR, EDATE, ENDORS, INDIDENT, INSCLNO, ISCATEVENT, KODECAB, KODETOC, LOCATION, LOSSDATE, MTU, PAYMENTDATE, PCLID, PLCID, REGDATE, REMARKS, SDATE, SECDATE, SECROLE, SECUSER, STATUSF, SURVEYORPRID, TBAF, TYPEF, USERHANDLER FROM CLAIM WHERE (PLCID = @PLCID)</CommandText>
+                    <Parameters>
+                      <Parameter AllowDbNull="true" AutogeneratedName="PLCID" ColumnName="PLCID" DataSourceName="TALYS.dbo.CLAIM" DataTypeServer="varchar(20)" DbType="AnsiString" Direction="Input" ParameterName="@PLCID" Precision="0" ProviderType="VarChar" Scale="0" Size="20" SourceColumn="PLCID" SourceColumnNullMapping="false" SourceVersion="Current" />
+                    </Parameters>
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+              <DbSource ConnectionRef="ConnectionString (Settings)" DbObjectType="Unknown" GenerateShortCommands="true" GeneratorSourceName="GetMaxUrut" Modifier="Public" Name="GetMaxUrut" QueryType="Scalar" ScalarCallRetval="System.Int32, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetDataBy1" UserSourceName="GetMaxUrut">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="true">
+                    <CommandText>SELECT MAX(CURUT) FROM CLAIM WHERE CLAIMNO LIKE @CLAIMNO</CommandText>
+                    <Parameters>
+                      <Parameter AllowDbNull="true" AutogeneratedName="CLAIMNO" ColumnName="CLAIMNO" DataSourceName="TALYS.dbo.CLAIM" DataTypeServer="varchar(50)" DbType="AnsiString" Direction="Input" ParameterName="@CLAIMNO" Precision="0" ProviderType="VarChar" Scale="0" Size="50" SourceColumn="CLAIMNO" SourceColumnNullMapping="false" SourceVersion="Current" />
+                    </Parameters>
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+              <DbSource ConnectionRef="ConnectionString (Settings)" DbObjectName="" DbObjectType="Unknown" GenerateShortCommands="true" GeneratorSourceName="InsertQuery" Modifier="Public" Name="InsertQuery" QueryType="NoData" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetDataBy2" UserSourceName="InsertQuery">
+                <InsertCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="true">
+                    <CommandText>INSERT INTO CLAIM
+             (CLID, COL, KODECAB, KODETOC, PCLID, PLCID, CLAIMNO, CURUT, ENDORS, REGDATE, LOSSDATE, TBAF, BANKID, CLAIMANTID, CLAIMNAME, ADJUSTERPRID, TYPEF, STATUSF, INDIDENT, SECUSER, SECDATE, SECROLE, ISCATEVENT, INSCLNO, LOCATION, DON, DOR, 
+             USERHANDLER, SURVEYORPRID, MTU, CLRESERVE, CLADJ, CLSALV, CLRECV, CLDED, CLNETT, REMARKS, PAYMENTDATE, SDATE, EDATE)
+VALUES (@CLID,@COL,@KODECAB,@KODETOC,@PCLID,@PLCID,@CLAIMNO,@CURUT,@ENDORS,@REGDATE,@LOSSDATE,@TBAF,@BANKID,@CLAIMANTID,@CLAIMNAME,@ADJUSTERPRID,@TYPEF,@STATUSF,@INDIDENT,@SECUSER,@SECDATE,@SECROLE,@ISCATEVENT,@INSCLNO,@LOCATION,@DON,@DOR,@USERHANDLER,@SURVEYORPRID,@MTU,@CLRESERVE,@CLADJ,@CLSALV,@CLRECV,@CLDED,@CLNETT,@REMARKS,@PAYMENTDATE, @SDATE, @EDATE)</CommandText>
+                    <Parameters>
+                      <Parameter AllowDbNull="false" AutogeneratedName="CLID" ColumnName="CLID" DataSourceName="TALYS.dbo.CLAIM" DataTypeServer="varchar(20)" DbType="AnsiString" Direction="Input" ParameterName="@CLID" Precision="0" ProviderType="VarChar" Scale="0" Size="20" SourceColumn="CLID" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="COL" ColumnName="COL" DataSourceName="TALYS.dbo.CLAIM" DataTypeServer="varchar(10)" DbType="AnsiString" Direction="Input" ParameterName="@COL" Precision="0" ProviderType="VarChar" Scale="0" Size="10" SourceColumn="COL" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="KODECAB" ColumnName="KODECAB" DataSourceName="TALYS.dbo.CLAIM" DataTypeServer="varchar(20)" DbType="AnsiString" Direction="Input" ParameterName="@KODECAB" Precision="0" ProviderType="VarChar" Scale="0" Size="20" SourceColumn="KODECAB" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="KODETOC" ColumnName="KODETOC" DataSourceName="TALYS.dbo.CLAIM" DataTypeServer="varchar(5)" DbType="AnsiString" Direction="Input" ParameterName="@KODETOC" Precision="0" ProviderType="VarChar" Scale="0" Size="5" SourceColumn="KODETOC" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="PCLID" ColumnName="PCLID" DataSourceName="TALYS.dbo.CLAIM" DataTypeServer="varchar(20)" DbType="AnsiString" Direction="Input" ParameterName="@PCLID" Precision="0" ProviderType="VarChar" Scale="0" Size="20" SourceColumn="PCLID" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="PLCID" ColumnName="PLCID" DataSourceName="TALYS.dbo.CLAIM" DataTypeServer="varchar(20)" DbType="AnsiString" Direction="Input" ParameterName="@PLCID" Precision="0" ProviderType="VarChar" Scale="0" Size="20" SourceColumn="PLCID" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="CLAIMNO" ColumnName="CLAIMNO" DataSourceName="TALYS.dbo.CLAIM" DataTypeServer="varchar(50)" DbType="AnsiString" Direction="Input" ParameterName="@CLAIMNO" Precision="0" ProviderType="VarChar" Scale="0" Size="50" SourceColumn="CLAIMNO" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="CURUT" ColumnName="CURUT" DataSourceName="TALYS.dbo.CLAIM" DataTypeServer="int" DbType="Int32" Direction="Input" ParameterName="@CURUT" Precision="0" ProviderType="Int" Scale="0" Size="4" SourceColumn="CURUT" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="ENDORS" ColumnName="ENDORS" DataSourceName="TALYS.dbo.CLAIM" DataTypeServer="int" DbType="Int32" Direction="Input" ParameterName="@ENDORS" Precision="0" ProviderType="Int" Scale="0" Size="4" SourceColumn="ENDORS" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="REGDATE" ColumnName="REGDATE" DataSourceName="TALYS.dbo.CLAIM" DataTypeServer="datetime" DbType="DateTime" Direction="Input" ParameterName="@REGDATE" Precision="0" ProviderType="DateTime" Scale="0" Size="8" SourceColumn="REGDATE" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="LOSSDATE" ColumnName="LOSSDATE" DataSourceName="TALYS.dbo.CLAIM" DataTypeServer="datetime" DbType="DateTime" Direction="Input" ParameterName="@LOSSDATE" Precision="0" ProviderType="DateTime" Scale="0" Size="8" SourceColumn="LOSSDATE" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="TBAF" ColumnName="TBAF" DataSourceName="TALYS.dbo.CLAIM" DataTypeServer="bit" DbType="Boolean" Direction="Input" ParameterName="@TBAF" Precision="0" ProviderType="Bit" Scale="0" Size="1" SourceColumn="TBAF" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="BANKID" ColumnName="BANKID" DataSourceName="TALYS.dbo.CLAIM" DataTypeServer="varchar(20)" DbType="AnsiString" Direction="Input" ParameterName="@BANKID" Precision="0" ProviderType="VarChar" Scale="0" Size="20" SourceColumn="BANKID" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="CLAIMANTID" ColumnName="CLAIMANTID" DataSourceName="TALYS.dbo.CLAIM" DataTypeServer="varchar(20)" DbType="AnsiString" Direction="Input" ParameterName="@CLAIMANTID" Precision="0" ProviderType="VarChar" Scale="0" Size="20" SourceColumn="CLAIMANTID" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="CLAIMNAME" ColumnName="CLAIMNAME" DataSourceName="TALYS.dbo.CLAIM" DataTypeServer="varchar(500)" DbType="AnsiString" Direction="Input" ParameterName="@CLAIMNAME" Precision="0" ProviderType="VarChar" Scale="0" Size="500" SourceColumn="CLAIMNAME" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="ADJUSTERPRID" ColumnName="ADJUSTERPRID" DataSourceName="TALYS.dbo.CLAIM" DataTypeServer="varchar(20)" DbType="AnsiString" Direction="Input" ParameterName="@ADJUSTERPRID" Precision="0" ProviderType="VarChar" Scale="0" Size="20" SourceColumn="ADJUSTERPRID" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="TYPEF" ColumnName="TYPEF" DataSourceName="TALYS.dbo.CLAIM" DataTypeServer="varchar(1)" DbType="AnsiString" Direction="Input" ParameterName="@TYPEF" Precision="0" ProviderType="VarChar" Scale="0" Size="1" SourceColumn="TYPEF" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="STATUSF" ColumnName="STATUSF" DataSourceName="TALYS.dbo.CLAIM" DataTypeServer="varchar(1)" DbType="AnsiString" Direction="Input" ParameterName="@STATUSF" Precision="0" ProviderType="VarChar" Scale="0" Size="1" SourceColumn="STATUSF" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="INDIDENT" ColumnName="INDIDENT" DataSourceName="TALYS.dbo.CLAIM" DataTypeServer="text" DbType="AnsiString" Direction="Input" ParameterName="@INDIDENT" Precision="0" ProviderType="Text" Scale="0" Size="2147483647" SourceColumn="INDIDENT" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="SECUSER" ColumnName="SECUSER" DataSourceName="TALYS.dbo.CLAIM" DataTypeServer="varchar(20)" DbType="AnsiString" Direction="Input" ParameterName="@SECUSER" Precision="0" ProviderType="VarChar" Scale="0" Size="20" SourceColumn="SECUSER" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="SECDATE" ColumnName="SECDATE" DataSourceName="TALYS.dbo.CLAIM" DataTypeServer="datetime" DbType="DateTime" Direction="Input" ParameterName="@SECDATE" Precision="0" ProviderType="DateTime" Scale="0" Size="8" SourceColumn="SECDATE" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="SECROLE" ColumnName="SECROLE" DataSourceName="TALYS.dbo.CLAIM" DataTypeServer="varchar(20)" DbType="AnsiString" Direction="Input" ParameterName="@SECROLE" Precision="0" ProviderType="VarChar" Scale="0" Size="20" SourceColumn="SECROLE" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="ISCATEVENT" ColumnName="ISCATEVENT" DataSourceName="TALYS.dbo.CLAIM" DataTypeServer="bit" DbType="Boolean" Direction="Input" ParameterName="@ISCATEVENT" Precision="0" ProviderType="Bit" Scale="0" Size="1" SourceColumn="ISCATEVENT" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="INSCLNO" ColumnName="INSCLNO" DataSourceName="TALYS.dbo.CLAIM" DataTypeServer="varchar(50)" DbType="AnsiString" Direction="Input" ParameterName="@INSCLNO" Precision="0" ProviderType="VarChar" Scale="0" Size="50" SourceColumn="INSCLNO" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="LOCATION" ColumnName="LOCATION" DataSourceName="TALYS.dbo.CLAIM" DataTypeServer="varchar(500)" DbType="AnsiString" Direction="Input" ParameterName="@LOCATION" Precision="0" ProviderType="VarChar" Scale="0" Size="500" SourceColumn="LOCATION" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="DON" ColumnName="DON" DataSourceName="TALYS.dbo.CLAIM" DataTypeServer="date" DbType="AnsiString" Direction="Input" ParameterName="@DON" Precision="0" ProviderType="Date" Scale="0" Size="3" SourceColumn="DON" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="DOR" ColumnName="DOR" DataSourceName="TALYS.dbo.CLAIM" DataTypeServer="date" DbType="AnsiString" Direction="Input" ParameterName="@DOR" Precision="0" ProviderType="Date" Scale="0" Size="3" SourceColumn="DOR" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="USERHANDLER" ColumnName="USERHANDLER" DataSourceName="TALYS.dbo.CLAIM" DataTypeServer="varchar(20)" DbType="AnsiString" Direction="Input" ParameterName="@USERHANDLER" Precision="0" ProviderType="VarChar" Scale="0" Size="20" SourceColumn="USERHANDLER" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="SURVEYORPRID" ColumnName="SURVEYORPRID" DataSourceName="TALYS.dbo.CLAIM" DataTypeServer="varchar(20)" DbType="AnsiString" Direction="Input" ParameterName="@SURVEYORPRID" Precision="0" ProviderType="VarChar" Scale="0" Size="20" SourceColumn="SURVEYORPRID" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="MTU" ColumnName="MTU" DataSourceName="TALYS.dbo.CLAIM" DataTypeServer="varchar(3)" DbType="AnsiString" Direction="Input" ParameterName="@MTU" Precision="0" ProviderType="VarChar" Scale="0" Size="3" SourceColumn="MTU" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="CLRESERVE" ColumnName="CLRESERVE" DataSourceName="TALYS.dbo.CLAIM" DataTypeServer="NOMINAL" DbType="Decimal" Direction="Input" ParameterName="@CLRESERVE" Precision="19" ProviderType="Decimal" Scale="2" Size="9" SourceColumn="CLRESERVE" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="CLADJ" ColumnName="CLADJ" DataSourceName="TALYS.dbo.CLAIM" DataTypeServer="NOMINAL" DbType="Decimal" Direction="Input" ParameterName="@CLADJ" Precision="19" ProviderType="Decimal" Scale="2" Size="9" SourceColumn="CLADJ" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="CLSALV" ColumnName="CLSALV" DataSourceName="TALYS.dbo.CLAIM" DataTypeServer="NOMINAL" DbType="Decimal" Direction="Input" ParameterName="@CLSALV" Precision="19" ProviderType="Decimal" Scale="2" Size="9" SourceColumn="CLSALV" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="CLRECV" ColumnName="CLRECV" DataSourceName="TALYS.dbo.CLAIM" DataTypeServer="NOMINAL" DbType="Decimal" Direction="Input" ParameterName="@CLRECV" Precision="19" ProviderType="Decimal" Scale="2" Size="9" SourceColumn="CLRECV" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="CLDED" ColumnName="CLDED" DataSourceName="TALYS.dbo.CLAIM" DataTypeServer="NOMINAL" DbType="Decimal" Direction="Input" ParameterName="@CLDED" Precision="19" ProviderType="Decimal" Scale="2" Size="9" SourceColumn="CLDED" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="CLNETT" ColumnName="CLNETT" DataSourceName="TALYS.dbo.CLAIM" DataTypeServer="NOMINAL" DbType="Decimal" Direction="Input" ParameterName="@CLNETT" Precision="19" ProviderType="Decimal" Scale="2" Size="9" SourceColumn="CLNETT" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="REMARKS" ColumnName="REMARKS" DataSourceName="TALYS.dbo.CLAIM" DataTypeServer="varchar(500)" DbType="AnsiString" Direction="Input" ParameterName="@REMARKS" Precision="0" ProviderType="VarChar" Scale="0" Size="500" SourceColumn="REMARKS" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="PAYMENTDATE" ColumnName="PAYMENTDATE" DataSourceName="TALYS.dbo.CLAIM" DataTypeServer="date" DbType="AnsiString" Direction="Input" ParameterName="@PAYMENTDATE" Precision="0" ProviderType="Date" Scale="0" Size="3" SourceColumn="PAYMENTDATE" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="SDATE" ColumnName="SDATE" DataSourceName="TALYS.dbo.CLAIM" DataTypeServer="datetime" DbType="DateTime" Direction="Input" ParameterName="@SDATE" Precision="0" ProviderType="DateTime" Scale="0" Size="8" SourceColumn="SDATE" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="EDATE" ColumnName="EDATE" DataSourceName="TALYS.dbo.CLAIM" DataTypeServer="datetime" DbType="DateTime" Direction="Input" ParameterName="@EDATE" Precision="0" ProviderType="DateTime" Scale="0" Size="8" SourceColumn="EDATE" SourceColumnNullMapping="false" SourceVersion="Current" />
+                    </Parameters>
+                  </DbCommand>
+                </InsertCommand>
+              </DbSource>
+              <DbSource ConnectionRef="ConnectionString (Settings)" DbObjectName="" DbObjectType="Unknown" GenerateShortCommands="true" GeneratorSourceName="UpdateQueryByCLID" Modifier="Public" Name="UpdateQueryByCLID" QueryType="NoData" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetDataBy3" UserSourceName="UpdateQueryByCLID">
+                <UpdateCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="true">
+                    <CommandText>UPDATE CLAIM
+SET       COL = @COL, PLCID = @PLCID, LOSSDATE = @LOSSDATE, TBAF = @TBAF, BANKID = @BANKID, INDIDENT = @INDIDENT, SECUSER = @SECUSER, SECDATE = @SECDATE, SECROLE = @SECROLE, ADJUSTERPRID = @ADJUSTERPRID, ISCATEVENT = @ISCATEVENT, 
+             INSCLNO = @INSCLNO, LOCATION = @LOCATION, DON = @DON, DOR = @DOR, USERHANDLER = @USERHANDLER, SURVEYORPRID = @SURVEYORPRID, MTU = @MTU, CLRESERVE = @CLRESERVE, CLADJ = @CLADJ, CLSALV = @CLSALV, CLRECV = @CLRECV, 
+             CLDED = @CLDED, CLNETT = @CLNETT, PAYMENTDATE = @PAYMENTDATE, STATUSF = @STATUSF, REMARKS =@REMARKS, SDATE = @SDATE, EDATE =@EDATE
+WHERE (CLID = @Original_CLID)</CommandText>
+                    <Parameters>
+                      <Parameter AllowDbNull="true" AutogeneratedName="COL" ColumnName="COL" DataSourceName="TALYS.dbo.CLAIM" DataTypeServer="varchar(10)" DbType="AnsiString" Direction="Input" ParameterName="@COL" Precision="0" ProviderType="VarChar" Scale="0" Size="10" SourceColumn="COL" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="PLCID" ColumnName="PLCID" DataSourceName="TALYS.dbo.CLAIM" DataTypeServer="varchar(20)" DbType="AnsiString" Direction="Input" ParameterName="@PLCID" Precision="0" ProviderType="VarChar" Scale="0" Size="20" SourceColumn="PLCID" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="LOSSDATE" ColumnName="LOSSDATE" DataSourceName="TALYS.dbo.CLAIM" DataTypeServer="datetime" DbType="DateTime" Direction="Input" ParameterName="@LOSSDATE" Precision="0" ProviderType="DateTime" Scale="0" Size="8" SourceColumn="LOSSDATE" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="TBAF" ColumnName="TBAF" DataSourceName="TALYS.dbo.CLAIM" DataTypeServer="bit" DbType="Boolean" Direction="Input" ParameterName="@TBAF" Precision="0" ProviderType="Bit" Scale="0" Size="1" SourceColumn="TBAF" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="BANKID" ColumnName="BANKID" DataSourceName="TALYS.dbo.CLAIM" DataTypeServer="varchar(20)" DbType="AnsiString" Direction="Input" ParameterName="@BANKID" Precision="0" ProviderType="VarChar" Scale="0" Size="20" SourceColumn="BANKID" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="INDIDENT" ColumnName="INDIDENT" DataSourceName="TALYS.dbo.CLAIM" DataTypeServer="text" DbType="AnsiString" Direction="Input" ParameterName="@INDIDENT" Precision="0" ProviderType="Text" Scale="0" Size="2147483647" SourceColumn="INDIDENT" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="SECUSER" ColumnName="SECUSER" DataSourceName="TALYS.dbo.CLAIM" DataTypeServer="varchar(20)" DbType="AnsiString" Direction="Input" ParameterName="@SECUSER" Precision="0" ProviderType="VarChar" Scale="0" Size="20" SourceColumn="SECUSER" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="SECDATE" ColumnName="SECDATE" DataSourceName="TALYS.dbo.CLAIM" DataTypeServer="datetime" DbType="DateTime" Direction="Input" ParameterName="@SECDATE" Precision="0" ProviderType="DateTime" Scale="0" Size="8" SourceColumn="SECDATE" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="SECROLE" ColumnName="SECROLE" DataSourceName="TALYS.dbo.CLAIM" DataTypeServer="varchar(20)" DbType="AnsiString" Direction="Input" ParameterName="@SECROLE" Precision="0" ProviderType="VarChar" Scale="0" Size="20" SourceColumn="SECROLE" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="ADJUSTERPRID" ColumnName="ADJUSTERPRID" DataSourceName="TALYS.dbo.CLAIM" DataTypeServer="varchar(20)" DbType="AnsiString" Direction="Input" ParameterName="@ADJUSTERPRID" Precision="0" ProviderType="VarChar" Scale="0" Size="20" SourceColumn="ADJUSTERPRID" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="ISCATEVENT" ColumnName="ISCATEVENT" DataSourceName="TALYS.dbo.CLAIM" DataTypeServer="bit" DbType="Boolean" Direction="Input" ParameterName="@ISCATEVENT" Precision="0" ProviderType="Bit" Scale="0" Size="1" SourceColumn="ISCATEVENT" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="INSCLNO" ColumnName="INSCLNO" DataSourceName="TALYS.dbo.CLAIM" DataTypeServer="varchar(50)" DbType="AnsiString" Direction="Input" ParameterName="@INSCLNO" Precision="0" ProviderType="VarChar" Scale="0" Size="50" SourceColumn="INSCLNO" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="LOCATION" ColumnName="LOCATION" DataSourceName="TALYS.dbo.CLAIM" DataTypeServer="varchar(500)" DbType="AnsiString" Direction="Input" ParameterName="@LOCATION" Precision="0" ProviderType="VarChar" Scale="0" Size="500" SourceColumn="LOCATION" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="DON" ColumnName="DON" DataSourceName="TALYS.dbo.CLAIM" DataTypeServer="date" DbType="AnsiString" Direction="Input" ParameterName="@DON" Precision="0" ProviderType="Date" Scale="0" Size="3" SourceColumn="DON" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="DOR" ColumnName="DOR" DataSourceName="TALYS.dbo.CLAIM" DataTypeServer="date" DbType="AnsiString" Direction="Input" ParameterName="@DOR" Precision="0" ProviderType="Date" Scale="0" Size="3" SourceColumn="DOR" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="USERHANDLER" ColumnName="USERHANDLER" DataSourceName="TALYS.dbo.CLAIM" DataTypeServer="varchar(20)" DbType="AnsiString" Direction="Input" ParameterName="@USERHANDLER" Precision="0" ProviderType="VarChar" Scale="0" Size="20" SourceColumn="USERHANDLER" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="SURVEYORPRID" ColumnName="SURVEYORPRID" DataSourceName="TALYS.dbo.CLAIM" DataTypeServer="varchar(20)" DbType="AnsiString" Direction="Input" ParameterName="@SURVEYORPRID" Precision="0" ProviderType="VarChar" Scale="0" Size="20" SourceColumn="SURVEYORPRID" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="MTU" ColumnName="MTU" DataSourceName="TALYS.dbo.CLAIM" DataTypeServer="varchar(3)" DbType="AnsiString" Direction="Input" ParameterName="@MTU" Precision="0" ProviderType="VarChar" Scale="0" Size="3" SourceColumn="MTU" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="CLRESERVE" ColumnName="CLRESERVE" DataSourceName="TALYS.dbo.CLAIM" DataTypeServer="NOMINAL" DbType="Decimal" Direction="Input" ParameterName="@CLRESERVE" Precision="19" ProviderType="Decimal" Scale="2" Size="9" SourceColumn="CLRESERVE" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="CLADJ" ColumnName="CLADJ" DataSourceName="TALYS.dbo.CLAIM" DataTypeServer="NOMINAL" DbType="Decimal" Direction="Input" ParameterName="@CLADJ" Precision="19" ProviderType="Decimal" Scale="2" Size="9" SourceColumn="CLADJ" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="CLSALV" ColumnName="CLSALV" DataSourceName="TALYS.dbo.CLAIM" DataTypeServer="NOMINAL" DbType="Decimal" Direction="Input" ParameterName="@CLSALV" Precision="19" ProviderType="Decimal" Scale="2" Size="9" SourceColumn="CLSALV" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="CLRECV" ColumnName="CLRECV" DataSourceName="TALYS.dbo.CLAIM" DataTypeServer="NOMINAL" DbType="Decimal" Direction="Input" ParameterName="@CLRECV" Precision="19" ProviderType="Decimal" Scale="2" Size="9" SourceColumn="CLRECV" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="CLDED" ColumnName="CLDED" DataSourceName="TALYS.dbo.CLAIM" DataTypeServer="NOMINAL" DbType="Decimal" Direction="Input" ParameterName="@CLDED" Precision="19" ProviderType="Decimal" Scale="2" Size="9" SourceColumn="CLDED" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="CLNETT" ColumnName="CLNETT" DataSourceName="TALYS.dbo.CLAIM" DataTypeServer="NOMINAL" DbType="Decimal" Direction="Input" ParameterName="@CLNETT" Precision="19" ProviderType="Decimal" Scale="2" Size="9" SourceColumn="CLNETT" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="PAYMENTDATE" ColumnName="PAYMENTDATE" DataSourceName="TALYS.dbo.CLAIM" DataTypeServer="date" DbType="AnsiString" Direction="Input" ParameterName="@PAYMENTDATE" Precision="0" ProviderType="Date" Scale="0" Size="3" SourceColumn="PAYMENTDATE" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="STATUSF" ColumnName="STATUSF" DataSourceName="TALYS.dbo.CLAIM" DataTypeServer="varchar(1)" DbType="AnsiString" Direction="Input" ParameterName="@STATUSF" Precision="0" ProviderType="VarChar" Scale="0" Size="1" SourceColumn="STATUSF" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="REMARKS" ColumnName="REMARKS" DataSourceName="TALYS.dbo.CLAIM" DataTypeServer="varchar(500)" DbType="AnsiString" Direction="Input" ParameterName="@REMARKS" Precision="0" ProviderType="VarChar" Scale="0" Size="500" SourceColumn="REMARKS" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="SDATE" ColumnName="SDATE" DataSourceName="TALYS.dbo.CLAIM" DataTypeServer="datetime" DbType="DateTime" Direction="Input" ParameterName="@SDATE" Precision="0" ProviderType="DateTime" Scale="0" Size="8" SourceColumn="SDATE" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="EDATE" ColumnName="EDATE" DataSourceName="TALYS.dbo.CLAIM" DataTypeServer="datetime" DbType="DateTime" Direction="Input" ParameterName="@EDATE" Precision="0" ProviderType="DateTime" Scale="0" Size="8" SourceColumn="EDATE" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="false" AutogeneratedName="Original_CLID" ColumnName="CLID" DataSourceName="TALYS.dbo.CLAIM" DataTypeServer="varchar(20)" DbType="AnsiString" Direction="Input" ParameterName="@Original_CLID" Precision="0" ProviderType="VarChar" Scale="0" Size="20" SourceColumn="CLID" SourceColumnNullMapping="false" SourceVersion="Original" />
+                    </Parameters>
+                  </DbCommand>
+                </UpdateCommand>
+              </DbSource>
+              <DbSource ConnectionRef="ConnectionString (Settings)" DbObjectName="" DbObjectType="Unknown" GenerateShortCommands="true" GeneratorSourceName="UpdateQueryPLCIDbyCLID" Modifier="Public" Name="UpdateQueryPLCIDbyCLID" QueryType="NoData" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetDataBy4" UserSourceName="UpdateQueryPLCIDbyCLID">
+                <UpdateCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="true">
+                    <CommandText>UPDATE [CLAIM] SET PLCID = @PLCID, KODECAB = @KODECAB, KODETOC = @KODETOC, CLAIMANTID = @CLAIMANTID  WHERE CLID = @Original_CLID</CommandText>
+                    <Parameters>
+                      <Parameter AllowDbNull="true" AutogeneratedName="PLCID" ColumnName="PLCID" DataSourceName="TALYS.dbo.CLAIM" DataTypeServer="varchar(20)" DbType="AnsiString" Direction="Input" ParameterName="@PLCID" Precision="0" ProviderType="VarChar" Scale="0" Size="20" SourceColumn="PLCID" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="KODECAB" ColumnName="KODECAB" DataSourceName="TALYS.dbo.CLAIM" DataTypeServer="varchar(20)" DbType="AnsiString" Direction="Input" ParameterName="@KODECAB" Precision="0" ProviderType="VarChar" Scale="0" Size="20" SourceColumn="KODECAB" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="KODETOC" ColumnName="KODETOC" DataSourceName="TALYS.dbo.CLAIM" DataTypeServer="varchar(5)" DbType="AnsiString" Direction="Input" ParameterName="@KODETOC" Precision="0" ProviderType="VarChar" Scale="0" Size="5" SourceColumn="KODETOC" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="CLAIMANTID" ColumnName="CLAIMANTID" DataSourceName="TALYS.dbo.CLAIM" DataTypeServer="varchar(20)" DbType="AnsiString" Direction="Input" ParameterName="@CLAIMANTID" Precision="0" ProviderType="VarChar" Scale="0" Size="20" SourceColumn="CLAIMANTID" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="false" AutogeneratedName="Original_CLID" ColumnName="CLID" DataSourceName="TALYS.dbo.CLAIM" DataTypeServer="varchar(20)" DbType="AnsiString" Direction="Input" ParameterName="@Original_CLID" Precision="0" ProviderType="VarChar" Scale="0" Size="20" SourceColumn="CLID" SourceColumnNullMapping="false" SourceVersion="Original" />
+                    </Parameters>
+                  </DbCommand>
+                </UpdateCommand>
+              </DbSource>
+              <DbSource ConnectionRef="ConnectionString (Settings)" DbObjectName="" DbObjectType="Unknown" GenerateShortCommands="true" GeneratorSourceName="UpdateQueryStatusByCLID" Modifier="Public" Name="UpdateQueryStatusByCLID" QueryType="NoData" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetDataBy5" UserSourceName="UpdateQueryStatusByCLID">
+                <UpdateCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="true">
+                    <CommandText>UPDATE CLAIM
+SET       STATUSF = @STATUSF, CLOSEDATE = @CLOSEDATE
+WHERE (CLID = @Original_CLID)</CommandText>
+                    <Parameters>
+                      <Parameter AllowDbNull="true" AutogeneratedName="STATUSF" ColumnName="STATUSF" DataSourceName="TALYS.dbo.CLAIM" DataTypeServer="varchar(1)" DbType="AnsiString" Direction="Input" ParameterName="@STATUSF" Precision="0" ProviderType="VarChar" Scale="0" Size="1" SourceColumn="STATUSF" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="CLOSEDATE" ColumnName="CLOSEDATE" DataSourceName="TALYS.dbo.CLAIM" DataTypeServer="datetime" DbType="DateTime" Direction="Input" ParameterName="@CLOSEDATE" Precision="0" ProviderType="DateTime" Scale="0" Size="8" SourceColumn="CLOSEDATE" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="false" AutogeneratedName="Original_CLID" ColumnName="CLID" DataSourceName="TALYS.dbo.CLAIM" DataTypeServer="varchar(20)" DbType="AnsiString" Direction="Input" ParameterName="@Original_CLID" Precision="0" ProviderType="VarChar" Scale="0" Size="20" SourceColumn="CLID" SourceColumnNullMapping="false" SourceVersion="Original" />
+                    </Parameters>
+                  </DbCommand>
+                </UpdateCommand>
+              </DbSource>
+            </Sources>
+          </TableAdapter>
+          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="CLAIMGRIDTableAdapter" GeneratorDataComponentClassName="CLAIMGRIDTableAdapter" Name="CLAIMGRID" UserDataComponentName="CLAIMGRIDTableAdapter">
+            <MainSource>
+              <DbSource ConnectionRef="ConnectionString (Settings)" DbObjectType="Unknown" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="false" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="false" UserGetMethodName="GetData" UserSourceName="Fill">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="true">
+                    <CommandText>SELECT PROFILE.NAMA AS BANKNAME, CLAIM.CLID, CLAIM.COL, CLAIM.KODETOC, CLAIM.CLAIMNO,
+CAST(CLAIM.REGDATE AS date) AS REGDATE, CLAIM.CLAIMNAME, CONVERT(VARCHAR, CLAIM.SDATE, 23) AS SDT, CONVERT(VARCHAR, CLAIM.EDATE, 23) AS EDT, CLAIM.STATUSF, INDIDENT, CLA.VAL, CLAIM.KODECAB,
+CASE WHEN CLAIM.KODETOC NOT IN ('1010', '1011', '1012') 
+THEN CASE WHEN CLAIM.LOSSDATE IS NOT NULL THEN CLAIM.LOSSDATE END END AS LOSSDATE
+FROM CLAIM LEFT OUTER JOIN PROFILE ON CLAIM.BANKID = PROFILE.PROFILEID
+LEFT OUTER JOIN (SELECT CLID, CONFIGID, VAL FROM CLADDINFO WHERE (CONFIGID = 'CLAIM_MEMBERNAME')) AS CLA ON CLA.CLID = CLAIM.CLID</CommandText>
+                    <Parameters />
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+            </MainSource>
+            <Mappings>
+              <Mapping SourceColumn="BANKNAME" DataSetColumn="BANKNAME" />
+              <Mapping SourceColumn="CLID" DataSetColumn="CLID" />
+              <Mapping SourceColumn="COL" DataSetColumn="COL" />
+              <Mapping SourceColumn="KODETOC" DataSetColumn="KODETOC" />
+              <Mapping SourceColumn="CLAIMNO" DataSetColumn="CLAIMNO" />
+              <Mapping SourceColumn="LOSSDATE" DataSetColumn="LOSSDATE" />
+              <Mapping SourceColumn="REGDATE" DataSetColumn="REGDATE" />
+              <Mapping SourceColumn="CLAIMNAME" DataSetColumn="CLAIMNAME" />
+              <Mapping SourceColumn="STATUSF" DataSetColumn="STATUSF" />
+              <Mapping SourceColumn="INDIDENT" DataSetColumn="INDIDENT" />
+              <Mapping SourceColumn="SDT" DataSetColumn="SDT" />
+              <Mapping SourceColumn="EDT" DataSetColumn="EDT" />
+              <Mapping SourceColumn="VAL" DataSetColumn="VAL" />
+              <Mapping SourceColumn="KODECAB" DataSetColumn="KODECAB" />
+            </Mappings>
+            <Sources>
+              <DbSource ConnectionRef="ConnectionString (Settings)" DbObjectType="Unknown" GenerateMethods="Get" GenerateShortCommands="true" GeneratorGetMethodName="GetDataByFilter" GetMethodModifier="Public" GetMethodName="GetDataByFilter" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetDataByFilter" UserSourceName="GetDataByFilter">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="true">
+                    <CommandText>SELECT PROFILE.NAMA AS BANKNAME, CLAIM.CLID, CLAIM.COL, CLAIM.KODETOC, CLAIM.CLAIMNO,
+CAST(CLAIM.REGDATE AS date) AS REGDATE, CLAIM.CLAIMNAME, CONVERT(VARCHAR, CLAIM.SDATE, 23) AS SDT, CONVERT(VARCHAR, CLAIM.EDATE, 23) AS EDT, CLAIM.STATUSF, INDIDENT , CLA.VAL, CLAIM.KODECAB,
+CASE WHEN CLAIM.KODETOC NOT IN ('1010', '1011', '1012') 
+THEN CASE WHEN CLAIM.LOSSDATE IS NOT NULL THEN CLAIM.LOSSDATE END END AS LOSSDATE
+FROM CLAIM LEFT OUTER JOIN PROFILE ON CLAIM.BANKID = PROFILE.PROFILEID
+LEFT OUTER JOIN (SELECT CLID, CONFIGID, VAL FROM CLADDINFO WHERE (CONFIGID = 'CLAIM_MEMBERNAME')) AS CLA ON CLA.CLID = CLAIM.CLID
+WHERE (CLAIM.CLAIMNAME LIKE @CLAIMNAME) AND
+             (CLAIM.CLAIMNO LIKE @CLAIMNO) AND (ISNULL(CLAIM.KODETOC,'') LIKE @KODETOC) AND
+             (REGDATE BETWEEN @SDATE AND @EDATE) AND (CLAIM.STATUSF LIKE @STATUSF) AND                                       ( ISNULL(CLA.VAL,'') LIKE @VAL) AND ( ISNULL(CLAIM.KODECAB,'') LIKE @KODECAB)
+ORDER BY REGDATE</CommandText>
+                    <Parameters>
+                      <Parameter AllowDbNull="true" AutogeneratedName="CLAIMNAME" ColumnName="CLAIMNAME" DataSourceName="TALYS.dbo.CLAIM" DataTypeServer="varchar(500)" DbType="AnsiString" Direction="Input" ParameterName="@CLAIMNAME" Precision="0" ProviderType="VarChar" Scale="0" Size="500" SourceColumn="CLAIMNAME" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="CLAIMNO" ColumnName="CLAIMNO" DataSourceName="TALYS.dbo.CLAIM" DataTypeServer="varchar(50)" DbType="AnsiString" Direction="Input" ParameterName="@CLAIMNO" Precision="0" ProviderType="VarChar" Scale="0" Size="50" SourceColumn="CLAIMNO" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="false" AutogeneratedName="KODETOC" ColumnName="" DataSourceName="" DataTypeServer="unknown" DbType="AnsiString" Direction="Input" ParameterName="@KODETOC" Precision="0" Scale="0" Size="1024" SourceColumn="" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="SDATE" ColumnName="REGDATE" DataSourceName="TALYS.dbo.CLAIM" DataTypeServer="datetime" DbType="DateTime" Direction="Input" ParameterName="@SDATE" Precision="0" ProviderType="DateTime" Scale="0" Size="8" SourceColumn="REGDATE" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="EDATE" ColumnName="REGDATE" DataSourceName="TALYS.dbo.CLAIM" DataTypeServer="datetime" DbType="DateTime" Direction="Input" ParameterName="@EDATE" Precision="0" ProviderType="DateTime" Scale="0" Size="8" SourceColumn="REGDATE" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="STATUSF" ColumnName="STATUSF" DataSourceName="TALYS.dbo.CLAIM" DataTypeServer="varchar(1)" DbType="AnsiString" Direction="Input" ParameterName="@STATUSF" Precision="0" ProviderType="VarChar" Scale="0" Size="1" SourceColumn="STATUSF" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="false" AutogeneratedName="VAL" ColumnName="" DataSourceName="" DataTypeServer="unknown" DbType="AnsiString" Direction="Input" ParameterName="@VAL" Precision="0" Scale="0" Size="1024" SourceColumn="" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="false" AutogeneratedName="KODECAB" ColumnName="" DataSourceName="" DataTypeServer="unknown" DbType="AnsiString" Direction="Input" ParameterName="@KODECAB" Precision="0" Scale="0" Size="1024" SourceColumn="" SourceColumnNullMapping="false" SourceVersion="Current" />
+                    </Parameters>
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+            </Sources>
+          </TableAdapter>
+        </Tables>
+        <Sources />
+      </DataSource>
+    </xs:appinfo>
+  </xs:annotation>
+  <xs:element name="DSClaim" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:EnableTableAdapterManager="true" msprop:Generator_DataSetName="DSClaim" msprop:Generator_UserDSName="DSClaim">
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="CLAIM" msprop:Generator_TableClassName="CLAIMDataTable" msprop:Generator_TableVarName="tableCLAIM" msprop:Generator_RowChangedName="CLAIMRowChanged" msprop:Generator_TablePropName="CLAIM" msprop:Generator_RowDeletingName="CLAIMRowDeleting" msprop:Generator_RowChangingName="CLAIMRowChanging" msprop:Generator_RowEvHandlerName="CLAIMRowChangeEventHandler" msprop:Generator_RowDeletedName="CLAIMRowDeleted" msprop:Generator_RowClassName="CLAIMRow" msprop:Generator_UserTableName="CLAIM" msprop:Generator_RowEvArgName="CLAIMRowChangeEvent">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="CLID" msprop:Generator_ColumnVarNameInTable="columnCLID" msprop:Generator_ColumnPropNameInRow="CLID" msprop:Generator_ColumnPropNameInTable="CLIDColumn" msprop:Generator_UserColumnName="CLID">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="20" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="COL" msprop:nullValue="_throw" msprop:Generator_ColumnPropNameInRow="COL" msprop:Generator_ColumnVarNameInTable="columnCOL" msprop:Generator_ColumnPropNameInTable="COLColumn" msprop:Generator_UserColumnName="COL" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="10" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="KODECAB" msprop:Generator_ColumnVarNameInTable="columnKODECAB" msprop:Generator_ColumnPropNameInRow="KODECAB" msprop:Generator_ColumnPropNameInTable="KODECABColumn" msprop:Generator_UserColumnName="KODECAB" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="20" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="KODETOC" msprop:Generator_ColumnVarNameInTable="columnKODETOC" msprop:Generator_ColumnPropNameInRow="KODETOC" msprop:Generator_ColumnPropNameInTable="KODETOCColumn" msprop:Generator_UserColumnName="KODETOC" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="5" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="PCLID" msprop:Generator_ColumnVarNameInTable="columnPCLID" msprop:Generator_ColumnPropNameInRow="PCLID" msprop:Generator_ColumnPropNameInTable="PCLIDColumn" msprop:Generator_UserColumnName="PCLID" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="20" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="PLCID" msprop:nullValue="_throw" msprop:Generator_ColumnPropNameInRow="PLCID" msprop:Generator_ColumnVarNameInTable="columnPLCID" msprop:Generator_ColumnPropNameInTable="PLCIDColumn" msprop:Generator_UserColumnName="PLCID" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="20" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="CLAIMNO" msprop:Generator_ColumnVarNameInTable="columnCLAIMNO" msprop:Generator_ColumnPropNameInRow="CLAIMNO" msprop:Generator_ColumnPropNameInTable="CLAIMNOColumn" msprop:Generator_UserColumnName="CLAIMNO" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="CURUT" msprop:Generator_ColumnVarNameInTable="columnCURUT" msprop:Generator_ColumnPropNameInRow="CURUT" msprop:Generator_ColumnPropNameInTable="CURUTColumn" msprop:Generator_UserColumnName="CURUT" type="xs:int" minOccurs="0" />
+              <xs:element name="ENDORS" msprop:Generator_ColumnVarNameInTable="columnENDORS" msprop:Generator_ColumnPropNameInRow="ENDORS" msprop:Generator_ColumnPropNameInTable="ENDORSColumn" msprop:Generator_UserColumnName="ENDORS" type="xs:int" minOccurs="0" />
+              <xs:element name="REGDATE" msprop:Generator_ColumnVarNameInTable="columnREGDATE" msprop:Generator_ColumnPropNameInRow="REGDATE" msprop:Generator_ColumnPropNameInTable="REGDATEColumn" msprop:Generator_UserColumnName="REGDATE" type="xs:dateTime" minOccurs="0" />
+              <xs:element name="LOSSDATE" msprop:Generator_ColumnVarNameInTable="columnLOSSDATE" msprop:Generator_ColumnPropNameInRow="LOSSDATE" msprop:Generator_ColumnPropNameInTable="LOSSDATEColumn" msprop:Generator_UserColumnName="LOSSDATE" type="xs:dateTime" minOccurs="0" />
+              <xs:element name="TBAF" msprop:Generator_ColumnVarNameInTable="columnTBAF" msprop:Generator_ColumnPropNameInRow="TBAF" msprop:Generator_ColumnPropNameInTable="TBAFColumn" msprop:Generator_UserColumnName="TBAF" type="xs:boolean" minOccurs="0" />
+              <xs:element name="CLAIMANTID" msprop:Generator_ColumnVarNameInTable="columnCLAIMANTID" msprop:Generator_ColumnPropNameInRow="CLAIMANTID" msprop:Generator_ColumnPropNameInTable="CLAIMANTIDColumn" msprop:Generator_UserColumnName="CLAIMANTID" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="20" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="CLAIMNAME" msprop:Generator_ColumnVarNameInTable="columnCLAIMNAME" msprop:Generator_ColumnPropNameInRow="CLAIMNAME" msprop:Generator_ColumnPropNameInTable="CLAIMNAMEColumn" msprop:Generator_UserColumnName="CLAIMNAME" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="500" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="TYPEF" msprop:Generator_ColumnVarNameInTable="columnTYPEF" msprop:Generator_ColumnPropNameInRow="TYPEF" msprop:Generator_ColumnPropNameInTable="TYPEFColumn" msprop:Generator_UserColumnName="TYPEF" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="1" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="STATUSF" msprop:Generator_ColumnVarNameInTable="columnSTATUSF" msprop:Generator_ColumnPropNameInRow="STATUSF" msprop:Generator_ColumnPropNameInTable="STATUSFColumn" msprop:Generator_UserColumnName="STATUSF" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="1" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="INDIDENT" msprop:Generator_ColumnVarNameInTable="columnINDIDENT" msprop:Generator_ColumnPropNameInRow="INDIDENT" msprop:Generator_ColumnPropNameInTable="INDIDENTColumn" msprop:Generator_UserColumnName="INDIDENT" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="2147483647" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="SECUSER" msprop:Generator_ColumnVarNameInTable="columnSECUSER" msprop:Generator_ColumnPropNameInRow="SECUSER" msprop:Generator_ColumnPropNameInTable="SECUSERColumn" msprop:Generator_UserColumnName="SECUSER" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="20" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="SECDATE" msprop:Generator_ColumnVarNameInTable="columnSECDATE" msprop:Generator_ColumnPropNameInRow="SECDATE" msprop:Generator_ColumnPropNameInTable="SECDATEColumn" msprop:Generator_UserColumnName="SECDATE" type="xs:dateTime" minOccurs="0" />
+              <xs:element name="SECROLE" msprop:Generator_ColumnVarNameInTable="columnSECROLE" msprop:Generator_ColumnPropNameInRow="SECROLE" msprop:Generator_ColumnPropNameInTable="SECROLEColumn" msprop:Generator_UserColumnName="SECROLE" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="20" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="BANKID" msprop:Generator_ColumnVarNameInTable="columnBANKID" msprop:Generator_ColumnPropNameInRow="BANKID" msprop:Generator_ColumnPropNameInTable="BANKIDColumn" msprop:Generator_UserColumnName="BANKID" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="20" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="ADJUSTERPRID" msprop:Generator_ColumnVarNameInTable="columnADJUSTERPRID" msprop:Generator_ColumnPropNameInRow="ADJUSTERPRID" msprop:Generator_ColumnPropNameInTable="ADJUSTERPRIDColumn" msprop:Generator_UserColumnName="ADJUSTERPRID" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="20" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="ISCATEVENT" msprop:Generator_ColumnVarNameInTable="columnISCATEVENT" msprop:Generator_ColumnPropNameInRow="ISCATEVENT" msprop:Generator_ColumnPropNameInTable="ISCATEVENTColumn" msprop:Generator_UserColumnName="ISCATEVENT" type="xs:boolean" minOccurs="0" />
+              <xs:element name="INSCLNO" msprop:Generator_ColumnVarNameInTable="columnINSCLNO" msprop:Generator_ColumnPropNameInRow="INSCLNO" msprop:Generator_ColumnPropNameInTable="INSCLNOColumn" msprop:Generator_UserColumnName="INSCLNO" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="LOCATION" msprop:Generator_ColumnVarNameInTable="columnLOCATION" msprop:Generator_ColumnPropNameInRow="LOCATION" msprop:Generator_ColumnPropNameInTable="LOCATIONColumn" msprop:Generator_UserColumnName="LOCATION" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="500" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="DON" msprop:Generator_ColumnVarNameInTable="columnDON" msprop:Generator_ColumnPropNameInRow="DON" msprop:Generator_ColumnPropNameInTable="DONColumn" msprop:Generator_UserColumnName="DON" type="xs:dateTime" minOccurs="0" />
+              <xs:element name="DOR" msprop:Generator_ColumnVarNameInTable="columnDOR" msprop:Generator_ColumnPropNameInRow="DOR" msprop:Generator_ColumnPropNameInTable="DORColumn" msprop:Generator_UserColumnName="DOR" type="xs:dateTime" minOccurs="0" />
+              <xs:element name="USERHANDLER" msprop:Generator_ColumnVarNameInTable="columnUSERHANDLER" msprop:Generator_ColumnPropNameInRow="USERHANDLER" msprop:Generator_ColumnPropNameInTable="USERHANDLERColumn" msprop:Generator_UserColumnName="USERHANDLER" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="20" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="SURVEYORPRID" msprop:Generator_ColumnVarNameInTable="columnSURVEYORPRID" msprop:Generator_ColumnPropNameInRow="SURVEYORPRID" msprop:Generator_ColumnPropNameInTable="SURVEYORPRIDColumn" msprop:Generator_UserColumnName="SURVEYORPRID" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="20" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="MTU" msprop:Generator_ColumnVarNameInTable="columnMTU" msprop:Generator_ColumnPropNameInRow="MTU" msprop:Generator_ColumnPropNameInTable="MTUColumn" msprop:Generator_UserColumnName="MTU" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="3" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="CLRESERVE" msprop:Generator_ColumnVarNameInTable="columnCLRESERVE" msprop:Generator_ColumnPropNameInRow="CLRESERVE" msprop:Generator_ColumnPropNameInTable="CLRESERVEColumn" msprop:Generator_UserColumnName="CLRESERVE" type="xs:decimal" minOccurs="0" />
+              <xs:element name="CLADJ" msprop:Generator_ColumnVarNameInTable="columnCLADJ" msprop:Generator_ColumnPropNameInRow="CLADJ" msprop:Generator_ColumnPropNameInTable="CLADJColumn" msprop:Generator_UserColumnName="CLADJ" type="xs:decimal" minOccurs="0" />
+              <xs:element name="CLSALV" msprop:Generator_ColumnVarNameInTable="columnCLSALV" msprop:Generator_ColumnPropNameInRow="CLSALV" msprop:Generator_ColumnPropNameInTable="CLSALVColumn" msprop:Generator_UserColumnName="CLSALV" type="xs:decimal" minOccurs="0" />
+              <xs:element name="CLRECV" msprop:Generator_ColumnVarNameInTable="columnCLRECV" msprop:Generator_ColumnPropNameInRow="CLRECV" msprop:Generator_ColumnPropNameInTable="CLRECVColumn" msprop:Generator_UserColumnName="CLRECV" type="xs:decimal" minOccurs="0" />
+              <xs:element name="CLDED" msprop:Generator_ColumnVarNameInTable="columnCLDED" msprop:Generator_ColumnPropNameInRow="CLDED" msprop:Generator_ColumnPropNameInTable="CLDEDColumn" msprop:Generator_UserColumnName="CLDED" type="xs:decimal" minOccurs="0" />
+              <xs:element name="CLNETT" msprop:Generator_ColumnVarNameInTable="columnCLNETT" msprop:Generator_ColumnPropNameInRow="CLNETT" msprop:Generator_ColumnPropNameInTable="CLNETTColumn" msprop:Generator_UserColumnName="CLNETT" type="xs:decimal" minOccurs="0" />
+              <xs:element name="PAYMENTDATE" msprop:Generator_ColumnVarNameInTable="columnPAYMENTDATE" msprop:Generator_ColumnPropNameInRow="PAYMENTDATE" msprop:Generator_ColumnPropNameInTable="PAYMENTDATEColumn" msprop:Generator_UserColumnName="PAYMENTDATE" type="xs:dateTime" minOccurs="0" />
+              <xs:element name="REMARKS" msprop:Generator_ColumnVarNameInTable="columnREMARKS" msprop:Generator_ColumnPropNameInRow="REMARKS" msprop:Generator_ColumnPropNameInTable="REMARKSColumn" msprop:Generator_UserColumnName="REMARKS" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="1000" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="CLOSEDATE" msprop:Generator_ColumnVarNameInTable="columnCLOSEDATE" msprop:Generator_ColumnPropNameInRow="CLOSEDATE" msprop:Generator_ColumnPropNameInTable="CLOSEDATEColumn" msprop:Generator_UserColumnName="CLOSEDATE" type="xs:dateTime" minOccurs="0" />
+              <xs:element name="SDATE" msprop:Generator_ColumnVarNameInTable="columnSDATE" msprop:Generator_ColumnPropNameInRow="SDATE" msprop:Generator_ColumnPropNameInTable="SDATEColumn" msprop:Generator_UserColumnName="SDATE" type="xs:dateTime" minOccurs="0" />
+              <xs:element name="EDATE" msprop:Generator_ColumnVarNameInTable="columnEDATE" msprop:Generator_ColumnPropNameInRow="EDATE" msprop:Generator_ColumnPropNameInTable="EDATEColumn" msprop:Generator_UserColumnName="EDATE" type="xs:dateTime" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="CLAIMGRID" msprop:Generator_TableClassName="CLAIMGRIDDataTable" msprop:Generator_TableVarName="tableCLAIMGRID" msprop:Generator_TablePropName="CLAIMGRID" msprop:Generator_RowDeletingName="CLAIMGRIDRowDeleting" msprop:Generator_RowChangingName="CLAIMGRIDRowChanging" msprop:Generator_RowEvHandlerName="CLAIMGRIDRowChangeEventHandler" msprop:Generator_RowDeletedName="CLAIMGRIDRowDeleted" msprop:Generator_UserTableName="CLAIMGRID" msprop:Generator_RowChangedName="CLAIMGRIDRowChanged" msprop:Generator_RowEvArgName="CLAIMGRIDRowChangeEvent" msprop:Generator_RowClassName="CLAIMGRIDRow">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="BANKNAME" msprop:Generator_ColumnVarNameInTable="columnBANKNAME" msprop:Generator_ColumnPropNameInRow="BANKNAME" msprop:Generator_ColumnPropNameInTable="BANKNAMEColumn" msprop:Generator_UserColumnName="BANKNAME" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="500" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="CLID" msprop:Generator_ColumnVarNameInTable="columnCLID" msprop:Generator_ColumnPropNameInRow="CLID" msprop:Generator_ColumnPropNameInTable="CLIDColumn" msprop:Generator_UserColumnName="CLID">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="20" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="COL" msprop:Generator_ColumnVarNameInTable="columnCOL" msprop:Generator_ColumnPropNameInRow="COL" msprop:Generator_ColumnPropNameInTable="COLColumn" msprop:Generator_UserColumnName="COL" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="10" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="KODETOC" msprop:Generator_ColumnVarNameInTable="columnKODETOC" msprop:Generator_ColumnPropNameInRow="KODETOC" msprop:Generator_ColumnPropNameInTable="KODETOCColumn" msprop:Generator_UserColumnName="KODETOC" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="5" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="CLAIMNO" msprop:Generator_ColumnVarNameInTable="columnCLAIMNO" msprop:Generator_ColumnPropNameInRow="CLAIMNO" msprop:Generator_ColumnPropNameInTable="CLAIMNOColumn" msprop:Generator_UserColumnName="CLAIMNO" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="LOSSDATE" msprop:Generator_ColumnVarNameInTable="columnLOSSDATE" msprop:Generator_ColumnPropNameInRow="LOSSDATE" msprop:Generator_ColumnPropNameInTable="LOSSDATEColumn" msprop:Generator_UserColumnName="LOSSDATE" type="xs:dateTime" minOccurs="0" />
+              <xs:element name="REGDATE" msprop:Generator_ColumnVarNameInTable="columnREGDATE" msprop:Generator_ColumnPropNameInRow="REGDATE" msprop:Generator_ColumnPropNameInTable="REGDATEColumn" msprop:Generator_UserColumnName="REGDATE" type="xs:dateTime" minOccurs="0" />
+              <xs:element name="CLAIMNAME" msprop:Generator_ColumnVarNameInTable="columnCLAIMNAME" msprop:Generator_ColumnPropNameInRow="CLAIMNAME" msprop:Generator_ColumnPropNameInTable="CLAIMNAMEColumn" msprop:Generator_UserColumnName="CLAIMNAME" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="500" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="STATUSF" msprop:Generator_ColumnVarNameInTable="columnSTATUSF" msprop:Generator_ColumnPropNameInRow="STATUSF" msprop:Generator_ColumnPropNameInTable="STATUSFColumn" msprop:Generator_UserColumnName="STATUSF" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="1" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="INDIDENT" msprop:Generator_ColumnVarNameInTable="columnINDIDENT" msprop:Generator_ColumnPropNameInRow="INDIDENT" msprop:Generator_ColumnPropNameInTable="INDIDENTColumn" msprop:Generator_UserColumnName="INDIDENT" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="2147483647" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="SDT" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columnSDT" msprop:Generator_ColumnPropNameInRow="SDT" msprop:Generator_ColumnPropNameInTable="SDTColumn" msprop:Generator_UserColumnName="SDT" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="30" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="EDT" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columnEDT" msprop:Generator_ColumnPropNameInRow="EDT" msprop:Generator_ColumnPropNameInTable="EDTColumn" msprop:Generator_UserColumnName="EDT" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="30" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="VAL" msprop:Generator_ColumnVarNameInTable="columnVAL" msprop:Generator_ColumnPropNameInRow="VAL" msprop:Generator_ColumnPropNameInTable="VALColumn" msprop:Generator_UserColumnName="VAL" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="200" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="KODECAB" msprop:Generator_ColumnVarNameInTable="columnKODECAB" msprop:Generator_ColumnPropNameInRow="KODECAB" msprop:Generator_ColumnPropNameInTable="KODECABColumn" msprop:Generator_UserColumnName="KODECAB" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="20" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+    </xs:complexType>
+    <xs:unique name="Constraint1" msdata:PrimaryKey="true">
+      <xs:selector xpath=".//mstns:CLAIM" />
+      <xs:field xpath="mstns:CLID" />
+    </xs:unique>
+    <xs:unique name="CLAIMGRID_Constraint1" msdata:ConstraintName="Constraint1" msdata:PrimaryKey="true">
+      <xs:selector xpath=".//mstns:CLAIMGRID" />
+      <xs:field xpath="mstns:CLID" />
+    </xs:unique>
+  </xs:element>
+</xs:schema>
